@@ -1,6 +1,6 @@
 <?php
 include_once('db-credentials.php');
-include('../db-controller.obj.php');
+//include('../db-controller.obj.php');
 
 $dsn = "mysql:host=$host;dbname=$db;";
 
@@ -11,14 +11,4 @@ try {
   // }
 } catch (PDOException $e) {
   print($e->getMessage());
-}
-
-/***** 
- * 
- * For Testing 
- * Remove Before Production
- * 
- * *****/
-if($conn) {
-  $conn->setAttribute("PDO::ATTR_ERRMODE", PDO::ERRMODE_EXCEPTION);
 }
