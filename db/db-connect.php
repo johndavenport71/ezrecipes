@@ -12,3 +12,6 @@ try {
 } catch (PDOException $e) {
   print($e->getMessage());
 }
+
+//for testing remove before production
+$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

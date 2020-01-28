@@ -11,3 +11,14 @@ function prepArray(String $str) {
   $array = preg_split("/\r\n|\n|\r/", $str);
   return $array;
 }
+
+/**
+* Dump and Die
+*
+* @param 	 Any 	 $var
+* @return 	 void
+*/
+function dd($var) {
+  var_dump($var);
+  die();
+}
