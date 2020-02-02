@@ -1,0 +1,110 @@
+/*************
+EZ Recipes Styles
+*************/
+@import url('https://fonts.googleapis.com/css?family=Roboto|Sriracha&display=swap');
+
+$headingFont: 'Sriracha', cursive;
+$bodyFont: 'Roboto', Helvetica, sans-serif;
+
+/* RGB */
+$white: #f0f6ec;
+$accentBlue: #adddf0;
+$lightGreen: #bacdb0;
+$green: #729b79;
+$darkGreen: #4d6952;
+$blueGray: #475b63;
+$darkGray: #2a282b;
+$black: #19181A;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+a,
+span,
+li,
+td,
+body {
+  font-family: $bodyFont;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $headingFont;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+body {
+  background-color: $white;
+}
+
+a {
+  color: $darkGreen;
+  font-weight: bold;
+}
+
+/* Header Styles */
+header {
+  background-color: #fff;
+  border-top: 3px solid $green;
+  box-shadow: 0 2px 4px #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 2rem 0;
+
+  h1 {
+    color: $darkGreen;
+  }
+
+  div {
+    align-self: center;
+  }
+
+  .button {
+    background: $green;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    margin-right: 2rem;
+    min-width: 120px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+}
+

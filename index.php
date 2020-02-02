@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>EZ Recipes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  </head>
-  <body>
-    <h1>Coming Soon!</h1>
+<?php
+
+
+include('partials/main-header.php');
+
+?>
+  <h2>Page under construction</h2>
+  <img src="assets/undraw_under_construction_46pa.png" alt="Page under construction">
+
   </body>
 </html>
