@@ -1,5 +1,7 @@
 <?php
 
+include('utils.php');
+
 /**
 * Parse a string to an array based on newline character
 *
@@ -12,13 +14,3 @@ function prepArray(String $str) {
   return $array;
 }
 
-/**
-* Dump and Die
-*
-* @param 	 Any 	 $var
-* @return 	 void
-*/
-function dd($var) {
-  var_dump($var);
-  die();
-}
