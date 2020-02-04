@@ -9,6 +9,9 @@ include('utils.php');
 * @return 	 Array
 */
 function prepArray(String $str) {
+  if(!strlen($str)){
+    return [];
+  }
   $str = rtrim(strtolower($str));
   $array = preg_split("/\r\n|\n|\r/", $str);
   return $array;

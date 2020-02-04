@@ -8,7 +8,5 @@ include('partials/main-header.php');
   <img src="<?= ASSETS ?>undraw_under_construction_46pa.png" alt="Page under construction">
  
 <?php
-var_dump(ROOT);
 include('partials/footer.php');
-
-
+?>

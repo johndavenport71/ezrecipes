@@ -3,6 +3,7 @@
 define('ROOT', '/ezrecipes/');
 define('CSS_PATH', ROOT . 'css/');
 define('ASSETS', ROOT . 'assets/');
+define('PARTIALS', ROOT . 'partials/');
 
 /**
 * Dump and Die
