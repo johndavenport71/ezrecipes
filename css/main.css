@@ -412,6 +412,7 @@ header {
 }
 header h1 {
   color: #4d6952;
+  margin: 0.5rem;
 }
 header div {
   align-self: center;
