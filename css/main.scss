@@ -141,3 +141,12 @@ form {
     }
   }
 }
+
+#ingredient-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  input,
+  label {
+    flex: 1 0 50%;
+  }
+}

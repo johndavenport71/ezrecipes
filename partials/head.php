@@ -11,5 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>EZ Recipes</title>
   <link href="<?= CSS_PATH ?>main.css" rel="stylesheet">
+  <script src="js/utils.js"></script>
+  <script src="js/form-functions.js"></script>
 </head>
 <body>

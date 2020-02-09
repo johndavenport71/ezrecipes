@@ -460,4 +460,13 @@ form input[type=submit]:hover {
   text-decoration: underline;
 }
 
+#ingredient-inputs {
+  display: flex;
+  flex-wrap: wrap;
+}
+#ingredient-inputs input,
+#ingredient-inputs label {
+  flex: 1 0 50%;
+}
+
 /*# sourceMappingURL=main.css.map */
