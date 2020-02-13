@@ -20,7 +20,7 @@ $ingredients = $_POST["all_ingredients"];
 
 $preppedIngr = parseIngredients($ingredients);
 
-//dd($preppedIngr);
+//dd(array_values($preppedIngr));
 
 $categories = prepArray($_POST["categories"]);
 

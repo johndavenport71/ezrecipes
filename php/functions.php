@@ -82,3 +82,19 @@ function parseIngredients(String $str) {
   return $newArr;
 }
 
+/**
+* Implode an array putting each element in quotes and removing the last comma
+*
+* @param 	 Array 	 $array
+* @return 	 String
+*/
+function preciseImplode(Array $array) {
+  $string = "'";
+  foreach($array as $arr) {
+    $string .= $arr . "','";
+  }
+  $string = rtrim($string, ",'','");
+  $string .= "'";
+  return $string;
+}
+
