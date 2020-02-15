@@ -64,7 +64,7 @@ function str_to_array_dbl_slash(String $str) {
 }
 
 /**
-* Create an associate array of ingredients and amounts
+* Create an associative array of ingredients and amounts
 *
 * @param 	 String 	 $str
 * @return 	 Array

@@ -6,6 +6,8 @@ include('partials/main-header.php');
 $id = $_GET["id"];
 $recipe = getFullRecipe($conn, $id);
 
+//dd($recipe);
+
 ?>
 
 <main>
@@ -15,18 +17,23 @@ $recipe = getFullRecipe($conn, $id);
   <ul>
   <?php 
     foreach($recipe->getIngredients() as $ingr) {
-      echo "<li>". $ingr["ingredient_amount"] . " " . $ingr["ingredient_name"] ."</li>";
+      echo "<li>". $ingr["amount_desc"] . " " . $ingr["ingredient_name"] ."</li>";
     }
   ?>
   </ul>
   <h3>Directions</h3>
-  <p>To Do: split steps into array</p>
-  <p><?= $recipe->getSteps(); ?></p>
+  <ul>
+    <?php 
+      foreach(str_to_array_dbl_slash($recipe->getSteps()) as $step) {
+        echo "<li>". ucfirst($step) ."</li>";
+      } 
+    ?>
+  </ul>
   <h3>Tags</h3>
   <ul>
     <?php
       foreach($recipe->getCategories() as $cat) {
-        echo "<li>". ucfirst($cat['category_name']) ."</li>";
+        echo "<li>". ucfirst($cat) ."</li>";
       }
     ?>
   </ul>

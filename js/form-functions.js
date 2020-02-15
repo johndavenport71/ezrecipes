@@ -1,6 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  initForm("form");
+  if(document.querySelector("form")) {
+    initForm("form");
+  }
+  
 });
 
 function initForm(formID) {
@@ -9,7 +12,7 @@ function initForm(formID) {
   const allIngredients = document.getElementById("all-ingredients");
 
   const firstInput = document.querySelector('.name-input');
-  log(firstInput);
+  
   firstInput.onchange = (event)=>{
     if(event.target.value.length > 0) {
       allIngredients.value += event.target.value + "||";
@@ -18,8 +21,6 @@ function initForm(formID) {
       addFormRow();
     }
   };
-  
-  log(allIngredients);
 
 }
 
