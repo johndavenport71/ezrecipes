@@ -1,5 +1,16 @@
 # TO DO LIST
 
+## Validation and Sanitization!!!!!!!!!!!
+
+* login form
+* sign up form
+* add recipe form
+* search form
+* image uploads
+  + validate image type
+  + check image upload size
+  + make sure it's a real image?
+
 ## index page
 
 * page layout (figma)
