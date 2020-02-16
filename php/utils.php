@@ -5,6 +5,7 @@ define('CSS_PATH', ROOT . 'css/');
 define('ASSETS', ROOT . 'assets/');
 define('PARTIALS', ROOT . 'partials/');
 define('DB_PATH', ROOT . 'db/');
+define('UPLOADS', ROOT . 'uploads/');
 
 /**
 * Dump and Die

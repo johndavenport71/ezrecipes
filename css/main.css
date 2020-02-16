@@ -413,8 +413,21 @@ header h1 {
   color: #366a1c;
   margin: 0.5rem;
 }
+header h1 a {
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+}
 header div {
   align-self: center;
+}
+header #search {
+  border: none;
+  border-bottom: 2px solid #1b350e;
+  margin-right: 2rem;
+}
+header #search::placeholder {
+  color: #498d25;
 }
 header .button {
   background: #366a1c;
@@ -445,6 +458,7 @@ form textarea {
 }
 form input[type=submit] {
   background: #366a1c;
+  border: none;
   color: #fff;
   display: inline-block;
   min-width: 120px;

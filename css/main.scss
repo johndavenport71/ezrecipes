@@ -80,10 +80,26 @@ header {
   h1 {
     color: $green800;
     margin: .5rem;
+
+    a {
+      color: inherit;
+      font-family: inherit;
+      text-decoration: none;
+    }
   }
 
   div {
     align-self: center;
+  }
+
+  #search {
+    border: none;
+    border-bottom: 2px solid $green900;
+    margin-right: 2rem;
+  }
+
+  #search::placeholder {
+    color: $green700;
   }
 
   .button {
@@ -118,6 +134,7 @@ form {
 
   input[type=submit] {
     background: $green800;
+    border: none;
     color: #fff;
     display: inline-block;
     min-width: 120px;
