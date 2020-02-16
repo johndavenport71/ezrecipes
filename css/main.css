@@ -341,7 +341,6 @@ template {
   display: none;
 }
 
-/* RGB */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -391,11 +390,11 @@ h6 {
 }
 
 body {
-  background-color: #f0f6ec;
+  background-color: #eef0f0;
 }
 
 a {
-  color: #4d6952;
+  color: #1b350e;
   font-weight: bold;
 }
 
@@ -404,22 +403,21 @@ a {
 *************/
 header {
   background-color: #fff;
-  border-top: 3px solid #729b79;
+  border-top: 3px solid #366a1c;
   box-shadow: 0 2px 4px #ccc;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 2rem 0;
 }
 header h1 {
-  color: #4d6952;
+  color: #366a1c;
   margin: 0.5rem;
 }
 header div {
   align-self: center;
 }
 header .button {
-  background: #729b79;
-  border-radius: 4px;
+  background: #366a1c;
   color: #fff;
   display: inline-block;
   margin-right: 2rem;
@@ -446,8 +444,7 @@ form textarea {
   display: block;
 }
 form input[type=submit] {
-  background: #729b79;
-  border-radius: 4px;
+  background: #366a1c;
   color: #fff;
   display: inline-block;
   min-width: 120px;

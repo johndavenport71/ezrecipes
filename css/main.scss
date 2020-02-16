@@ -1,22 +1,13 @@
 /*************
 * EZ Recipes Styles
 *************/
-@use '_normalize.scss';
+@use '_normalize';
+@import '_palette';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto|Sriracha&display=swap');
 
 $headingFont: 'Sriracha', cursive;
 $bodyFont: 'Roboto', Helvetica, sans-serif;
-
-/* RGB */
-$white: #f0f6ec;
-$accentBlue: #adddf0;
-$lightGreen: #bacdb0;
-$green: #729b79;
-$darkGreen: #4d6952;
-$blueGray: #475b63;
-$darkGray: #2a282b;
-$black: #19181A;
 
 * {
   box-sizing: border-box;
@@ -71,7 +62,7 @@ body {
 }
 
 a {
-  color: $darkGreen;
+  color: $green900;
   font-weight: bold;
 }
 
@@ -80,14 +71,14 @@ a {
 *************/
 header {
   background-color: #fff;
-  border-top: 3px solid $green;
+  border-top: 3px solid $green800;
   box-shadow: 0 2px 4px #ccc;
   display: flex;
   justify-content: space-between;
   padding: .5rem 2rem 0;
 
   h1 {
-    color: $darkGreen;
+    color: $green800;
     margin: .5rem;
   }
 
@@ -96,8 +87,7 @@ header {
   }
 
   .button {
-    background: $green;
-    border-radius: 4px;
+    background: $green800;
     color: #fff;
     display: inline-block;
     margin-right: 2rem;
@@ -127,8 +117,7 @@ form {
   }
 
   input[type=submit] {
-    background: $green;
-    border-radius: 4px;
+    background: $green800;
     color: #fff;
     display: inline-block;
     min-width: 120px;
