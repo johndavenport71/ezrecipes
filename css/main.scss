@@ -4,9 +4,9 @@
 @use '_normalize';
 @import '_palette';
 
-@import url('https://fonts.googleapis.com/css?family=Roboto|Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Raleway&display=swap');
 
-$headingFont: 'Sriracha', cursive;
+$headingFont: 'Raleway', Arial, sans-serif;
 $bodyFont: 'Roboto', Helvetica, sans-serif;
 
 * {
@@ -72,7 +72,7 @@ a {
 header {
   background-color: #fff;
   border-top: 3px solid $green800;
-  box-shadow: 0 2px 4px #ccc;
+  box-shadow: 0 2px 4px $grey200;
   display: flex;
   justify-content: space-between;
   padding: .5rem 2rem 0;
@@ -116,20 +116,51 @@ header {
     }
   }
 
+  span {
+    margin-right: 2rem;
+  }
+
 }
 
 /*************
-* Form Styles
+**  Main Content Styles
+**************/
+main {
+  margin: 0 auto;
+  width: 80%;
+}
+
+/*************
+** Form Styles
 *************/
 form {
   background-color: #fff;
+  box-shadow: 0 2px 4px $grey200;
   margin: 1rem auto;
-  padding: 1rem;
-  width: 80%;
+  padding: 2rem 1rem;
+
+  label {
+    color: $green900;
+  }
 
   input,
   textarea {
     display: block;
+  }
+
+  input {
+    border: 2px solid $green900;
+    padding: .5rem;
+  }
+
+  input:focus {
+    border: none;
+    border-bottom: 2px solid $green900;
+  }
+
+  input:valid {
+    border: none;
+    border-bottom: 2px solid $green900;
   }
 
   input[type=submit] {
@@ -146,6 +177,26 @@ form {
       text-decoration: underline;
     }
   }
+
+  input[type=file] {
+    background: $green100 url('../assets/icons/image_icon.svg') center / contain no-repeat;
+    border: 2px dashed $green300;
+    display: block;
+    height: 200px;
+    text-align: center;
+    padding-top: 6rem;
+    width: 80%;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  #display_name {
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
 }
 
 #ingredient-inputs {
@@ -154,5 +205,36 @@ form {
   input,
   label {
     flex: 1 0 50%;
+  }
+}
+
+form.user {
+  label,
+  input {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+  }
+  input[type="submit"] {
+    max-width: 500px;
+  }
+}
+
+/******************
+** Error Messages
+******************/
+.errors {
+  background-color: $red100;
+  box-shadow: 0 2px 4px $grey200;
+  color: $red900;
+  margin: 1rem auto;
+  padding: 1rem;
+
+  ul {
+    margin-left: 2rem;
+
+    li {
+      padding: .5rem 0;
+    }
   }
 }

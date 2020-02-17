@@ -69,3 +69,7 @@
 * user search
 * user management options
   + remove user
+
+## error handling and display
+
+* Error message display

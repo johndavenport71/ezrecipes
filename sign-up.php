@@ -19,9 +19,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = addNewUser($conn, $values);
   }
 
-  if(sizeof($errors)) {
-    dd($errors);
-  }
 }
 
 $fname = $values["first_name"] ?? "";
@@ -36,17 +33,35 @@ $email = $values["email"] ?? "";
   </ul>
 
   <main>
-    <form action="sign-up.php" method="post">
+    <h1>Sign Up</h1>
+    <?php 
+      if(sizeof($errors)) {
+        echo ('
+          <div class="errors">
+            <h3>Please fix these errors</h3>
+            <ul>'
+          );
+        foreach($errors as $err) {
+          echo '<li>' . $err . '</li>';
+        }
+        echo ('
+            </ul>
+          </div>
+        ');
+      }
+    ?>
+    
+    <form action="sign-up.php" method="post" class="user">
       <label for="first_name">First Name</label>
-      <input type="text" id="first_name" name="first_name" value="<?= $fname ?>"><br>
+      <input type="text" id="first_name" name="first_name" value="<?= $fname ?>" required><br>
       <label for="last_name">Last Name</label>
-      <input type="text" id="last_name" name="last_name" value="<?= $lname ?>"><br>
+      <input type="text" id="last_name" name="last_name" value="<?= $lname ?>" required><br>
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" value="<?= $email ?>"><br>
+      <input type="email" id="email" name="email" value="<?= $email ?>" required><br>
       <label for="password">Password</label>
-      <input type="password" id="password" name="password"><br>
+      <input type="password" id="password" name="password" required><br>
       <label for="password_confirm">Confirm Password</label>
-      <input type="password" id="password_confirm" name="password_confirm"><br>
+      <input type="password" id="password_confirm" name="password_confirm" required><br>
       <input type="submit" value="Sign Up">
     </form>
   </main>

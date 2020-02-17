@@ -1,7 +1,7 @@
 /*************
 * EZ Recipes Styles
 *************/
-@import url("https://fonts.googleapis.com/css?family=Roboto|Sriracha&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto|Raleway&display=swap");
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -362,7 +362,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Sriracha", cursive;
+  font-family: "Raleway", Arial, sans-serif;
 }
 
 h1 {
@@ -404,7 +404,7 @@ a {
 header {
   background-color: #fff;
   border-top: 3px solid #366a1c;
-  box-shadow: 0 2px 4px #ccc;
+  box-shadow: 0 2px 4px #ced2d2;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 2rem 0;
@@ -442,19 +442,45 @@ header .button {
 header .button:hover {
   text-decoration: underline;
 }
+header span {
+  margin-right: 2rem;
+}
 
 /*************
-* Form Styles
+**  Main Content Styles
+**************/
+main {
+  margin: 0 auto;
+  width: 80%;
+}
+
+/*************
+** Form Styles
 *************/
 form {
   background-color: #fff;
+  box-shadow: 0 2px 4px #ced2d2;
   margin: 1rem auto;
-  padding: 1rem;
-  width: 80%;
+  padding: 2rem 1rem;
+}
+form label {
+  color: #1b350e;
 }
 form input,
 form textarea {
   display: block;
+}
+form input {
+  border: 2px solid #1b350e;
+  padding: 0.5rem;
+}
+form input:focus {
+  border: none;
+  border-bottom: 2px solid #1b350e;
+}
+form input:valid {
+  border: none;
+  border-bottom: 2px solid #1b350e;
 }
 form input[type=submit] {
   background: #366a1c;
@@ -470,6 +496,22 @@ form input[type=submit]:hover {
   cursor: pointer;
   text-decoration: underline;
 }
+form input[type=file] {
+  background: #d4eec7 url("../assets/icons/image_icon.svg") center/contain no-repeat;
+  border: 2px dashed #8dd169;
+  display: block;
+  height: 200px;
+  text-align: center;
+  padding-top: 6rem;
+  width: 80%;
+}
+form input[type=file]:hover {
+  background-color: #fff;
+}
+form #display_name {
+  display: inline-block;
+  margin-bottom: 2rem;
+}
 
 #ingredient-inputs {
   display: flex;
@@ -478,6 +520,33 @@ form input[type=submit]:hover {
 #ingredient-inputs input,
 #ingredient-inputs label {
   flex: 1 0 50%;
+}
+
+form.user label,
+form.user input {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+form.user input[type=submit] {
+  max-width: 500px;
+}
+
+/******************
+** Error Messages
+******************/
+.errors {
+  background-color: #fae0d9;
+  box-shadow: 0 2px 4px #ced2d2;
+  color: #2a1009;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+.errors ul {
+  margin-left: 2rem;
+}
+.errors ul li {
+  padding: 0.5rem 0;
 }
 
 /*# sourceMappingURL=main.css.map */

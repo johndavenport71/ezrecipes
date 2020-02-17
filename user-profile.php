@@ -26,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     if(move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
       echo "File uploaded successfully: " . basename($_FILES["profile_pic"]["name"]);
-      $stmt = $conn->prepare("UPDATE users SET 'profile_pic' = :file_path WHERE user_id = :user_id");
+      $stmt = $conn->prepare("UPDATE users SET profile_pic = :file_path WHERE user_id = :user_id");
       try {
         $stmt->execute([":file_path"=>$target_file, ":user_id"=>$userID]);
       } catch (PDOException $e) {
@@ -47,12 +47,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </ul>
   <main>
     <h1>Single User page</h1>
-    <p><?= $user["display_name"] ?></p>
-    <image src="uploads/users/<?= $userID . "/" . $user["profile_pic"] ?>" width="50" height="50" >
+    <?php
+
+      if(strlen($user["display_name"])) {
+        echo '<p>'. $user["display_name"] .'</p>';
+      } else {
+        echo '<p>'. ucfirst($user["first_name"]) . " " . ucfirst($user["last_name"]) .'</p>';
+      }
+
+      if(strlen($user["profile_pic"])) {
+        echo ('<image src="'. $user["profile_pic"] .'" width="50" height="50" >');
+      }
+    ?>
+    
     <form action="user-profile.php?id=<?= $userID ?>" method="post" enctype="multipart/form-data">
-      <label for="profile_pic">Upload a picture</label>
+      <label for="display_name">Display Name:</label>
+      <input type="text" id="display_name" name="display_name"><br>
+      <label for="profile_pic" class="file-label">Drag a file here to upload a profile picture</label>
       <input type="file" id="profile_pic" name="profile_pic"><br>
-      <input type="submit" value="Upload">
+      <input type="submit" value="Save Changes">
     </form>
   </main>
  

@@ -1,6 +1,5 @@
 <?php
-  include('php/functions.php');
-  include('db/db-connect.php');
+  include('php/init.php');
 ?>
 
 <!DOCTYPE html>
