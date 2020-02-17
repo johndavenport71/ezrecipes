@@ -13,6 +13,7 @@ $recipe = getFullRecipe($conn, $id);
 <main>
   <h2><?= $recipe->getTitle() ?></h2>
   <p><?= $recipe->getDescription() ?></p>
+  <image src="<?= $recipe->getImgPath(); ?>" alt="<?= $recipe->getTitle(); ?>" width="300" height="auto">
   <h3>Ingredients</h3>
   <ul>
   <?php 

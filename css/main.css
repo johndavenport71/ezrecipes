@@ -465,6 +465,7 @@ form {
 }
 form label {
   color: #1b350e;
+  font-size: 1.25rem;
 }
 form input,
 form textarea {
@@ -513,15 +514,6 @@ form #display_name {
   margin-bottom: 2rem;
 }
 
-#ingredient-inputs {
-  display: flex;
-  flex-wrap: wrap;
-}
-#ingredient-inputs input,
-#ingredient-inputs label {
-  flex: 1 0 50%;
-}
-
 form.user label,
 form.user input {
   display: block;
@@ -530,6 +522,63 @@ form.user input {
 }
 form.user input[type=submit] {
   max-width: 500px;
+}
+
+/*********************
+** Add recipe form styles
+*********************/
+#add-recipe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#add-recipe input {
+  width: 100%;
+}
+#add-recipe div {
+  padding: 1rem;
+}
+#add-recipe textarea {
+  border: 1px solid #1b350e;
+  width: 100%;
+}
+#add-recipe .full-width {
+  flex: 1 0 100%;
+}
+#add-recipe .half-width {
+  flex: 1 0 50%;
+}
+#add-recipe input[type=submit] {
+  max-width: 500px;
+  align-self: center;
+}
+#add-recipe label span {
+  color: #4c5b5c;
+  display: block;
+  font-size: 0.85rem;
+}
+#add-recipe #ingredient-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+#add-recipe #ingredient-inputs input,
+#add-recipe #ingredient-inputs label {
+  flex: 1 0 50%;
+}
+#add-recipe #ingredient-inputs label[for=ingr_name1] {
+  flex: 1 0 70%;
+  margin-right: 10px;
+}
+#add-recipe #ingredient-inputs label[for=ingr_amt1] {
+  flex: 1 0 25%;
+}
+#add-recipe #ingredient-inputs input[id*=ingr_name] {
+  flex: 1 0 70%;
+  margin-right: 10px;
+}
+#add-recipe #ingredient-inputs input[id*=ingr_amt] {
+  flex: 1 0 25%;
 }
 
 /******************
