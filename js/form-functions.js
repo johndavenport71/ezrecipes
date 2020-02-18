@@ -86,32 +86,9 @@ function initSignUpForm() {
   form.onsubmit = function(event) {
     event.preventDefault();
 
-    captcha();
-
     // if(validator.validate()) {
     //   this.submit();
     // }
   }
 
 }
-
-function captcha() {
-  console.log(grecaptcha);
-  if(grecaptcha) {
-    grecaptcha.getResponse().then((res)=>{
-      console.log(res);
-      // const url = 'https://www.google.com/recaptcha/api/siteverify?secret=' + GOOGLE_RECAPTCHA_SECRET + '&response=' + response;
-      // fetch(url, {
-      //   method: 'post',
-      //   mode: 'no-cors'
-      // }).then(res => {
-      //   console.log(res);
-      // });
-    });
-  }
-  
-}
-
-
-
-

@@ -26,7 +26,6 @@ $lname = $values["last_name"] ?? "";
 $email = $values["email"] ?? "";
 
 ?>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <ul>
     <li><a href="add-recipe.php">Add recipe</a></li>
@@ -64,7 +63,6 @@ $email = $values["email"] ?? "";
       <input type="password" id="password" name="password" required><br>
       <label for="password_confirm">Confirm Password</label>
       <input type="password" id="password_confirm" name="password_confirm" required><br>
-      <div class="g-recaptcha" data-sitekey="<?= GOOGLE_RECAPTCHA_KEY ?>"></div>
       <input type="submit" value="Sign Up">
     </form>
   </main>
