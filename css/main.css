@@ -521,6 +521,10 @@ form #display_name {
   display: inline-block;
   margin-bottom: 2rem;
 }
+form #phone_hp {
+  position: absolute;
+  left: -99999px;
+}
 
 form.user label,
 form.user input {

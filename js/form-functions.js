@@ -56,13 +56,23 @@ function initSignUpForm() {
     validate: () => {
       var fields = document.getElementById("sign-up").querySelectorAll('input');
       validator.valid = true;
+      validator.errors = [];
       fields.forEach((field, index) => {
         if(validator.valid === false) {
           return;
+        } else if (field.id == "phone_hp") {
+          field.value.trim().length !== 0 ? validator.valid = false : validator.valid = true;
+        } else {
+          let name = field.id;
+          validator.setValues(name, field.value);
+          if(field.value != null && field.value.trim().length != 0) {
+            validator.valid = true;
+          } else {
+            let msg = field.name + " cannot be blank.";
+            validator.errors.push(msg);
+            validator.valid = false;
+          }
         }
-        let name = field.id;
-        validator.setValues(name, field.value);
-        field.value != null && field.value.trim().length != 0 ? validator.valid = true : validator.valid = false;
       })
       validator.passwordMatch();
       return validator.valid;
@@ -75,9 +85,12 @@ function initSignUpForm() {
       const password = document.getElementById("password");
       const confirm = document.getElementById("password_confirm");
       if(password.value !== confirm.value) {
+        console.log(validator.errors);
+        validator.errors.push("Passwords do not match.");
         validator.valid = false;
       }
     },
+    errors: [],
     valid: true
   };
 
@@ -85,10 +98,38 @@ function initSignUpForm() {
 
   form.onsubmit = function(event) {
     event.preventDefault();
+    validator.validate();
 
-    // if(validator.validate()) {
-    //   this.submit();
-    // }
+    if(validator.validate()) {
+      this.submit();
+    } else {
+      showErrors(validator);
+    }
   }
 
+}
+
+function showErrors(validator) {
+  if(document.querySelector(".errors")) {
+    const errors = document.querySelector(".errors ul");
+    let errorsList = '';
+    validator.errors.map(err => {
+      errorsList += '<li>' + err + '</li>';
+    });
+    errors.innerHTML += errorsList;
+  } else {
+    const form = document.querySelector("form");
+    const errorNode = document.createElement("div");
+    errorNode.setAttribute('class', 'errors');
+    errorNode.innerHTML = '<h3>Please fix these errors</h3>';
+    let errorList = '<ul>';
+    validator.errors.map(err => {
+      errorList += '<li>' + err + '</li>';
+    });
+    errorList += '</ul>';
+
+    errorNode.innerHTML += errorList;
+    form.before(errorNode);
+  }
+  
 }

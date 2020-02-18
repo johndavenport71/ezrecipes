@@ -207,6 +207,12 @@ form {
     margin-bottom: 2rem;
   }
 
+  //Honey Pot
+  #phone_hp {
+    position: absolute;
+    left: -99999px;
+  }
+
 }
 
 form.user {
