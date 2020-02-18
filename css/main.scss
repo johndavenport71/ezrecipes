@@ -66,6 +66,15 @@ a {
   font-weight: bold;
 }
 
+.two-column {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > * {
+    flex: 1 0 50%;
+  }
+}
+
 /*************
 * Header Styles
 *************/
@@ -282,6 +291,64 @@ form.user {
     }
   }
 
+}
+
+/******************
+** Single recipe page styles
+******************/
+#single-recipe {
+  & > div {
+    background-color: #fff;
+    box-shadow: 0 2px 4px $grey200;
+
+    .two-column {
+      p {
+        padding: 2rem;
+      }
+
+      li {
+        font-size: 1.25rem;
+        list-style: none;
+        padding-left: 2rem;
+      }
+    }
+  }
+
+  ul,
+  ol,
+  h3 {
+    margin: .5rem 2rem;
+  }
+
+  .recipe-header {
+    position: relative;
+
+    p {
+      background: linear-gradient(to top, $grey800, rgba(42, 50, 51, 0.2) 80%, rgba(0,0,0,0));
+      bottom: 0;
+      color: $white;
+      padding: 2rem;
+      position: absolute;
+      width: 100%;
+    }
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  .tags {
+    li {
+      display: inline-block;
+      list-style: none;
+      padding: 0 1rem;
+    }
+
+    li:first-of-type {
+      padding-left: 0;
+    }
+  }
 }
 
 /******************

@@ -10,34 +10,39 @@ $recipe = getFullRecipe($conn, $id);
 
 ?>
 
-<main>
-  <h2><?= $recipe->getTitle() ?></h2>
-  <p><?= $recipe->getDescription() ?></p>
-  <image src="<?= $recipe->getImgPath(); ?>" alt="<?= $recipe->getTitle(); ?>" width="300" height="auto">
-  <h3>Ingredients</h3>
-  <ul>
-  <?php 
-    foreach($recipe->getIngredients() as $ingr) {
-      echo "<li>". $ingr["amount_desc"] . " " . $ingr["ingredient_name"] ."</li>";
-    }
-  ?>
-  </ul>
-  <h3>Directions</h3>
-  <ul>
+<main id="single-recipe">
+  <h1><?= $recipe->getTitle() ?></h1>
+  <div>
+    <div class="recipe-header">
+      <p><?= $recipe->getDescription() ?></p>
+      <image src="<?= $recipe->getImgPath(); ?>" alt="<?= $recipe->getTitle(); ?>">
+    </div>
+    
+    <h3>Ingredients</h3>
+    <ul class="two-column">
     <?php 
-      foreach(str_to_array_dbl_slash($recipe->getSteps()) as $step) {
-        echo "<li>". ucfirst($step) ."</li>";
-      } 
-    ?>
-  </ul>
-  <h3>Tags</h3>
-  <ul>
-    <?php
-      foreach($recipe->getCategories() as $cat) {
-        echo "<li>". ucfirst($cat) ."</li>";
+      foreach($recipe->getIngredients() as $ingr) {
+        echo "<li>". $ingr["amount_desc"] . " " . $ingr["ingredient_name"] ."</li>";
       }
     ?>
-  </ul>
+    </ul>
+    <h3>Directions</h3>
+    <ol>
+      <?php 
+        foreach(str_to_array_dbl_slash($recipe->getSteps()) as $step) {
+          echo "<li>". ucfirst($step) ."</li>";
+        } 
+      ?>
+    </ol>
+    <h3>Tags</h3>
+    <ul class="tags">
+      <?php
+        foreach($recipe->getCategories() as $cat) {
+          echo "<li>". ucfirst($cat) ."</li>";
+        }
+      ?>
+    </ul>
+  </div>
 </main>
 
 <?php

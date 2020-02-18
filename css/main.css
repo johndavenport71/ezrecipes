@@ -398,6 +398,14 @@ a {
   font-weight: bold;
 }
 
+.two-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+.two-column > * {
+  flex: 1 0 50%;
+}
+
 /*************
 * Header Styles
 *************/
@@ -579,6 +587,50 @@ form.user input[type=submit] {
 }
 #add-recipe #ingredient-inputs input[id*=ingr_amt] {
   flex: 1 0 25%;
+}
+
+/******************
+** Single recipe page styles
+******************/
+#single-recipe > div {
+  background-color: #fff;
+  box-shadow: 0 2px 4px #ced2d2;
+}
+#single-recipe > div .two-column p {
+  padding: 2rem;
+}
+#single-recipe > div .two-column li {
+  font-size: 1.25rem;
+  list-style: none;
+  padding-left: 2rem;
+}
+#single-recipe ul,
+#single-recipe ol,
+#single-recipe h3 {
+  margin: 0.5rem 2rem;
+}
+#single-recipe .recipe-header {
+  position: relative;
+}
+#single-recipe .recipe-header p {
+  background: linear-gradient(to top, #1c2222, rgba(42, 50, 51, 0.2) 80%, rgba(0, 0, 0, 0));
+  bottom: 0;
+  color: #eef0f0;
+  padding: 2rem;
+  position: absolute;
+  width: 100%;
+}
+#single-recipe .recipe-header img {
+  height: auto;
+  width: 100%;
+}
+#single-recipe .tags li {
+  display: inline-block;
+  list-style: none;
+  padding: 0 1rem;
+}
+#single-recipe .tags li:first-of-type {
+  padding-left: 0;
 }
 
 /******************
