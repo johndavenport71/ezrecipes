@@ -3,3 +3,5 @@ query-snippets.php
 test/
 uploads/
 *.sql
+.env
+.env.*

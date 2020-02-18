@@ -1,12 +1,16 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  if(document.querySelector("form")) {
-    initForm("form");
+  if(document.getElementById("add-recipe")) {
+    initRecipeForm("add-recipe");
+  }
+
+  if(document.getElementById("sign-up")) {
+    initSignUpForm();
   }
   
 });
 
-function initForm(formID) {
+function initRecipeForm(formID) {
   const form = document.getElementById(formID);
 
   const allIngredients = document.getElementById("all-ingredients");
@@ -47,25 +51,63 @@ function addFormRow() {
   ingrSection.append(amountInput);
 }
 
+function initSignUpForm() {
+  const validator = {
+    validate: () => {
+      var fields = document.getElementById("sign-up").querySelectorAll('input');
+      validator.valid = true;
+      fields.forEach((field, index) => {
+        if(validator.valid === false) {
+          return;
+        }
+        let name = field.id;
+        validator.setValues(name, field.value);
+        field.value != null && field.value.trim().length != 0 ? validator.valid = true : validator.valid = false;
+      })
+      validator.passwordMatch();
+      return validator.valid;
+    },
+    values: {},
+    setValues: (key, value) => {
+      validator.values = {...validator.values, [key]: value}
+    },
+    passwordMatch: () => {
+      const password = document.getElementById("password");
+      const confirm = document.getElementById("password_confirm");
+      if(password.value !== confirm.value) {
+        validator.valid = false;
+      }
+    },
+    valid: true
+  };
 
-// form.onsubmit = function(event) {
-//   event.preventDefault();
-  
-//   if(validator.validate()) {
-//     this.submit();
-//   }
-// }
+  form = document.getElementById("sign-up");
 
-// const validator = {
-//   validate: function() {
-//     var fields = document.querySelectorAll('input');
-//     fields.forEach((field, index) => {
-//       let name = field.id;
-//       this.values[name] = field.value; 
-//       field.value != null ? this.valid = true : this.valid = false;
-//     })
-//     return this.valid;
-//   },
-//   values: {},
-//   valid: false
-// };
+  form.onsubmit = function(event) {
+    event.preventDefault();
+
+    captcha();
+
+    // if(validator.validate()) {
+    //   this.submit();
+    // }
+  }
+
+}
+
+function captcha() {
+  if(grecaptcha) {
+    const response = grecaptcha.getResponse();
+    const url = 'https://www.google.com/recaptcha/api/siteverify?secret=' + GOOGLE_RECAPTCHA_SECRET + '&response=' + response;
+    fetch(url, {
+      method: 'post',
+      mode: 'no-cors'
+    }).then(res => {
+      console.log(res);
+    });
+  }
+}
+
+
+
+
