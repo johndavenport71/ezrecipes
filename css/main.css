@@ -521,7 +521,7 @@ form #display_name {
   display: inline-block;
   margin-bottom: 2rem;
 }
-form #phone_hp {
+form #newsletter {
   position: absolute;
   left: -99999px;
 }

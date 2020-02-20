@@ -1,4 +1,5 @@
 <?php 
+include('php/init.php');
 include('partials/head.php');
 
 $user_id = 1;

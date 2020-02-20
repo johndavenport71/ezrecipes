@@ -98,3 +98,14 @@ function preciseImplode(Array $array) {
   return $string;
 }
 
+/**
+* Check user input against a list of approved items
+*
+* @param 	 String 	 $str
+* @return 	 boolean
+*/
+function userVerify(String $str) {
+  $answers = ["recipes", "recipe", "food", "meals", "cooking"];
+  return in_array(strtolower($str), $answers);
+}
+

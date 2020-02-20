@@ -60,8 +60,9 @@ function initSignUpForm() {
       fields.forEach((field, index) => {
         if(validator.valid === false) {
           return;
-        } else if (field.id == "phone_hp") {
+        } else if (field.id == "newsletter") {
           field.value.trim().length !== 0 ? validator.valid = false : validator.valid = true;
+          validator.errors.push("Could not verify user as human. This could be due to using an auto-complete feature. Please try again without it.");
         } else {
           let name = field.id;
           validator.setValues(name, field.value);

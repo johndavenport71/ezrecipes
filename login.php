@@ -1,5 +1,5 @@
 <?php
-
+include('php/init.php');
 include('partials/head.php');
 include('partials/main-header.php');
 
@@ -21,6 +21,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $_SESSION["is_logged_in"] = true;
     $_SESSION["user_name"] = $user["display_name"] ?? $user["first_name"];
+    $_SESSION["user_img"] = $user["profile_pic"] ?? "";
+    header("Location: index.php");
   }
 
 }

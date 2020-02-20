@@ -4,7 +4,7 @@
     <input type="search" id="search" name="search" placeholder="Search">
 
     <?php
-      if($_SESSION["is_logged_in"]) {
+      if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"]) {
         echo '<span>Hi there, '. ucfirst($_SESSION["user_name"]) ."</span>";
         echo '<a href="logout.php">Logout</a>';
       } else {

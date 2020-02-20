@@ -1,5 +1,5 @@
 <?php
-
+include('php/init.php');
 include('partials/head.php');
 include('partials/main-header.php');
 
