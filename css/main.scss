@@ -94,6 +94,7 @@ header {
       color: inherit;
       font-family: inherit;
       text-decoration: none;
+      clear: both;
     }
   }
 
@@ -126,7 +127,17 @@ header {
   }
 
   span {
+    align-items: center;
+    display: inline-flex;
+    flex-direction: row;
     margin-right: 2rem;
+    justify-content: space-between;
+  }
+
+  .user-image {
+    border-radius: 50%;
+    margin-left: 10px;
+    max-height: 50px;
   }
 
 }

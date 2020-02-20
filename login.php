@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $_SESSION["is_logged_in"] = true;
     $_SESSION["user_name"] = $user["display_name"] ?? $user["first_name"];
-    $_SESSION["user_img"] = $user["profile_pic"] ?? "";
+    $_SESSION["user_img"] = $user["profile_pic"] ?? "assets/icons/happy_face.svg";
     header("Location: index.php");
   }
 

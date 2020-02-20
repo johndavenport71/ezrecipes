@@ -35,15 +35,6 @@
 * display results
 * sort and filter
 
-## login/signup
-
-* wire up form fields
-* add form validation
-* create queries for adding new user
-* set up logged in session variable
-* password validation query
-* Form field styling
-
 ## user settings page
 
 * Personalization flows

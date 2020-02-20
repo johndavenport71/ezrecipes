@@ -425,6 +425,7 @@ header h1 a {
   color: inherit;
   font-family: inherit;
   text-decoration: none;
+  clear: both;
 }
 header div {
   align-self: center;
@@ -451,7 +452,16 @@ header .button:hover {
   text-decoration: underline;
 }
 header span {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
   margin-right: 2rem;
+  justify-content: space-between;
+}
+header .user-image {
+  border-radius: 50%;
+  margin-left: 10px;
+  max-height: 50px;
 }
 
 /*************

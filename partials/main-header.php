@@ -5,7 +5,7 @@
 
     <?php
       if(isset($_SESSION["is_logged_in"]) && $_SESSION["is_logged_in"]) {
-        echo '<span>Hi there, '. ucfirst($_SESSION["user_name"]) ."</span>";
+        echo '<span>Hi there, '. ucfirst($_SESSION["user_name"]) .' <image src="'.$_SESSION["user_img"].'" alt="Picture of '.$_SESSION["user_name"].'" class="user-image"> </span>';
         echo '<a href="logout.php">Logout</a>';
       } else {
         echo ('
