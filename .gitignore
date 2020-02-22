@@ -5,3 +5,4 @@ uploads/
 *.sql
 .env
 .env.*
+*.zip
