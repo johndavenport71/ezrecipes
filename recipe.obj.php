@@ -1,6 +1,6 @@
 <?php
 
-class Recipe {
+class Recipe implements JsonSerializable {
   private $id;
   private $title;
   private $description;
@@ -34,6 +34,16 @@ class Recipe {
     $this->categories = $categories;
     $this->ingredients = $ingredients;
     $this->rating = (int)$rating;
+  }
+
+  /**
+  * Serialize and return the object in JSON
+  *
+  * @param 	 void 	 
+  * @return 	 JSON
+  */
+  public function jsonSerialize() {
+    return get_object_vars($this);
   }
 
   /*vvvvv Getters and Setters vvvvv*/

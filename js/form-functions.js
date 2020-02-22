@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
   if(document.getElementById("add-recipe")) {
     initRecipeForm("add-recipe");

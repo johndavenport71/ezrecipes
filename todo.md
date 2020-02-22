@@ -1,5 +1,7 @@
 # TO DO LIST
 
+## Clean up this mess of a code-base
+
 ## Validation and Sanitization!!!!!!!!!!!
 
 * login form
@@ -46,6 +48,7 @@
 * form field styling
 * form field validation
 * sanitize user input
+* account for empty amounts
 
 ## show recipe page
 

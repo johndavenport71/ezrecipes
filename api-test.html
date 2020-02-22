@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Api Test</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      const url = 'http://localhost:8888/ezrecipes/api/recipes.php?id=16';
+      fetch(url)
+        .then(res => {return res.json();})
+        .then(res => console.log(res));
+    });
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
