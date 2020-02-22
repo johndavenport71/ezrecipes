@@ -1,7 +1,8 @@
 <?php
 
-include('partials/head.php');
-include('partials/main-header.php');
+include('../php/init.php');
+include(PARTIALS . '/head.php');
+include(PARTIALS . '/main-header.php');
 ?>
 
 <main>
@@ -65,5 +66,5 @@ include('partials/main-header.php');
 </main>
 
 <?php
-include('partials/footer.php');
+include(PARTIALS . '/footer.php');
 ?>

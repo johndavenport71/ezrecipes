@@ -2,6 +2,7 @@ db-credentials.php
 query-snippets.php
 test/
 uploads/
+db-dumps/
 *.sql
 .env
 .env.*

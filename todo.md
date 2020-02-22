@@ -1,7 +1,5 @@
 # TO DO LIST
 
-## Clean up this mess of a code-base
-
 ## Validation and Sanitization!!!!!!!!!!!
 
 * login form

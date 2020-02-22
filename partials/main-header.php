@@ -1,5 +1,5 @@
 <header>
-  <h1><a href="index.php">EZ <img src="<?= ASSETS ?>/chef.svg" alt="Chef outline icon" class="chef-icon" width="50" height="50"> Recipes</a></h1>
+  <h1><a href="<?= WEB_ROOT ?>/index.php">EZ <img src="<?= ASSETS ?>/chef.svg" alt="Chef outline icon" class="chef-icon" width="50" height="50"> Recipes</a></h1>
   <div>
     <input type="search" id="search" name="search" placeholder="Search">
 
@@ -9,8 +9,8 @@
         echo '<a href="logout.php">Logout</a>';
       } else {
         echo ('
-          <a href="sign-up.php" class="button">Sign Up!</a>
-          <a href="login.php">Login</a>
+          <a href="'. WEB_ROOT .'/views/sign-up.php" class="button">Sign Up!</a>
+          <a href="'. WEB_ROOT .'/views/login.php">Login</a>
         ');
       }
     ?>

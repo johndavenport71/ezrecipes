@@ -1,14 +1,14 @@
 <?php
-include('php/init.php');
-include('partials/head.php');
-include('partials/main-header.php');
+include('../php/init.php');
+include(PARTIALS . '/head.php');
+include(PARTIALS . '/main-header.php');
 
 $userID = $_GET["id"];
 
 $user = getSingleUser($conn, $userID);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $target_dir = "uploads/users/$userID/";
+  $target_dir = WEB_ROOT . "uploads/users/$userID/";
   if(!file_exists($target_dir)) {
     mkdir($target_dir);
   }
@@ -41,9 +41,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
   <ul>
-    <li><a href="add-recipe.php">Add recipe</a></li>
-    <li><a href="login.php">Login</a></li>
-    <li><a href="sign-up.php">Sign up</a></li>
+    <li><a href="<?= WEB_ROOT ?>/views/add-recipe.php">Add recipe</a></li>
+    <li><a href="<?= WEB_ROOT ?>/views/login.php">Login</a></li>
+    <li><a href="<?= WEB_ROOT ?>/views/sign-up.php">Sign up</a></li>
   </ul>
   <main>
     <h1>Single User page</h1>
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       }
 
       if(strlen($user["profile_pic"])) {
-        echo ('<image src="'. $user["profile_pic"] .'" width="50" height="50" >');
+        echo ('<image src="'. WEB_ROOT . "/" . $user["profile_pic"] .'" width="50" height="50" >');
       }
     ?>
     
@@ -70,5 +70,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </main>
  
 <?php
-include('partials/footer.php');
+include(PARTIALS . '/footer.php');
 ?>

@@ -1,8 +1,8 @@
 <?php
 
 include('utils.php');
-include(DB_PATH . 'query-snippets.php');
-include(ROOT . 'recipe.obj.php');
+include(DB_PATH . '/query-snippets.php');
+include(MODELS . '/recipe.obj.php');
 
 /**
 * Get a recipe by ID

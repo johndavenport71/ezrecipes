@@ -1,7 +1,7 @@
 <?php
-include('php/init.php');
-include('partials/head.php');
-include('partials/main-header.php');
+include('../php/init.php');
+include(PARTIALS . '/head.php');
+include(PARTIALS . '/main-header.php');
 
 $id = $_GET["id"];
 $recipe = getFullRecipe($conn, $id);
@@ -15,7 +15,7 @@ $recipe = getFullRecipe($conn, $id);
   <div>
     <div class="recipe-header">
       <p><?= $recipe->getDescription() ?></p>
-      <image src="<?= $recipe->getImgPath(); ?>" alt="<?= $recipe->getTitle(); ?>">
+      <image src="<?= WEB_ROOT . "/" . $recipe->getImgPath(); ?>" alt="<?= $recipe->getTitle(); ?>">
     </div>
     
     <h3>Ingredients</h3>
@@ -46,5 +46,5 @@ $recipe = getFullRecipe($conn, $id);
 </main>
 
 <?php
-include('partials/footer.php');
+include(PARTIALS . '/footer.php');
 ?>
