@@ -7,7 +7,7 @@ include(PARTIALS . '/main-header.php');
 
 <main>
   <h2>Add your recipe to the mix!</h2>
-  <form id="add-recipe" action="recipe-handler.php" method="post" enctype="multipart/form-data">
+  <form id="add-recipe" action="<?= WEB_ROOT ?>/api/recipes.php" method="post" enctype="multipart/form-data">
     <div class="half-width">
       <label for="recipe_title">What do you call your recipe?<sup>*</sup>:</label>
       <input type="text" id="recipe_title" name="recipe_title" required><br>

@@ -8,7 +8,7 @@ $userID = $_GET["id"];
 $user = getSingleUser($conn, $userID);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $target_dir = WEB_ROOT . "uploads/users/$userID/";
+  $target_dir = WEB_ROOT . "/uploads/users/$userID/";
   if(!file_exists($target_dir)) {
     mkdir($target_dir);
   }

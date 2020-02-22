@@ -22,3 +22,23 @@ function dd($var) {
 function h(String $str) {
   return htmlspecialchars($str);
 }
+
+/**
+* Delete a directory and all files in it
+*
+* @param 	 String 	 $dir
+* @return 	 Boolean
+*/
+function delTree($dir) { 
+  if(empty($dir)) {
+    return false;
+  }
+
+  $files = array_diff(scandir($dir), array('.', '..')); 
+
+  foreach ($files as $file) { 
+    (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file"); 
+  }
+
+  return rmdir($dir); 
+} 

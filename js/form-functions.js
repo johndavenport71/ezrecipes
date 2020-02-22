@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   if(document.getElementById("add-recipe")) {
     initRecipeForm("add-recipe");
+    const form = document.getElementById("add-recipe");
+    form.onsubmit = (event)=>{
+      event.preventDefault();
+      const data = new FormData(form);
+      console.log(...data);
+    };
   }
 
   if(document.getElementById("sign-up")) {
@@ -16,11 +22,16 @@ function initRecipeForm(formID) {
 
   const firstInput = document.querySelector('.name-input');
   
-  firstInput.onchange = (event)=>{
+  firstInput.onchange = (event) => {
     if(event.target.value.length > 0) {
       allIngredients.value += event.target.value + "||";
       const firstAmt = firstInput.nextElementSibling;
-      firstAmt.onchange = (event)=>{allIngredients.value += event.target.value + "//";};
+      firstAmt.onchange = (event) => {allIngredients.value += event.target.value + "//";};
+      firstAmt.onblur = (event) => {
+        if(event.target.value == "") {
+          allIngredients.value += "0 //";
+        }
+      };
       addFormRow();
     }
   };
@@ -38,7 +49,12 @@ function addFormRow() {
     if(event.target.value.length > 0) {
       allIngredients.value += event.target.value + "||";
       const nextAmt = nameInput.nextElementSibling;
-      nextAmt.onchange = (event)=>{allIngredients.value += event.target.value + "//";};
+      nextAmt.onchange = (event) => {allIngredients.value += event.target.value + "//";};
+      nextAmt.onblur = (event) => {
+        if(event.target.value == "") {
+          allIngredients.value += "0 //";
+        }
+      };
       addFormRow();
     }
   };
