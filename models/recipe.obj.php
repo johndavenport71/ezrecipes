@@ -26,7 +26,7 @@ class Recipe implements JsonSerializable {
     $this->id = (int)$recipe["recipe_id"];
     $this->title = $recipe["title"];
     $this->description = $recipe["recipe_desc"];
-    $this->steps = $recipe["steps"];
+    $this->steps = explode("//", $recipe["steps"]);
     $this->user_id = (int)$recipe["user_id"];
     $this->prep_time = (int)$recipe["prep_time"];
     $this->cook_time = (int)$recipe["cook_time"];
