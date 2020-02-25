@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchField from './SearchField';
 
 const Header = () => {
   return (
     <header>
       <h1>
-        <Link to="/">EZ Recipes</Link>
+        <Link to="/">
+          EZ 
+          <img src={require("../assets/chef.svg")} alt="Chef outline icon" className="chef-icon" width="50" height="50"></img>
+          Recipes
+        </Link>
       </h1>
       <div>
-        <input type="search" id="search" name="search" placeholder="Search" />
+        <SearchField />
         <Link to="/sign-up" className="button">Sign Up</Link>
         <Link to="/login">Login</Link>
       </div>

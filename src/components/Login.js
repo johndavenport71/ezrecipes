@@ -20,14 +20,14 @@ const Login = () => {
           name="email"
           type="email"
           value={values.email}
-          onChange={(event, newValue) => handleChangeDirectly("email", newValue)}
+          onChange={event => handleChangeDirectly("email", event.target.value)}
         />
         <input 
           id="password"
           name="password"
           type="password"
-          value={values.email}
-          onChange={(event, newValue) => handleChangeDirectly("password", newValue)}
+          value={values.password}
+          onChange={event => handleChangeDirectly("password", event.target.value)}
         />
         <input type="submit" value="login" />
       </form>

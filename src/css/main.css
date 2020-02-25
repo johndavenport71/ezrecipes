@@ -542,8 +542,18 @@ form.user input {
   margin: 0 auto;
   width: 80%;
 }
+form.user input {
+  margin-bottom: 1rem;
+}
 form.user input[type=submit] {
   max-width: 500px;
+}
+
+.search-bar {
+  box-shadow: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 
 /*********************

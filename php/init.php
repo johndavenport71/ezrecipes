@@ -1,6 +1,7 @@
 <?php
   ob_start();
   session_start();
+  header("Access-Control-Allow-Origin: *");
 
   define('SITE_ROOT', dirname(__DIR__));
 

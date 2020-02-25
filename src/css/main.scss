@@ -233,9 +233,21 @@ form.user {
     margin: 0 auto;
     width: 80%;
   }
+
+  input {
+    margin-bottom: 1rem;
+  }
+
   input[type="submit"] {
     max-width: 500px;
   }
+}
+
+.search-bar {
+  box-shadow: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
 
 /*********************
