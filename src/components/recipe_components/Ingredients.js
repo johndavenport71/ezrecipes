@@ -1,4 +1,5 @@
 import React from 'react';
+import upperCaseFirst from '../../utils/upperCase';
 
 const Ingredients = ({ ingredients }) => {
   return (
@@ -6,7 +7,7 @@ const Ingredients = ({ ingredients }) => {
       {ingredients.map((ingr, i) => {
         return (
           <li key={i}>
-            {`${ingr.amount_desc} ${ingr.ingredient_name}`}
+            {`${ingr.amount_desc !== "0" ? ingr.amount_desc : ""} ${upperCaseFirst(ingr.ingredient_name)}`}
           </li>
         );
       })}
