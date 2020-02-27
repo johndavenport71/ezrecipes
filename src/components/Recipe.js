@@ -17,7 +17,7 @@ const Recipe = () => {
     });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchRecipe();
   },[]);
 

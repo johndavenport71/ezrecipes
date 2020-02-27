@@ -483,6 +483,7 @@ form {
 }
 form label {
   color: #1b350e;
+  display: block;
   font-size: 1.25rem;
 }
 form input,
