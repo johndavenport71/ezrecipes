@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import signupValidator from '../utils/signupValidator';
+import Errors from './Errors';
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -8,18 +10,42 @@ const SignUp = () => {
     password: "",
     password_confirm: "",
     newsletter: "",
-    user_Verify: ""
+    user_verify: ""
   });
+  const [errors, setErrors] = useState([]);
+  const api = process.env.REACT_APP_API_PATH;
 
   const handleChangeDirectly = (key, value) => {
     setValues({...values, [key]: value});
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const errMsg = signupValidator(values);
+    setErrors(errMsg);
+    if(!errMsg.length > 0) {
+      const data = new FormData(event.target);
+      const url = api + "users.php";
+      fetch(url, {
+        method: "POST",
+        body: data
+      }).then(res=>{
+        if(!res.ok || res.status !== 200) {
+          setErrors(["Failed to add new user, please check the information entered and try again."]);
+        }
+      }).catch(err=>{
+        setErrors(["Failed to add new user. Please try again in a minute"]);
+      });
+    }
   }
 
   return (
     <main>
       <h1>Sign Up</h1>
       
-      <form id="sign-up" className="user">
+      {errors.length > 0 && <Errors errors={errors} />}
+
+      <form id="sign-up" className="user" onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name</label>
         <input 
           type="text" 
@@ -81,7 +107,7 @@ const SignUp = () => {
           id="user_verify" 
           name="user_verify" 
           required 
-          value={values.user_Verify}
+          value={values.user_verify}
           onChange={event => handleChangeDirectly("user_verify", event.target.value)}
         />
         <input type="submit" value="Sign Up" />

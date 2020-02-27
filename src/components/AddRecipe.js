@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FileDropzone from './form_components/FileDropzone';
+import IngredientsInput from './form_components/IngredientsInput';
 
+/*
+
+**TO DO: FORM SUBMISSION**
+
+*/
 const AddRecipe = () => {
-
-  const [ingredients, setIngredients] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     console.log(...data);
-  }
-
-  const handleIngredients = (event) => {
-    const currentInput = event.target;
-    //render another row
-    //add values to all ingredients, use ingredients state
-    console.log(currentInput);
   }
 
   return (
@@ -46,16 +43,7 @@ const AddRecipe = () => {
           <FileDropzone />
         </div>
 
-        <div id="form-ingredients" className="full-width">
-          
-          <div id="ingredient-inputs">
-            <label htmlFor="ingr_name1">Ingredient</label>
-            <label htmlFor="ingr_amt1">Amount</label>
-            <input name="ingr_name1" id="ingr_name1" className="name-input" onBlur={handleIngredients} />
-            <input name="ingr_amt1" id="ingr_amt1" />
-          </div>
-          <input type="hidden" id="all-ingredients" name="all_ingredients" />
-        </div>
+        <IngredientsInput />
 
         <div className="full-width"> 
           <label htmlFor="steps">
