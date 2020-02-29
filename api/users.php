@@ -1,27 +1,14 @@
 <?php
 
 include('../php/init.php');
+include('../models/api-controller.obj.php');
+
+$controller = new APIController($conn);
 
 if($_SERVER["REQUEST_METHOD"] == 'GET') {
   if(isset($_GET["id"])) {
     $id = intval(h($_GET["id"]));
-    $stmt = $conn->prepare("SELECT first_name, last_name, display_name, profile_pic FROM users WHERE user_id = :id");
-    if($stmt->execute([":id"=>$id])) {
-      $data = $stmt->fetch(PDO::FETCH_ASSOC);
-      if($data) {
-        $response = array(
-          'status'=>1,
-          'status_message'=>'success',
-          'data'=>$data
-        );
-      } else {
-      $response = array(
-        'status'=>0,
-        'status_message'=>'Failed to retreive record'
-      );
-    }
-      
-    } 
+    $response = $controller->getSingleUser($id); 
   
   } else {
     $response = array(
@@ -39,36 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST') {
   $values["password"] = h($_POST["password"]) ?? "";
   $values["password_confirm"] = h($_POST["password_confirm"]) ?? "";
 
-  $errors = checkUser($values);
-
-  if(!sizeof($errors)) {
-    $values["pass_hash"] = password_hash($values["password"], PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO users VALUES (NULL, :first, :last, NULL, 'm', :password, NULL, :email)");
-    $stmt->bindParam(":first", $values["first_name"]);
-    $stmt->bindParam(":last", $values["last_name"]);
-    $stmt->bindParam(":password", $values["pass_hash"]);
-    $stmt->bindParam(":email", $values["email"]);
-    try {
-      $stmt->execute();
-      $id = intval($conn->lastInsertId());
-    } catch(PDOException $e) {
-      array_push($errors, $e->getMessage());
-    }
-  }
-
-  if(sizeof($errors)) {
-    $response = array(
-      'status'=>0,
-      'status_message'=>'failed to add new user',
-      'errors'=>$errors
-    );
-  } else {
-    $response = array(
-      'status'=>1,
-      'status_message'=>'Added new user',
-      'new_user_id'=>$id
-    );
-  }
+  $response = $controller->addUser($values);
 }
 
 header('Content-Type: application/json');

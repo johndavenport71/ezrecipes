@@ -1,6 +1,5 @@
 <?php
 include_once('db-credentials.php');
-//include('../db-controller.obj.php');
 
 $dsn = "mysql:host=$host;dbname=$db;";
 

@@ -1,12 +1,15 @@
 <?php
 include('../php/init.php');
+include('../models/api-controller.obj.php');
+
+$controller = new APIController($conn);
 
 if($_SERVER["REQUEST_METHOD"] == 'GET') {
   
   if(isset($_GET["id"])) {
     $id = h($_GET["id"]);
 
-    $recipe = getFullRecipe($conn, $id);
+    $recipe = $controller->getFullRecipe($id);
 
     if(isset($recipe)) {
       $response = array("status"=>1, "recipe"=> $recipe->jsonSerialize());
@@ -15,35 +18,19 @@ if($_SERVER["REQUEST_METHOD"] == 'GET') {
       $response = array('status'=>0, 'status_message'=>'Failed to retrieve record');
     }
 
+  } else if (isset($_GET["user"])) {
+    $userID = h($_GET["user"]);
+
+    $response = $controller->getRecipesByUser($userID);
+
   } else {
     if(isset($_GET["limit"])) {
-      $limit = intval(h($_GET["limit"]));
+      $limit = h($_GET["limit"]);
     } else {
       $limit = 10;
     }
 
-    $stmt = $conn->prepare("SELECT recipe_id FROM recipes ORDER BY recipe_id DESC LIMIT :limit");
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    if($stmt->execute()) {
-      $ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
-      foreach($ids as $i=>$id) {
-        $recipe = getFullRecipe($conn, $id);
-        $data[$i] = $recipe->jsonSerialize();
-      }
-    }
-
-    if(isset($data)) {
-      $response = array(
-        'status'=>1,
-        'status_message'=>'Success',
-        'data'=>$data
-      );
-    } else {
-      $response = array(
-        'status'=>0,
-        'status_message'=>'Failed to retrieve records'
-      );
-    }
+    $response = $controller->getAllRecipes($limit);
   }
 
   header('Content-Type: application/json');

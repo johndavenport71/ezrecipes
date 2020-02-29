@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchField from './SearchField';
 
-const Header = () => {
+const Header = ({ loggedIn }) => {
   return (
     <header>
       <h1>
@@ -14,8 +14,14 @@ const Header = () => {
       </h1>
       <div>
         <SearchField />
-        <Link to="/sign-up" className="button">Sign Up</Link>
-        <Link to="/login">Login</Link>
+        {loggedIn ?
+          <p>To Do</p>
+          :
+          <>
+          <Link to="/sign-up" className="button">Sign Up</Link>
+          <Link to="/login">Login</Link>
+          </>
+        }
       </div>
     </header>
   );

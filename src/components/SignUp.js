@@ -34,7 +34,7 @@ const SignUp = () => {
           setErrors(["Failed to add new user, please check the information entered and try again."]);
         }
       }).catch(err=>{
-        setErrors(["Failed to add new user. Please try again in a minute"]);
+        setErrors(["Failed to add new user. Please try again in a minute."]);
       });
     }
   }

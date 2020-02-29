@@ -19,7 +19,7 @@ const Recipe = () => {
 
   useEffect(() => {
     fetchRecipe();
-  },[]);
+  },[])
 
   return (
     <main>

@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Home = () => {
+const Home = ({ loggedIn, toggleLogin }) => {
+
+  useEffect(()=>{
+    console.log(loggedIn, toggleLogin);
+  },[]);
+
   return (
     <main>
       <p>TO DO: Home page</p>

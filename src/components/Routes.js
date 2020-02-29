@@ -6,30 +6,39 @@ import Login from './Login';
 import Recipe from './Recipe';
 import AddRecipe from './AddRecipe';
 import SearchResults from './SearchResults';
+import SingleUser from './SingleUser';
+import { UserContext } from './Context';
 
 const Routes = () => {
 
   return (
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route path="/sign-up">
-        <SignUp />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/recipe/:id">
-        <Recipe />
-      </Route>
-      <Route path="/add-recipe">
-        <AddRecipe />
-      </Route>
-      <Route path="/search/:params">
-        <SearchResults />
-      </Route>
-    </Switch>
+    <UserContext.Consumer>
+      {({loggedIn, toggleLogin}) => (
+        <Switch>
+          <Route exact path="/">
+            <Home loggedIn={loggedIn} toggleLogin={toggleLogin} />
+          </Route>
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
+          <Route path="/login">
+            <Login loggedIn={loggedIn} toggleLogin={toggleLogin} />
+          </Route>
+          <Route path="/recipe/:id">
+            <Recipe />
+          </Route>
+          <Route path="/add-recipe">
+            <AddRecipe />
+          </Route>
+          <Route path="/search/:params">
+            <SearchResults />
+          </Route>
+          <Route path="/user/:id">
+            <SingleUser />
+          </Route>
+        </Switch>
+      )}
+    </UserContext.Consumer>
   );
 }
 export default Routes;
