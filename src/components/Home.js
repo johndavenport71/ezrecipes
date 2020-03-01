@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import CardSection from './CardSection';
 
 const Home = ({ loggedIn, toggleLogin }) => {
-
-  useEffect(()=>{
-    console.log(loggedIn, toggleLogin);
-  },[]);
-
+  
   return (
     <main>
-      <p>TO DO: Home page</p>
+      <CardSection title="Italian Recipes" category="italian" />
+      <CardSection title="Asian Recipes" category="asian" />
+      <CardSection title="Fast Recipes" category="fast" />
     </main>
   );
 }

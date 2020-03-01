@@ -256,7 +256,7 @@ class APIController {
 
   if(sizeof($ids)) {
     foreach($ids as $i=>$id) {
-      $recipe = getFullRecipe($this->conn, $id);
+      $recipe = $this->getFullRecipe($id);
       $data[$i] = $recipe->jsonSerialize();
     }
 

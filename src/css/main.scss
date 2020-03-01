@@ -112,6 +112,17 @@ header {
     color: $green700;
   }
 
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
   .button {
     background: $green800;
     color: #fff;
@@ -120,10 +131,6 @@ header {
     min-width: 120px;
     padding: 10px;
     text-align: center;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   span {
@@ -379,6 +386,92 @@ form.user {
       padding-left: 0;
     }
   }
+}
+
+/******************
+**  Recipe Card Styles
+*******************/
+.section-heading {
+  background-color: $green800;
+  color: $white;
+  padding: .25rem;
+  padding-left: 1rem;
+}
+
+.card-container {
+  position: relative;
+  margin-bottom: .5rem;
+}
+
+.inner-container {
+  display: flex;
+  height: 100%;
+  position: relative;
+  transition: transform ease-out 0.45s;
+  width: 100%;
+}
+
+.recipe-card {
+  background-color: $green100;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid $grey200;
+  box-shadow: 0 4px 4px -2px $grey400;
+  display: flex;
+  flex: 0 0 25%;
+  margin: .66rem;
+  height: 300px;
+  transition: transform ease-out .1s;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 6px 6px -1px $grey400;
+    transform: scale(105%);
+  }
+
+  div {
+    align-self: flex-end;
+    background: linear-gradient(0deg, $grey800 0%, rgba(56, 67, 67, 0.61) 65%, rgba(56, 67, 67, 0) 100%);
+    color: $white;
+    display: block;
+    padding: .25rem;
+    padding-top: 1rem;
+    width: 100%;
+
+    p {
+      font-weight: normal;
+    }
+  }
+}
+
+.recipe-card.loading {
+  background-color: linear-gradient(45deg, $green100 0%, rgba(82, 158, 41, 0.6) 65%, rgba(82, 158, 41, 0.247) 100%);
+}
+
+.recipe-card:first-of-type {
+  margin-left: 0;
+}
+
+.arrow-button {
+  background-color: $clear;
+  border: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.arrow-left {
+  left: -7%;
+}
+
+.arrow-right {
+  right: -10%;
 }
 
 /******************
