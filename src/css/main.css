@@ -573,6 +573,9 @@ form.user input[type=submit] {
 #add-recipe input {
   width: 100%;
 }
+#add-recipe input:not([type=submit]) {
+  margin-bottom: 0.75rem;
+}
 #add-recipe div {
   padding: 1rem;
 }
@@ -604,19 +607,52 @@ form.user input[type=submit] {
 #add-recipe #ingredient-inputs label {
   flex: 1 0 50%;
 }
+#add-recipe #ingredient-inputs .row {
+  display: flex;
+  flex: 1 0 100%;
+  margin: 0;
+  padding: 0;
+}
 #add-recipe #ingredient-inputs label[for=ingr_name1] {
-  flex: 1 0 70%;
+  flex: 1 0 65%;
   margin-right: 10px;
 }
 #add-recipe #ingredient-inputs label[for=ingr_amt1] {
   flex: 1 0 25%;
 }
-#add-recipe #ingredient-inputs input[id*=ingr_name] {
-  flex: 1 0 70%;
+#add-recipe #ingredient-inputs .ingredient-input {
+  flex: 1 0 65%;
   margin-right: 10px;
 }
-#add-recipe #ingredient-inputs input[id*=ingr_amt] {
+#add-recipe #ingredient-inputs .amount-input {
   flex: 1 0 25%;
+}
+#add-recipe #ingredient-inputs .remove-row {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  flex: 1 0 10%;
+  max-width: 30px;
+}
+#add-recipe #ingredient-inputs .remove-row img {
+  height: 40px;
+  width: 40px;
+  margin-bottom: 8px;
+}
+#add-recipe #ingredient-inputs .add-row {
+  align-content: flex-end;
+  border: 2px dashed #8dd169;
+  background-color: #d4eec7;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  width: 100%;
+}
+#add-recipe #ingredient-inputs .add-row span {
+  align-self: center;
+  margin-right: 40%;
+}
+#add-recipe #ingredient-inputs .add-row img {
+  align-self: flex-end;
 }
 
 /******************

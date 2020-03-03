@@ -18,23 +18,11 @@ const AddRecipe = () => {
     prep_time: 0,
     cook_time: 0,
     categories: "",
-    all_ingredients: ""
+    all_ingredients: []
   });
 
   const handleChangeDirectly = (key, value) => {
     setValues({...values, [key]: value});
-  }
-
-  const handleIngredient = (event) => {
-    let ingredients = values.all_ingredients;
-    ingredients += event.target.value + "||";
-    setValues({...values, all_ingredients: ingredients});
-  }
-
-  const handleAmount = (event) => {
-    let ingredients = values.all_ingredients;
-    ingredients += event.target.value + "//";
-    setValues({...values, all_ingredients: ingredients});
   }
 
   const handleSubmit = (event) => {
@@ -82,7 +70,7 @@ const AddRecipe = () => {
           <FileDropzone />
         </div>
 
-        <IngredientsInput handleIngredient={handleIngredient} handleAmount={handleAmount} />
+        <IngredientsInput values={values} setValues={setValues} />
 
         <div className="full-width"> 
           <label htmlFor="steps">

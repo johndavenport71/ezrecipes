@@ -271,6 +271,10 @@ form.user {
     width: 100%;
   }
 
+  input:not([type=submit]) {
+    margin-bottom: .75rem;
+  }
+
   div {
     padding: 1rem;
   }
@@ -309,8 +313,15 @@ form.user {
       flex: 1 0 50%;
     }
 
+    .row {
+      display: flex;
+      flex: 1 0 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     label[for=ingr_name1] {
-      flex: 1 0 70%;
+      flex: 1 0 65%;
       margin-right: 10px;
     }
 
@@ -318,13 +329,43 @@ form.user {
       flex: 1 0 25%;
     }
 
-    input[id*="ingr_name"] {
-      flex: 1 0 70%;
+    .ingredient-input {
+      flex: 1 0 65%;
       margin-right: 10px;
     }
 
-    input[id*="ingr_amt"] {
+    .amount-input {
       flex: 1 0 25%;
+    }
+
+    .remove-row {
+      background-color: $clear;
+      border: none;
+      flex: 1 0 10%;
+      max-width: 30px;
+
+      img {
+        height: 40px;
+        width: 40px;
+        margin-bottom: 8px;
+      }
+    }
+
+    .add-row {
+      align-content: flex-end;
+      border: 2px dashed $green300;
+      background-color: $green100;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      width: 100%;
+      span {
+        align-self: center;
+        margin-right: 40%;
+      }
+      img {
+        align-self: flex-end;
+      }
     }
   }
 
