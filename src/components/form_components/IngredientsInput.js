@@ -1,7 +1,7 @@
 import React from 'react';
 import setAttributes from '../../utils/setAttributes';
 
-const IngredientsInput = () => {
+const IngredientsInput = ({ handleIngredient, handleAmount }) => {
 
 	const appendIngredients = (value) => {
 		const ingredients = document.getElementById('all-ingredients');
@@ -49,6 +49,9 @@ const IngredientsInput = () => {
 				addFormRow();
 			}
 		};
+
+		nameInput.onChange = handleIngredient;
+		amountInput.onChange = handleAmount;
 		
 	}
 	
@@ -57,8 +60,8 @@ const IngredientsInput = () => {
 			<div id="ingredient-inputs">
 				<label htmlFor="ingr_name1">Ingredient</label>
 				<label htmlFor="ingr_amt1">Amount</label>
-				<input name="ingr_name1" id="ingr_name1" className="name-input" onBlur={handleFirstInput} />
-				<input name="ingr_amt1" id="ingr_amt1" />
+				<input name="ingr_name1" id="ingr_name1" className="name-input" onBlur={handleFirstInput} onChange={handleIngredient} />
+				<input name="ingr_amt1" id="ingr_amt1" onChange={handleAmount} />
 			</div>
 			<input type="hidden" id="all-ingredients" name="all_ingredients" />
 		</div>

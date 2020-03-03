@@ -16,7 +16,7 @@ const CardSection = ({ title, category }) => {
       }).catch(e=>console.log(e));
     }
     fetchRecipes(api);
-
+    // eslint-disable-next-line
   },[api]);
 
 
