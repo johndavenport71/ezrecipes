@@ -24,7 +24,7 @@ const IngredientsInput = ({ values, setValues }) => {
 		let newIngredients = values.all_ingredients.filter(row => row.name !== value);
 		setValues({...values, all_ingredients: newIngredients});
 	}
-	
+
   return (
 		<div id="form-ingredients" className="full-width">
 			<div id="ingredient-inputs">

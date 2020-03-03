@@ -2,6 +2,7 @@
   ob_start();
   session_start();
   header("Access-Control-Allow-Origin: *");
+  header("Access-Control-Allow-Headers: *");
 
   define('SITE_ROOT', dirname(__DIR__));
 

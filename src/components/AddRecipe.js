@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import FileDropzone from './form_components/FileDropzone';
 import IngredientsInput from './form_components/IngredientsInput';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 /*
 
@@ -8,7 +10,7 @@ import IngredientsInput from './form_components/IngredientsInput';
 
 */
 const AddRecipe = () => {
-
+  const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
 
   const [values, setValues] = useState({
@@ -18,7 +20,8 @@ const AddRecipe = () => {
     prep_time: 0,
     cook_time: 0,
     categories: "",
-    all_ingredients: []
+    all_ingredients: [],
+    recipe_image: ""
   });
 
   const handleChangeDirectly = (key, value) => {
@@ -27,15 +30,25 @@ const AddRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    const url = api + "recipes.php";
-    console.log(JSON.stringify(...data));
-    // fetch(url, {
-    //   method: "POST",
-    //   body: JSON.stringify(data)
-    // }).then(res => {return res.json()})
-    // .then(res => console.log(res))
-    // .catch(err => console.log(err));
+    let url = api + "recipes.php";
+    let newIngredients = values.all_ingredients;
+    const ingredient = document.getElementById("ingr_name1");
+    const amount = document.getElementById("ingr_amt1");
+    if(ingredient.value.length > 0) {
+      newIngredients.push({ name: ingredient.value, amount: amount.value ? amount.value : 0 });
+    }
+		setValues({...values, all_ingredients: newIngredients});
+    
+    axios.post(url, values)
+    .then(res => {
+      if(res.data.status === 1) {
+        history.push(`/recipes/${res.data.recipe_id}`);
+      } else {
+        // handle failure here
+      }
+    })
+    .catch(err => console.log(err));
+
   }
 
   return (
@@ -67,7 +80,7 @@ const AddRecipe = () => {
         </div>
 
         <div className="half-width">
-          <FileDropzone />
+          <FileDropzone values={values} setValues={setValues} />
         </div>
 
         <IngredientsInput values={values} setValues={setValues} />
@@ -135,6 +148,7 @@ const AddRecipe = () => {
       </form>
     </main>
   );
+
 }
 
 export default AddRecipe;
