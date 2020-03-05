@@ -6,11 +6,11 @@ class Recipe implements JsonSerializable {
   private $description;
   private $ingredients;
   private $steps;
+  private $nutrition;
   private $categories;
+  private $date;
   private $user_id;
   private $rating;
-  private $prep_time;
-  private $cook_time;
   private $img_path;
 
   /**
@@ -24,13 +24,18 @@ class Recipe implements JsonSerializable {
   */
   function __construct(Array $recipe, Array $ingredients, Array $categories, int $rating) {
     $this->id = (int)$recipe["recipe_id"];
-    $this->title = $recipe["title"];
+    $this->title = $recipe["recipe_title"];
     $this->description = $recipe["recipe_desc"];
-    $this->steps = explode("//", $recipe["steps"]);
+    $this->nutrition = array(
+      'fat' => $recipe["fat"],
+      'calories' => $recipe["calories"],
+      'protein' => $recipe["protein"],
+      'sodium' => $recipe["sodium"],
+    );
+    $this->steps = explode("//", $recipe["directions"]);
+    $this->date = $recipe["date_added"];
     $this->user_id = (int)$recipe["user_id"];
-    $this->prep_time = (int)$recipe["prep_time"];
-    $this->cook_time = (int)$recipe["cook_time"];
-    $this->img_path = $recipe["recipe_img"];
+    $this->img_path = $recipe["recipe_image"];
     $this->categories = $categories;
     $this->ingredients = $ingredients;
     $this->rating = (int)$rating;

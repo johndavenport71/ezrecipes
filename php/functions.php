@@ -89,13 +89,20 @@ function parseIngredients(String $str) {
 * @return 	 String
 */
 function preciseImplode(Array $array) {
+  $reg = "/(([a-z]|[A-Z])\'([a-z]|[A-Z]))|([a-z]\'(?!\|\|))/";
   $string = "'";
-  foreach($array as $arr) {
-    $string .= $arr . "','";
-  }
-  $string = rtrim($string, ",'','");
+  $params = implode("'||'", $array);
+  $params = preg_replace($reg, "''", $params);
+  $params = str_replace("||", ",", $params);
+  $params = str_replace(";", "\;", $params);
+  $string .= $params;
+  $string = rtrim($string, ",");
   $string .= "'";
   return $string;
+}
+
+function queryStringRegexp(String $string) {
+  return str_replace(",", "|", $string);
 }
 
 /**
