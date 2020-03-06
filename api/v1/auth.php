@@ -7,7 +7,7 @@ $controller = new ApiController($conn);
 if($_SERVER["REQUEST_METHOD"] != "POST") {
   $response = array(
     'status'=>0,
-    'status_message'=>'Invalid request'
+    'status_message'=>'Invalid request method'
   );
 } else {
   $email = h($_POST["email"]);
