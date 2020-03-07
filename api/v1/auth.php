@@ -1,8 +1,8 @@
 <?php
 include('../../php/init.php');
-include(MODELS . '/ApiController.php');
+include('../../Models/User.php');
 
-$controller = new ApiController($conn);
+$user = new User($conn);
 
 if($_SERVER["REQUEST_METHOD"] != "POST") {
   $response = array(
@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
   $email = h($_POST["email"]);
   $pass = h($_POST["password"]);
 
-  $response = $controller->userAuth($email, $pass);
+  $response = $user->userAuth($email, $pass);
   
 }
 

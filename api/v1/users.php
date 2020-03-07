@@ -1,15 +1,16 @@
 <?php
-include('../../php/init.php');
-include(MODELS . '/ApiController.php');
 
-$controller = new ApiController($conn);
+include('../../php/init.php');
+include('../../Models/User.php');
+
+$user = new User($conn);
 $request = $_SERVER["REQUEST_METHOD"];
 
 if($request == "GET") {
   //get user info
   if(isset($_GET["id"])) {
     $id = h($_GET["id"]);
-    $response = $controller->getUser($id);
+    $response = $user->getUser($id);
   } else {
     $response = array(
       'status' => 0,
@@ -32,7 +33,7 @@ if($request == "GET") {
     $user["email"] = h($_POST["email"]);
     $user["user_auth"] = password_hash($password, PASSWORD_DEFAULT);
 
-    $response = $controller->addUser($user);
+    $response = $user->addUser($user);
     
   }
 
@@ -40,7 +41,7 @@ if($request == "GET") {
   $id = h($_GET["id"]);
 
   //delete user but keep recipes
-  $response = $controller->deleteUser($id);
+  $response = $user->deleteUser($id);
   
 } else {
   $response = array(

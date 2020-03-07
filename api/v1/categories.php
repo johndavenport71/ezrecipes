@@ -1,13 +1,13 @@
 <?php
 include('../../php/init.php');
-include(MODELS . '/ApiController.php');
+include('../../Models/Category.php');
 
-$controller = new ApiController($conn);
+$category = new Category($conn);
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
   $params = queryStringRegexp(h($_GET["categories"]));
   
-  $response = $controller->getRecipesByCategory($params);
+  $response = $category->getRecipesByCategory($params);
 
 } else {
   $response = array(

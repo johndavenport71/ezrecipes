@@ -11,7 +11,7 @@ const RecipeCard = ({ recipe }) => {
       }}>
       <div>
         <h3>{recipe.title}</h3>
-        <p>{recipe.description}</p>
+        <p>{recipe.description && recipe.description.substring(0, 80) + "..."}</p>
       </div>
     </Link>
   );

@@ -9,7 +9,7 @@ const CardSection = ({ title, category }) => {
 
   useEffect(()=>{
     const fetchRecipes = (api) => {
-      const url = api + 'categories.php?name=' + category;
+      const url = api + 'categories.php?categories=' + category;
       fetch(url).then(res=>res.json()).then(res=>{
         console.log(res);
         setRecipes(res.data);
@@ -24,7 +24,7 @@ const CardSection = ({ title, category }) => {
     <section>
       <h2 className="section-heading">{title}</h2>
       <Suspense fallback={<LoadingCard />}>
-      {recipes.length > 0 &&
+      {recipes && recipes.length > 0 &&
         <CardContainer recipes={recipes} />
       }
       </Suspense>

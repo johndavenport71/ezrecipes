@@ -5,9 +5,9 @@ const Home = ({ loggedIn, toggleLogin }) => {
   
   return (
     <main>
-      <CardSection title="Italian Recipes" category="italian" />
-      <CardSection title="Asian Recipes" category="asian" />
-      <CardSection title="Fast Recipes" category="fast" />
+      <CardSection title="Low Calorie Recipes" category="Low Cal" />
+      <CardSection title="Healthy Recipes" category="Healthy" />
+      <CardSection title="Vegan Recipes" category="vegan" />
     </main>
   );
 }

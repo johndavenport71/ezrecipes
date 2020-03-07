@@ -2,20 +2,15 @@
 
 include('utils.php');
 include(DB_PATH . '/query-snippets.php');
-include(MODELS . '/recipe.obj.php');
 
 /**
-* Get a recipe by ID
+* Parse steps into a delimited string
 *
-* @param 	 PDO 	 $conn
-* @param 	 int 	 $id
-* @return 	 Object
+* @param 	 Array 	 $array
+* @return 	 String
 */
-function getFullRecipe(PDO $conn, int $id) {
-  $recipe = getRecipe($conn, $id);
-  $ingredients = getIngredients($conn, $id);
-  $categories = getCategories($conn, $id);
-  return new Recipe($recipe, $ingredients, $categories, 0);
+function parseSteps(Array $array) {
+  return implode("//", $array);
 }
 
 /**
@@ -101,8 +96,39 @@ function preciseImplode(Array $array) {
   return $string;
 }
 
+/**
+ * Replace commas with pipes
+ * 
+ * @param String $string
+ * @return String
+ */
 function queryStringRegexp(String $string) {
   return str_replace(",", "|", $string);
+}
+
+/**
+ * Convert an array to a string delimited with pipes
+ * 
+ * @param   Array   $array
+ * @return  String
+ */
+function regexpImplode(Array $array) {
+  return implode("|", $array);
+}
+
+/**
+* Generate a random token
+*
+* @param 	 void 	 
+* @return 	 String
+*/
+function generateToken() {
+  $token = bin2hex(random_bytes(3));
+  $token .= '-' . bin2hex(random_bytes(3));
+  $token .= '-' . bin2hex(random_bytes(3));
+  $token .= '-' . bin2hex(random_bytes(3));
+
+  return $token;
 }
 
 /**
