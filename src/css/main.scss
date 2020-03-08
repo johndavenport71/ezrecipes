@@ -440,8 +440,8 @@ form.user {
 }
 
 .card-container {
-  position: relative;
   margin-bottom: .5rem;
+  position: relative;
 }
 
 .inner-container {
@@ -487,7 +487,31 @@ form.user {
 }
 
 .recipe-card.loading {
-  background-color: linear-gradient(45deg, $green100 0%, rgba(82, 158, 41, 0.6) 65%, rgba(82, 158, 41, 0.247) 100%);
+  -webkit-animation: glow linear 1.2s infinite; 
+  animation: glow linear 1.2s infinite;
+}
+
+.loading-line {
+  background-color: $grey200;
+  display: block;
+  height: 30px;
+  list-style: none;
+  margin: .5rem 0;
+  width: 100%;
+  -webkit-animation: glow linear 1.2s infinite; 
+  animation: glow linear 1.2s infinite;
+}
+
+@-webkit-keyframes glow { 
+    0% { background-color:  $grey200; }
+    50% { background-color: $grey300; }
+    100% { background-color: $grey200; } 
+
+} 
+@keyframes glow { 
+    0% { background-color: $grey200; }
+    50% { background-color: $grey300; }
+    100% { background-color: $grey200; } 
 }
 
 .recipe-card:first-of-type {

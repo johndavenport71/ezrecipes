@@ -15,7 +15,7 @@ class User {
   * @param 	 String 	 $pass
   * @return 	 Array
   */
-  function userAuth(String $email, String $pass) {
+  public function userAuth(String $email, String $pass) {
     if(empty($email) || empty($pass)) {
       $response = array(
         'status'=>0,
@@ -55,7 +55,7 @@ class User {
   * @param 	 String 	 $token
   * @return 	 void
   */
-  function insertToken(int $id, String $token, Object $expires) {
+  public function insertToken(int $id, String $token, Object $expires) {
     $stmt = $this->conn->prepare("INSERT INTO user_tokens VALUES (:user_id, :token, :expires)");
     $stmt->execute([':user_id' => $id, ':token' => $token, ':expires' => $expires->format('Y-m-d\TH:i:s.u')]);
   }
@@ -66,7 +66,7 @@ class User {
   * @param 	 int 	 $user_id
   * @return 	 Boolean
   */
-  function checkToken(int $user_id) {
+  public function checkToken(int $user_id) {
     $stmt = $this->conn->prepare("SELECT TIMEDIFF(expires, now()) FROM user_tokens WHERE user_id = :id");
     if($stmt->execute([':id' => $user_id])) {
       return $stmt->fetch(PDO::FETCH_COLUMN);
@@ -80,7 +80,7 @@ class User {
   *
   * @return 	 Boolean
   */
-  function deleteTokens() {
+  public function deleteTokens() {
     $stmt = $this->conn->prepare("DELETE FROM user_tokens WHERE TIMEDIFF(expires, now()) <= 0");
     return $stmt->execute();
   }
@@ -91,7 +91,7 @@ class User {
   * @param 	 int 	 $id
   * @return 	 Array
   */
-  function getUser(int $id) {
+  public function getUser(int $id) {
     $stmt = $this->conn->prepare("SELECT first_name, last_name, email, display_name, member_level, profile_pic FROM users WHERE user_id = :id");
     if($stmt->execute([":id"=>$id])) {
       $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -119,7 +119,7 @@ class User {
   * @param 	 Array 	 $user
   * @return 	 Array
   */
-  function addUser(Array $user) {
+  public function addUser(Array $user) {
     $errors = $this->checkUser($user);
 
     if(!sizeof($errors)) {
@@ -159,7 +159,7 @@ class User {
   * @param 	 int 	 $id
   * @return 	 Array
   */
-  function deleteUser(int $id) {
+  public function deleteUser(int $id) {
     $errors = [];
     //update recipe ID's
     $stmt = $this->conn->prepare("UPDATE recipes SET user_id = 0 WHERE user_id = :id");
@@ -193,7 +193,7 @@ class User {
   * @param 	 Array 	 $data
   * @return 	 Array
   */
-  function checkUser(Array $data) {
+  public function checkUser(Array $data) {
     $errors = [];
 
     if(strlen($data["first_name"]) == 0 || strlen($data["last_name"]) == 0) {

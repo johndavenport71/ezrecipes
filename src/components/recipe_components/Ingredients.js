@@ -7,7 +7,7 @@ const Ingredients = ({ ingredients }) => {
       {ingredients.map((ingr, i) => {
         return (
           <li key={i}>
-            {`${ingr.amount_desc !== "0" ? ingr.amount_desc : ""} ${upperCaseFirst(ingr.ingredient_name)}`}
+            {`${upperCaseFirst(ingr)}`}
           </li>
         );
       })}

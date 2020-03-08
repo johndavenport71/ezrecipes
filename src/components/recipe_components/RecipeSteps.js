@@ -5,7 +5,9 @@ const RecipeSteps = ({ steps }) => {
   return (
     <ol>
       {steps.map((step, i) => {
-        return <li key={i}>{upperCaseFirst(step)}</li>
+        if(step !== "") {
+          return <li key={i}>{upperCaseFirst(step)}</li>
+        }
       })}
     </ol>
   );

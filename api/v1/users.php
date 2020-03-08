@@ -27,13 +27,13 @@ if($request == "GET") {
       'status_message' => 'Passwords do not match'
     );
   } else {
-    $user = [];
-    $user["first_name"] = h($_POST["first_name"]);
-    $user["last_name"] = h($_POST["last_name"]);
-    $user["email"] = h($_POST["email"]);
-    $user["user_auth"] = password_hash($password, PASSWORD_DEFAULT);
+    $data = [];
+    $data["first_name"] = h($_POST["first_name"]);
+    $data["last_name"] = h($_POST["last_name"]);
+    $data["email"] = h($_POST["email"]);
+    $data["user_auth"] = password_hash($password, PASSWORD_DEFAULT);
 
-    $response = $user->addUser($user);
+    $response = $user->addUser($data);
     
   }
 

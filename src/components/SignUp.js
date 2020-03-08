@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import signupValidator from '../utils/signupValidator';
 import Errors from './Errors';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
+  const history = useHistory();
   const [values, setValues] = useState({
     first_name: "",
     last_name: "",
@@ -29,11 +31,20 @@ const SignUp = () => {
       fetch(url, {
         method: "POST",
         body: data
-      }).then(res=>{
+      })
+      .then(res=>{
         if(!res.ok || res.status !== 200) {
           setErrors(["Failed to add new user, please check the information entered and try again."]);
         }
-      }).catch(err=>{
+        return res.json();
+      })
+      .then(res => {
+        if (res.status === 1) {
+          history.push(`/user/${res.new_user_id}`);
+        }
+      })
+      .catch(err=>{
+        console.log(err);
         setErrors(["Failed to add new user. Please try again in a minute."]);
       });
     }

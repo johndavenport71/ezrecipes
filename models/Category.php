@@ -82,7 +82,7 @@ class Category {
   * @return 	 Array
   */
   function getRecipesByCategory(String $params) {
-    $stmt = $this->conn->prepare("SELECT category_desc, rc.recipe_id FROM recipe_categories rc INNER JOIN categories ON categories.category_id = rc.category_id WHERE category_desc IN ('".$params."') LIMIT 25");
+    $stmt = $this->conn->prepare("SELECT category_desc, rc.recipe_id FROM recipe_categories rc INNER JOIN categories ON categories.category_id = rc.category_id WHERE category_desc IN ('".$params."') LIMIT 24");
     if($stmt->execute()) {
       $ids = $stmt->fetchAll(PDO::FETCH_COLUMN, 1);
       $ids = array_unique($ids);
