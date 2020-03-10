@@ -1,7 +1,7 @@
 import React from 'react';
 import CardSection from './CardSection';
 
-const Home = ({ loggedIn, toggleLogin }) => {
+const Home = () => {
   
   return (
     <main>

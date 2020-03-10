@@ -1,5 +1,9 @@
 # TO DO LIST
 
+* Add uuid field to users table
+* remove user tokens table
+* use uuid to authenticate users when adding/editing/removing recipes
+
 ## Validation and Sanitization!!!!!!!!!!!
 
 * login form

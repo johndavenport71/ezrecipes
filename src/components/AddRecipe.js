@@ -3,52 +3,33 @@ import FileDropzone from './form_components/FileDropzone';
 import IngredientsInput from './form_components/IngredientsInput';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import stringToArray from '../utils/stringToArray';
 
 /*
 
 **TO DO: FORM SUBMISSION**
 
 */
-const AddRecipe = () => {
+const AddRecipe = (props) => {
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
+  const user_id = props.user_id ? props.user_id : 0;
 
   const [values, setValues] = useState({
     recipe_title: "",
     description: "",
     steps: "",
-    prep_time: 0,
-    cook_time: 0,
+    fat: 0,
+    calories: 0,
+    protein: 0,
+    sodium: 0,
     categories: "",
     all_ingredients: [],
     recipe_image: ""
   });
 
   const handleChangeDirectly = (key, value) => {
-    setValues({...values, [key]: value});
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    let url = api + "recipes.php";
-    let newIngredients = values.all_ingredients;
-    const ingredient = document.getElementById("ingr_name1");
-    const amount = document.getElementById("ingr_amt1");
-    if(ingredient.value.length > 0) {
-      newIngredients.push({ name: ingredient.value, amount: amount.value ? amount.value : 0 });
-    }
-		setValues({...values, all_ingredients: newIngredients});
-    
-    axios.post(url, values)
-    .then(res => {
-      if(res.data.status === 1) {
-        history.push(`/recipes/${res.data.recipe_id}`);
-      } else {
-        // handle failure here
-      }
-    })
-    .catch(err => console.log(err));
-
+    setValues({ ...values, [key]: value });
   }
 
   return (
@@ -83,6 +64,22 @@ const AddRecipe = () => {
           <FileDropzone values={values} setValues={setValues} />
         </div>
 
+        <fieldset className="full-width nutrition">
+          <legend>Nutrition Information (optional)</legend>
+          <label htmlFor="calories">Calories
+            <input type="text" value={values.calories} onChange={e => handleChangeDirectly("calories", e.target.value)} />
+          </label>
+          <label htmlFor="fat">Fat
+            <input type="text" value={values.fat} onChange={e => handleChangeDirectly("fat", e.target.value)} />
+          </label>
+          <label htmlFor="protein">Protein
+            <input type="text" value={values.protein} onChange={e => handleChangeDirectly("protein", e.target.value)} />
+          </label>
+          <label htmlFor="sodium">Sodium
+            <input type="text" value={values.sodium} onChange={e => handleChangeDirectly("sodium", e.target.value)} />
+          </label>
+        </fieldset>
+
         <IngredientsInput values={values} setValues={setValues} />
 
         <div className="full-width"> 
@@ -99,34 +96,6 @@ const AddRecipe = () => {
             value={values.steps}
             onChange={evt => handleChangeDirectly("steps", evt.target.value)}
           ></textarea>
-        </div>
-
-        <div className="half-width">
-          <label htmlFor="prep_time">
-            Prep time<sup>*</sup>:
-            <span>In minutes</span>
-          </label>
-          <input 
-            type="text" 
-            id="prep_time" 
-            name="prep_time"
-            required
-            value={values.prep_time}
-            onChange={evt => handleChangeDirectly("prep_time", evt.target.value)}
-          />
-
-          <label htmlFor="cook_time">
-            Cook time<sup>*</sup>:
-            <span>In minutes</span>
-          </label>
-          <input 
-            type="text" 
-            id="cook_time" 
-            name="cook_time" 
-            required
-            value={values.cook_time}
-            onChange={evt => handleChangeDirectly("cook_time", evt.target.value)}
-          />
         </div>
 
         <div className="half-width">
@@ -148,6 +117,43 @@ const AddRecipe = () => {
       </form>
     </main>
   );
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    let url = api + "recipes.php";
+    let newIngredients = values.all_ingredients;
+    const ingredient = document.getElementById("ingr_name1");
+    if(ingredient.value.length > 0) {
+      newIngredients.push({ name: ingredient.value });
+    }
+    const newSteps = stringToArray(values.steps);
+    const newCategories = stringToArray(values.categories);
+    setValues({ ...values, all_ingredients: newIngredients, steps: newSteps, categories: newCategories });
+    
+    let params = new FormData();
+    params.append("recipe_title", values.recipe_title);
+    params.append("recipe_desc", values.description);
+    params.append("fat", values.fat);
+    params.append("calories", values.calories);
+    params.append("sodium", values.sodium);
+    params.append("protein", values.protein);
+    params.append("directions", values.steps);
+    params.append("user_id", user_id ? user_id : 0);
+    params.append("all_ingredients", values.all_ingredients);
+    params.append("categories", values.categories);
+    params.append("recipe_image", values.recipe_image);
+    
+    axios.post(url, params)
+    .then(res => {
+      if(res.data.status === 1) {
+        history.push(`/recipe/${res.data.recipe_id}`);
+      } else {
+        console.log("TO DO: error handling",res);
+      }
+    })
+    .catch(err => console.log(err));
+
+  }
 
 }
 

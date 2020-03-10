@@ -22,21 +22,16 @@ class User {
         'status_message'=>'Missing required fields'
       );
     } else { 
-      $stmt = $this->conn->prepare("SELECT user_id, email, user_auth FROM users WHERE email = :email");
+      $stmt = $this->conn->prepare("SELECT user_id, uuid, email, user_auth FROM users WHERE email = :email");
       if($stmt->execute([":email" => $email])) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
   
         if($user && password_verify($pass, $user["user_auth"])) {
-          $token = generateToken();
-          $expires = new DateTime("now", new DateTimeZone("EST"));
-          $expires->add(new DateInterval('PT1H0M'));
-          $this->insertToken($user["user_id"], $token, $expires);
+          $data = $this->getUser($user["user_id"]);
           $response = array(
-            'status'=>1,
-            'status_message'=>'User successfully authenticated.',
-            'user_id'=>$user["user_id"],
-            'token'=>$token,
-            'expires'=>$expires,
+            'status' => 1,
+            'status_message' => 'User successfully authenticated.',
+            'user' => $data,
           );
         } else {
           $response = array(
@@ -50,49 +45,13 @@ class User {
   }//end userAuth
 
   /**
-  * Add token to tokens table
-  *
-  * @param 	 String 	 $token
-  * @return 	 void
-  */
-  public function insertToken(int $id, String $token, Object $expires) {
-    $stmt = $this->conn->prepare("INSERT INTO user_tokens VALUES (:user_id, :token, :expires)");
-    $stmt->execute([':user_id' => $id, ':token' => $token, ':expires' => $expires->format('Y-m-d\TH:i:s.u')]);
-  }
-
-  /**
-  * Check if a token has expired
-  *
-  * @param 	 int 	 $user_id
-  * @return 	 Boolean
-  */
-  public function checkToken(int $user_id) {
-    $stmt = $this->conn->prepare("SELECT TIMEDIFF(expires, now()) FROM user_tokens WHERE user_id = :id");
-    if($stmt->execute([':id' => $user_id])) {
-      return $stmt->fetch(PDO::FETCH_COLUMN);
-    } else {
-      return false;
-    }
-  }
-
-  /**
-  * Delete expired token
-  *
-  * @return 	 Boolean
-  */
-  public function deleteTokens() {
-    $stmt = $this->conn->prepare("DELETE FROM user_tokens WHERE TIMEDIFF(expires, now()) <= 0");
-    return $stmt->execute();
-  }
-
-  /**
   * Get user info from database
   *
   * @param 	 int 	 $id
   * @return 	 Array
   */
   public function getUser(int $id) {
-    $stmt = $this->conn->prepare("SELECT first_name, last_name, email, display_name, member_level, profile_pic FROM users WHERE user_id = :id");
+    $stmt = $this->conn->prepare("SELECT user_id, uuid, first_name, last_name, email, display_name, member_level, profile_pic FROM users WHERE user_id = :id");
     if($stmt->execute([":id"=>$id])) {
       $data = $stmt->fetch(PDO::FETCH_ASSOC);
       if($data) {
@@ -123,7 +82,9 @@ class User {
     $errors = $this->checkUser($user);
 
     if(!sizeof($errors)) {
-      $stmt = $this->conn->prepare("INSERT INTO users VALUES (DEFAULT, :first, :last, :email, NULL, :user_auth, 'm', NULL, DEFAULT)");
+      $stmt = $this->conn->prepare("INSERT INTO users VALUES (DEFAULT, :uuid, :first, :last, :email, NULL, :user_auth, 'm', NULL, DEFAULT)");
+      $uuid = generateToken();
+      $stmt->bindParam(":uuid", $uuid);
       $stmt->bindParam(":first", $user["first_name"]);
       $stmt->bindParam(":last", $user["last_name"]);
       $stmt->bindParam(":email", $user["email"]);

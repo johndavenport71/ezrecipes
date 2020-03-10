@@ -598,6 +598,16 @@ form.user input[type=submit] {
   display: block;
   font-size: 0.85rem;
 }
+#add-recipe .nutrition {
+  border: none;
+  display: flex;
+}
+#add-recipe .nutrition legend {
+  font-size: 1.5rem;
+}
+#add-recipe .nutrition label {
+  margin: 0.25rem;
+}
 #add-recipe #ingredient-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -623,9 +633,6 @@ form.user input[type=submit] {
 #add-recipe #ingredient-inputs .ingredient-input {
   flex: 1 0 65%;
   margin-right: 10px;
-}
-#add-recipe #ingredient-inputs .amount-input {
-  flex: 1 0 25%;
 }
 #add-recipe #ingredient-inputs .remove-row {
   background-color: rgba(0, 0, 0, 0);

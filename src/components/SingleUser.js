@@ -5,6 +5,7 @@ const SingleUser = () => {
   const { id } = useParams();
   const api = process.env.REACT_APP_API_PATH;
   const [user, setUser] = useState({});
+  const session = JSON.parse(window.sessionStorage.getItem('user'));
 
   useEffect(()=>{
     const fetchUser = (api, id, setUser) => {
@@ -18,6 +19,7 @@ const SingleUser = () => {
         });
     }
     fetchUser(api, id, setUser);
+    console.log(session);
   },[api, id]);
 
   return (

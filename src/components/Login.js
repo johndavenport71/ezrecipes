@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import validateEmail from '../utils/validateEmail';
 import Errors from './Errors';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-const Login = ({ loggedIn, toggleLogin }) => {
+const Login = () => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -16,7 +17,34 @@ const Login = ({ loggedIn, toggleLogin }) => {
     setValues({...values, [key]: value});
   }
 
-  const handleSubmit = (event) => {
+  return (
+    <main>
+      <h1>Login</h1>
+      {errors.length > 0 && <Errors errors={errors} />}
+      <form id="login-form" className="user" onSubmit={handleSubmit}>
+        <label htmlFor="email">Email Address</label>
+        <input 
+          id="email"
+          name="email"
+          type="email"
+          required
+          value={values.email}
+          onChange={event => handleChangeDirectly("email", event.target.value)}
+        />
+        <input 
+          id="password"
+          name="password"
+          type="password"
+          required
+          value={values.password}
+          onChange={event => handleChangeDirectly("password", event.target.value)}
+        />
+        <input type="submit" value="login" />
+      </form>
+    </main>
+  );
+
+  function handleSubmit(event) {
     event.preventDefault();
     const errMsgs = [];
     if(values.email.length === 0 || values.password.length === 0) {
@@ -29,54 +57,23 @@ const Login = ({ loggedIn, toggleLogin }) => {
     } else {
       const url = api + 'auth.php';
       const data = new FormData(event.target);
-      fetch(url, {
-        method: "POST",
-        body: data
-      }).then(res=>res.json()).then(res => {
-        if(res.status === 0) {
-          errMsgs.push(res.status_message);
+      axios.post(url, data)
+      .then(res => { 
+        console.log(res);
+        if(res.data.status !== 1) {
+          errMsgs.push(res.data.status_message);
           setErrors(errMsgs);
         } else {
-          toggleLogin();
-          history.push(`/user/${res.user_id}`);
+          const user = res.data.user.data;
+          //use sessionStorage to store user session
+          sessionStorage.setItem('user', JSON.stringify(user));
+          history.push(`/user/${user.user_id}`);
         }
-      });
+        
+      })
+      .catch(err => console.log(err));
     }
   }
-
-  return (
-    <main>
-      {loggedIn ? 
-        <Redirect to="/" />  
-        :
-        <>
-        <h1>Login</h1>
-        {errors.length > 0 && <Errors errors={errors} />}
-        <form id="login-form" className="user" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email Address</label>
-          <input 
-            id="email"
-            name="email"
-            type="email"
-            required
-            value={values.email}
-            onChange={event => handleChangeDirectly("email", event.target.value)}
-          />
-          <input 
-            id="password"
-            name="password"
-            type="password"
-            required
-            value={values.password}
-            onChange={event => handleChangeDirectly("password", event.target.value)}
-          />
-          <input type="submit" value="login" />
-        </form>
-        </>
-      }
-      
-    </main>
-  );
 
 }
 
