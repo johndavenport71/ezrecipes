@@ -441,10 +441,7 @@ header #search::placeholder {
 header a {
   text-decoration: none;
 }
-header a:hover {
-  text-decoration: underline;
-}
-header a:focus {
+header a:hover, header a:focus {
   text-decoration: underline;
 }
 header .button {
@@ -463,9 +460,48 @@ header span {
   margin-right: 2rem;
   justify-content: space-between;
 }
+header .user-header {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  display: flex;
+  position: relative;
+}
+header .user-header p {
+  align-self: center;
+}
+header .user-header ul {
+  background-color: #fff;
+  box-shadow: 0 2px 4px #ced2d2;
+  list-style: none;
+  padding: 0.75rem 1.5rem;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  bottom: -120px;
+  z-index: 200;
+}
+header .user-header ul li {
+  margin: 0.75rem 0;
+}
+header .user-header ul li button {
+  background-color: #fff;
+  border: none;
+  color: #1b350e;
+  font-weight: bold;
+}
+header .user-header ul li button:hover, header .user-header ul li button:focus {
+  cursor: pointer;
+  text-decoration: underline;
+}
+header .user-header ul li:first-of-type {
+  margin-top: 0.25rem;
+}
+header .user-header ul li:last-of-type {
+  margin-bottom: 0.25rem;
+}
 header .user-image {
   border-radius: 50%;
-  margin-left: 10px;
+  margin-right: 10px;
   max-height: 50px;
 }
 
@@ -737,7 +773,7 @@ form.user input[type=submit] {
   border: 1px solid #ced2d2;
   box-shadow: 0 4px 4px -2px #7c8788;
   display: flex;
-  flex: 0 0 25%;
+  flex: 0 0 23%;
   margin: 0.66rem;
   height: 300px;
   transition: transform ease-out 0.1s;
@@ -820,6 +856,14 @@ form.user input[type=submit] {
 
 .arrow-right {
   right: -10%;
+}
+
+.user-recipes {
+  display: flex;
+  flex-wrap: wrap;
+}
+.user-recipes .recipe-card:first-of-type {
+  margin-left: 0.66rem;
 }
 
 /******************

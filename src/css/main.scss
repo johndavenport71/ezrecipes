@@ -114,11 +114,7 @@ header {
 
   a {
     text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-
-    &:focus {
+    &:hover, &:focus {
       text-decoration: underline;
     }
   }
@@ -141,9 +137,55 @@ header {
     justify-content: space-between;
   }
 
+  .user-header {
+    background-color: $clear;
+    border: none;
+    display: flex;
+    position: relative;
+    p {
+      align-self: center;
+    }
+
+    //drop down menu
+    ul {
+      background-color: #fff;
+      box-shadow: 0 2px 4px $grey200;
+      list-style: none;
+      padding: .75rem 1.5rem;
+      text-align: right;
+      position: absolute;
+      right: 0;
+      bottom: -120px;
+      z-index: 200;
+
+      li {
+        margin: .75rem 0;
+
+        button {
+          background-color: #fff;
+          border: none;
+          color: $green900;
+          font-weight: bold;
+          &:hover, &:focus {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      li:first-of-type {
+        margin-top: .25rem;
+      }
+
+      li:last-of-type {
+        margin-bottom: .25rem;
+      }
+    }
+  }
+
   .user-image {
     border-radius: 50%;
-    margin-left: 10px;
+    margin-right: 10px;
     max-height: 50px;
   }
 
@@ -469,7 +511,7 @@ form.user {
   border: 1px solid $grey200;
   box-shadow: 0 4px 4px -2px $grey400;
   display: flex;
-  flex: 0 0 25%;
+  flex: 0 0 23%;
   margin: .66rem;
   height: 300px;
   transition: transform ease-out .1s;
@@ -546,6 +588,15 @@ form.user {
 
 .arrow-right {
   right: -10%;
+}
+
+.user-recipes {
+  display: flex;
+  flex-wrap: wrap;
+
+  .recipe-card:first-of-type {
+    margin-left: .66rem;
+  }
 }
 
 /******************

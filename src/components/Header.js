@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchField from './SearchField';
+import UserHeader from './UserHeader';
 
 const Header = () => {
+  const session = JSON.parse(window.sessionStorage.getItem('user'));
+
   return (
     <header>
       <h1>
@@ -13,9 +16,15 @@ const Header = () => {
         </Link>
       </h1>
       <div>
-        <SearchField />
-        <Link to="/sign-up" className="button">Sign Up</Link>
-        <Link to="/login">Login</Link>
+        {session && session.user_id ?
+          <UserHeader user={session} />
+        :
+          <>
+          <SearchField />
+          <Link to="/sign-up" className="button">Sign Up</Link>
+          <Link to="/login">Login</Link>
+          </>
+        }
       </div>
     </header>
   );

@@ -13,7 +13,6 @@ const Recipe = (props) => {
   const fetchRecipe = () => {
     const url = api + 'recipes.php?id=' + id;
     fetch(url).then(res => {return res.json();}).then(res => {
-      console.log(res);
       setRecipe(res.recipe);
     });
   }
