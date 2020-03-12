@@ -463,6 +463,7 @@ header span {
 header .user-header {
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  cursor: pointer;
   display: flex;
   position: relative;
 }
@@ -510,7 +511,7 @@ header .user-image {
 **************/
 main {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
 }
 
 /*************
@@ -701,55 +702,36 @@ form.user input[type=submit] {
 /******************
 ** Single recipe page styles
 ******************/
-#single-recipe > div {
-  background-color: #fff;
-  box-shadow: 0 2px 4px #ced2d2;
-}
-#single-recipe > div .two-column p {
-  padding: 2rem;
-}
-#single-recipe > div .two-column li {
-  font-size: 1.25rem;
-  list-style: none;
-  padding-left: 2rem;
-}
 #single-recipe ul,
 #single-recipe ol,
 #single-recipe h3 {
   margin: 0.5rem 2rem;
 }
-#single-recipe .recipe-header {
-  position: relative;
-}
-#single-recipe .recipe-header p {
-  background: linear-gradient(to top, #1c2222, rgba(42, 50, 51, 0.2) 80%, rgba(0, 0, 0, 0));
-  bottom: 0;
-  color: #eef0f0;
-  padding: 2rem;
-  position: absolute;
-  width: 100%;
-}
-#single-recipe .recipe-header img {
-  height: auto;
-  width: 100%;
-}
-#single-recipe .tags li {
+#single-recipe .categories .category {
+  background-color: #d4eec7;
+  color: #1b350e;
   display: inline-block;
-  list-style: none;
-  padding: 0 1rem;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  text-decoration: none;
 }
-#single-recipe .tags li:first-of-type {
-  padding-left: 0;
+#single-recipe .categories .category:hover, #single-recipe .categories .category:focus {
+  text-decoration: underline;
 }
 
 /******************
 **  Recipe Card Styles
 *******************/
 .section-heading {
+  align-items: center;
   background-color: #366a1c;
   color: #eef0f0;
-  padding: 0.25rem;
-  padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 1rem;
+}
+.section-heading a {
+  color: inherit;
 }
 
 .card-container {
@@ -773,8 +755,7 @@ form.user input[type=submit] {
   border: 1px solid #ced2d2;
   box-shadow: 0 4px 4px -2px #7c8788;
   display: flex;
-  flex: 0 0 23%;
-  margin: 0.66rem;
+  flex: 0 0 20%;
   height: 300px;
   transition: transform ease-out 0.1s;
   text-decoration: none;
@@ -851,19 +832,21 @@ form.user input[type=submit] {
 }
 
 .arrow-left {
-  left: -7%;
+  left: -5%;
 }
 
 .arrow-right {
-  right: -10%;
+  right: -5%;
 }
 
-.user-recipes {
+.recipes-grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
-.user-recipes .recipe-card:first-of-type {
-  margin-left: 0.66rem;
+.recipes-grid .recipe-card {
+  margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /******************

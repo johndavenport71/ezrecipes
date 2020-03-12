@@ -1,8 +1,10 @@
 <?php
 include('../../php/init.php');
 include('../../Models/Recipe.php');
+include('../../Models/User.php');
 
 $controller = new Recipe($conn);
+$userCon = new User($conn);
 $request = $_SERVER["REQUEST_METHOD"];
 if($request == "GET") {
   //get recipes
@@ -26,38 +28,17 @@ if($request == "GET") {
     $response = $controller->getAllRecipes($limit);
   }
 } else if($request == "POST") {
-  //add new recipe
-  $data = json_decode(file_get_contents('php://input', true));
-  if($data) {
-    if(isset($data->recipe_image)) {
-      $recipe["recipe_img"] = $data->recipe_image;
-    } else {
-      $recipe["recipe_img"] = "";
-    }
-    $recipe["recipe_title"] = h($data->recipe_title);
-    $recipe["recipe_desc"] = h($data->recipe_desc);
-    $recipe["fat"] = h((int)$data->fat);
-    $recipe["calories"] = h((int)$data->calories);
-    $recipe["protein"] = h((int)$data->protein);
-    $recipe["sodium"] = h((int)$data->sodium);
-    $recipe["directions"] = h(parseSteps($data->steps));
-    $recipe["user_id"] = h((int)$data->user_id) ?? 0;
 
-    $recipe["directions"] = nl_dbl_slash($recipe["directions"]);
+  $userAuth = h($_POST["user_auth"]);
 
-    $allIngredients = $data->all_ingredients;
-
-    $categories = $data->categories;
-
-    $response = $controller->addRecipe($recipe, $allIngredients, $categories);
-
-  } else {
+  if($userCon->userAuth($userAuth)) {
+    //add new recipe
     if(isset($_POST["recipe_image"])) {
       $recipe["recipe_img"] = $_POST["recipe_image"];
     } else {
       $recipe["recipe_img"] = "";
     }
-
+  
     $recipe["recipe_title"] = h($_POST["recipe_title"]);
     $recipe["recipe_desc"] = h($_POST["recipe_desc"]);
     $recipe["fat"] = h((int)$_POST["fat"]);
@@ -66,17 +47,24 @@ if($request == "GET") {
     $recipe["sodium"] = h((int)$_POST["sodium"]);
     $recipe["directions"] = h($_POST["directions"]);
     $recipe["user_id"] = $_POST["user_id"] ? h((int)$_POST["user_id"]) : 0;
-
-    $recipe["directions"] = nl_dbl_slash($recipe["directions"]);
-
-    //need to fix this to accept array?
-    $allIngredients = Array(h($_POST["all_ingredients"]));
-
-    $categories = prepArray($_POST["categories"]);
-
+  
+    $recipe["directions"] = nl_dbl_slash(h($recipe["directions"]));
+  
+    $allIngredients = h($_POST["all_ingredients"]);
+    $allIngredients = str_to_array_dbl_slash($allIngredients);
+  
+    $categories = nl_dbl_slash(h($_POST["categories"]));
+    $categories = str_to_array_dbl_slash($categories);
+  
     $response = $controller->addRecipe($recipe, $allIngredients, $categories);
 
+  } else {
+    $response = array(
+      'status' => 0,
+      'status_message' => 'Failed to authenticate user, try logging in again and resubmitting'
+    );
   }
+
 } else if($request == "DELETE") {
   //delete recipe
   if(isset($_GET["recipeID"]) && isset($_GET["userID"])) {

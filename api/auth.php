@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
   $email = h($_POST["email"]);
   $pass = h($_POST["password"]);
 
-  $response = $controller->userAuth($email, $pass);
+  $response = $controller->userLogin($email, $pass);
 }
 
 header('Content-Type: application/json');

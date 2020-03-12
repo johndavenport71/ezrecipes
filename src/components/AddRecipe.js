@@ -3,7 +3,8 @@ import FileDropzone from './form_components/FileDropzone';
 import IngredientsInput from './form_components/IngredientsInput';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import stringToArray from '../utils/stringToArray';
+import arrayToString from '../utils/arrayToString';
+//import stringToArray from '../utils/stringToArray';
 
 /*
 
@@ -13,7 +14,7 @@ import stringToArray from '../utils/stringToArray';
 const AddRecipe = (props) => {
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
-  const user_id = props.user_id ? props.user_id : 0;
+  const session = JSON.parse(window.sessionStorage.getItem('user'));
 
   const [values, setValues] = useState({
     recipe_title: "",
@@ -124,11 +125,10 @@ const AddRecipe = (props) => {
     let newIngredients = values.all_ingredients;
     const ingredient = document.getElementById("ingr_name1");
     if(ingredient.value.length > 0) {
-      newIngredients.push({ name: ingredient.value });
+      newIngredients.push(ingredient.value);
     }
-    const newSteps = stringToArray(values.steps);
-    const newCategories = stringToArray(values.categories);
-    setValues({ ...values, all_ingredients: newIngredients, steps: newSteps, categories: newCategories });
+
+    const ingredients = arrayToString(newIngredients, '//');
     
     let params = new FormData();
     params.append("recipe_title", values.recipe_title);
@@ -138,11 +138,12 @@ const AddRecipe = (props) => {
     params.append("sodium", values.sodium);
     params.append("protein", values.protein);
     params.append("directions", values.steps);
-    params.append("user_id", user_id ? user_id : 0);
-    params.append("all_ingredients", values.all_ingredients);
+    params.append("user_id", session ? session.user_id : 0);
+    params.append("user_auth", session.uuid);
+    params.append("all_ingredients", ingredients);
     params.append("categories", values.categories);
     params.append("recipe_image", values.recipe_image);
-    
+
     axios.post(url, params)
     .then(res => {
       if(res.data.status === 1) {

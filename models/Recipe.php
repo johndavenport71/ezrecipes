@@ -178,8 +178,8 @@ class Recipe {
       }
 
       //add row to ratings table
-      $stmt = $this->conn->prepare("INSERT INTO ratings VALUES (0, :recipe)");
-      $stmt->execute([':recipe' => $recipeID]);
+      $stmt = $this->conn->prepare("INSERT INTO ratings VALUES (0, :recipe, :user)");
+      $stmt->execute([':recipe' => $recipeID, ':user' => $data["user_id"]]);
         
     } catch (PDOException $e) {
       print('Something went wrong: ' . $e->getMessage());

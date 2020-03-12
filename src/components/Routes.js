@@ -7,6 +7,7 @@ import Recipe from './Recipe';
 import AddRecipe from './AddRecipe';
 import SearchResults from './SearchResults';
 import SingleUser from './SingleUser';
+import Category from './Category';
 
 const Routes = () => {
 
@@ -23,6 +24,9 @@ const Routes = () => {
       </Route>
       <Route path="/recipe/:id">
         <Recipe />
+      </Route>
+      <Route path="/recipes/:categories">
+        <Category />
       </Route>
       <Route path="/add-recipe">
         <AddRecipe />

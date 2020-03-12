@@ -10,7 +10,7 @@ const RecipeCard = ({ recipe }) => {
         `url(${require('../assets/placeholder-image.png')})`
       }}>
       <div>
-        <h3>{recipe.title}</h3>
+        <h3>{recipe.title.length > 30 ? recipe.title.substring(0, 30) + "..." : recipe.title}</h3>
         <p>{recipe.description && recipe.description.substring(0, 80) + "..."}</p>
       </div>
     </Link>

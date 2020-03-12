@@ -9,13 +9,13 @@ class User {
   }
 
   /**
-  * validate user email and password
+  * Login a user from email and password
   *
   * @param 	 String 	 $email
   * @param 	 String 	 $pass
   * @return 	 Array
   */
-  public function userAuth(String $email, String $pass) {
+  public function userLogin(String $email, String $pass) {
     if(empty($email) || empty($pass)) {
       $response = array(
         'status'=>0,
@@ -42,7 +42,21 @@ class User {
       }
     }
     return $response;
-  }//end userAuth
+  }//end userLogin
+
+  /**
+  * Authenticate user from uuid
+  *
+  * @param 	 String 	 $uuid
+  * @return 	 Boolean
+  */
+  function userAuth(String $uuid) {
+    $stmt = $this->conn->prepare("SELECT user_id FROM users WHERE uuid = :uuid LIMIT 1");
+    if($stmt->execute([':uuid' => $uuid])) {
+      $result = $stmt->fetch(PDO::FETCH_COLUMN);
+    }
+    return($result != false);
+  }
 
   /**
   * Get user info from database

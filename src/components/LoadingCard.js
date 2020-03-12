@@ -7,6 +7,7 @@ const LoadingCard = () => {
       <div className="recipe-card loading" />
       <div className="recipe-card loading" />
       <div className="recipe-card loading" />
+      <div className="recipe-card loading" />
     </div>
   );
 }

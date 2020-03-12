@@ -5,14 +5,20 @@ include('../../Models/Category.php');
 $category = new Category($conn);
 
 if($_SERVER["REQUEST_METHOD"] == "GET") {
-  $params = queryStringRegexp(h($_GET["categories"]));
+  $params = $_GET["categories"];
+  $params = urldecode($params);
+  $limit = 25;
+  if(isset($_GET["limit"])) {
+    $limit = h($_GET["limit"]);
+  }
   
-  $response = $category->getRecipesByCategory($params);
+  $response = $category->getRecipesByCategory($params, $limit);
 
 } else {
   $response = array(
     'status' => 0,
-    'status_message' => 'invalid request method'
+    'status_message' => 'invalid request method',
+    'params' => $params
   );
 }
 

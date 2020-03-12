@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
   $email = h($_POST["email"]);
   $pass = h($_POST["password"]);
 
-  $response = $user->userAuth($email, $pass);
+  $response = $user->userLogin($email, $pass);
   
 }
 

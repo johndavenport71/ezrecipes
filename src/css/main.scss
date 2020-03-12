@@ -140,6 +140,7 @@ header {
   .user-header {
     background-color: $clear;
     border: none;
+    cursor: pointer;
     display: flex;
     position: relative;
     p {
@@ -196,7 +197,7 @@ header {
 **************/
 main {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
 }
 
 /*************
@@ -426,22 +427,6 @@ form.user {
 ** Single recipe page styles
 ******************/
 #single-recipe {
-  & > div {
-    background-color: #fff;
-    box-shadow: 0 2px 4px $grey200;
-
-    .two-column {
-      p {
-        padding: 2rem;
-      }
-
-      li {
-        font-size: 1.25rem;
-        list-style: none;
-        padding-left: 2rem;
-      }
-    }
-  }
 
   ul,
   ol,
@@ -449,45 +434,38 @@ form.user {
     margin: .5rem 2rem;
   }
 
-  .recipe-header {
-    position: relative;
+  .categories {
 
-    p {
-      background: linear-gradient(to top, $grey800, rgba(42, 50, 51, 0.2) 80%, rgba(0,0,0,0));
-      bottom: 0;
-      color: $white;
-      padding: 2rem;
-      position: absolute;
-      width: 100%;
-    }
-
-    img {
-      height: auto;
-      width: 100%;
-    }
-  }
-
-  .tags {
-    li {
+    .category {
+      background-color: $green100;
+      color: $green900;
       display: inline-block;
-      list-style: none;
-      padding: 0 1rem;
-    }
+      margin-right: 1rem;
+      padding: .5rem;
+      text-decoration: none;
 
-    li:first-of-type {
-      padding-left: 0;
+      &:hover, &:focus {
+        text-decoration: underline;
+      }
     }
   }
+
 }
 
 /******************
 **  Recipe Card Styles
 *******************/
 .section-heading {
+  align-items: center;
   background-color: $green800;
   color: $white;
-  padding: .25rem;
-  padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: .25rem 1rem;
+
+  a {
+    color: inherit;
+  }
 }
 
 .card-container {
@@ -511,8 +489,7 @@ form.user {
   border: 1px solid $grey200;
   box-shadow: 0 4px 4px -2px $grey400;
   display: flex;
-  flex: 0 0 23%;
-  margin: .66rem;
+  flex: 0 0 20%;
   height: 300px;
   transition: transform ease-out .1s;
   text-decoration: none;
@@ -583,22 +560,23 @@ form.user {
 }
 
 .arrow-left {
-  left: -7%;
+  left: -5%;
 }
 
 .arrow-right {
-  right: -10%;
+  right: -5%;
 }
 
-.user-recipes {
+.recipes-grid {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 
-  .recipe-card:first-of-type {
-    margin-left: .66rem;
+  .recipe-card {
+    margin-right: .5rem;
+    margin-bottom: 1.5rem;
   }
 }
-
 /******************
 ** Error Messages
 ******************/

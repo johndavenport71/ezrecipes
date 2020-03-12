@@ -6,7 +6,7 @@ const CardContainer = ({ recipes }) => {
   const [transform, setTransform] = useState(0);
 
   const handleClick = (dir) => {
-    const newTransform = document.querySelector(".inner-container").clientWidth * 1.08;
+    const newTransform = document.querySelector(".inner-container").clientWidth;
     const totalWidth = document.querySelector(".inner-container").scrollWidth;
     if(dir === "left" && transform !== 0) {
       setTransform(transform + newTransform);

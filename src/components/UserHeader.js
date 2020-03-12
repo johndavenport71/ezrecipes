@@ -6,7 +6,6 @@ const UserHeader = ({ user }) => {
   const [open, setOpen] = useState(false);
 
   const showMenu = (e) => {
-    console.log(e.currentTarget);
     setOpen(true);
   }
 

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Ingredients from './recipe_components/Ingredients';
 import RecipeSteps from './recipe_components/RecipeSteps';
-import upperCaseFirst from '../utils/upperCase';
+import Categories from './recipe_components/Categories';
 import LoadingLines from './LoadingLines';
 
 const Recipe = (props) => {
   const { id } = useParams();
   const api = process.env.REACT_APP_API_PATH;
   const [recipe, setRecipe] = useState({});
+  const session = JSON.parse(window.sessionStorage.getItem('user'));
 
   const fetchRecipe = () => {
     const url = api + 'recipes.php?id=' + id;
@@ -23,9 +24,14 @@ const Recipe = (props) => {
   },[])
 
   return (
-    <main>
+    <main id="single-recipe">
+      {session && session.user_id == recipe.user_id && 
+        <>
+        <button>Edit</button>
+        <button>Delete</button>
+        </>
+      }
       <h1>{recipe.title}</h1>
-      {recipe.categories && recipe.categories.map((cat, i) => <span className="category" key={i}>{upperCaseFirst(cat)}</span>)}
       <p>{recipe.description && recipe.description}</p>
       {recipe.nutrition ?
         <div className="nutrition">
@@ -49,7 +55,7 @@ const Recipe = (props) => {
         :
         <LoadingLines />
       }
-      
+      {recipe.categories && <Categories categories={recipe.categories} />}
     </main>
   );
 }

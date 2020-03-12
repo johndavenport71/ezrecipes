@@ -34,7 +34,6 @@ if($request == "GET") {
     $data["user_auth"] = password_hash($password, PASSWORD_DEFAULT);
 
     $response = $user->addUser($data);
-    
   }
 
 } else if ($request == "DELETE") {

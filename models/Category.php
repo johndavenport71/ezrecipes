@@ -71,7 +71,8 @@ class Category {
   * @return 	 Array
   */
   function searchCategories(Array $categories) {
-    $sql = "SELECT category_id FROM categories WHERE category_desc REGEXP ('". regexpImplode($categories) ."')";
+    $sql = "SELECT category_id FROM categories WHERE category_desc REGEXP ('";
+    $sql .= rtrim(regexpImplode($categories), '|') . "')";
     return $this->conn->query($sql)->fetchAll(PDO::FETCH_COLUMN);
   }
 
@@ -79,10 +80,15 @@ class Category {
   * Get all recipes that match given categories
   *
   * @param 	 String 	 $params
+  * @param 	 int 	     $limit
   * @return 	 Array
   */
-  function getRecipesByCategory(String $params) {
-    $stmt = $this->conn->prepare("SELECT category_desc, rc.recipe_id FROM recipe_categories rc INNER JOIN categories ON categories.category_id = rc.category_id WHERE category_desc IN ('".$params."') LIMIT 24");
+  function getRecipesByCategory(String $params, int $limit = 25) {
+    $sql = "SELECT category_desc, rc.recipe_id FROM recipe_categories rc ";
+    $sql .= "INNER JOIN categories ON categories.category_id = rc.category_id WHERE category_desc IN (:params) LIMIT :limit";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(':params', $params);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
     if($stmt->execute()) {
       $ids = $stmt->fetchAll(PDO::FETCH_COLUMN, 1);
       $ids = array_unique($ids);
@@ -103,7 +109,8 @@ class Category {
     } else {
       $response = array(
         'status'=>0,
-        'status_message'=>'Failed to find'
+        'status_message'=>'Failed to find',
+        'params' => $params
       );
     }
 

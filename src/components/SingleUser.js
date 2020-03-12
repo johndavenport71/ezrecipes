@@ -37,6 +37,7 @@ const SingleUser = () => {
 
   return (
     <main>
+      {session && session.user_id == user.user_id && <p>TO DO: user settings</p>}
       {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
       {user && user.profile_pic ? 
         <img 
@@ -56,7 +57,7 @@ const SingleUser = () => {
       {recipes.length > 0 &&
         <>
         <h2>Recipes by this user:</h2>
-        <section className="user-recipes">
+        <section className="recipes-grid">
           {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
         </section>
         </>

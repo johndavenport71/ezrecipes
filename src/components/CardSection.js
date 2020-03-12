@@ -21,7 +21,10 @@ const CardSection = ({ title, category }) => {
 
   return (
     <section>
-      <h2 className="section-heading">{title}</h2>
+      <div className="section-heading">
+        <h2>{title}</h2>
+        <a href={`/recipes/${category}`}>View More</a>
+      </div>
       {recipes && recipes.length > 0 ?
         <CardContainer recipes={recipes} />
         :

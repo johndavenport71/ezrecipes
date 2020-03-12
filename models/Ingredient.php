@@ -70,7 +70,8 @@ class Ingredient {
   * @return 	 Array
   */
   function searchIngredients(Array $ingredients) {
-    $sql = "SELECT ingredient_id FROM ingredients WHERE ingredient_desc REGEXP ('". regexpImplode($ingredients) ."')";
+    $sql = "SELECT ingredient_id FROM ingredients WHERE ingredient_desc REGEXP ('";
+    $sql .= rtrim(regexpImplode($ingredients), '|') . "')";
     return $this->conn->query($sql)->fetchAll(PDO::FETCH_COLUMN);
   }
 }
