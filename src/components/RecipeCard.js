@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RecipeCard = ({ recipe }) => {
+  const root = process.env.REACT_APP_ROOT;
   return (
     <Link to={`/recipe/${recipe.id}`} className="recipe-card" style={{
         backgroundImage: recipe.img_path ? 
-        `url(http://localhost:8888/ezrecipes/${recipe.img_path})`
+        `url(${root + recipe.img_path})`
         :
         `url(${require('../assets/placeholder-image.png')})`
       }}>

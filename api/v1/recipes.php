@@ -77,6 +77,59 @@ if($request == "GET") {
       'status_message' => 'recipe and user ids are required to delete a recipe'
     );
   }
+} else if($request == "PUT") {
+  $data = parsePut();
+  $recipe["recipe_id"] = h($data["recipe_id"]);
+  $recipe["recipe_title"] = h($data["recipe_title"]);
+  $recipe["recipe_desc"] = h($data["recipe_desc"]);
+  $recipe["fat"] = h((int)$data["fat"]);
+  $recipe["calories"] = h((int)$data["calories"]);
+  $recipe["protein"] = h((int)$data["protein"]);
+  $recipe["sodium"] = h((int)$data["sodium"]);
+  $recipe["directions"] = h($data["directions"]);
+  $recipe["user_id"] = $data["user_id"] ? h((int)$data["user_id"]) : 0;
+  
+  $recipe["directions"] = nl_dbl_slash(h($recipe["directions"]));
+  
+  $allIngredients = h($data["all_ingredients"]);
+  $allIngredients = str_to_array_dbl_slash($allIngredients);
+  
+  $categories = nl_dbl_slash(h($data["categories"]));
+  $categories = str_to_array_dbl_slash($categories);
+
+  
+  if(isset($data["file"])) {
+    $target_dir = SITE_ROOT . "/uploads/recipes/". $recipe["recipe_id"] ."/";
+    if(!file_exists($target_dir)) {
+      mkdir($target_dir);
+    }
+    $target_file = $target_dir . $data["file"]["file_name"];
+    file_put_contents($target_file, $data["file"]["body"]);
+    $uploadOK = 1;
+    
+    if($uploadOK === 0) {
+      $response["image_message"] = 'Failed to upload image';
+    } else {
+      if(move_uploaded_file($data["file"]['file_name'], $target_file)) {
+        $uploadOK = 1;
+        $stmt = $conn->prepare("UPDATE recipes SET recipe_image = :img WHERE recipe_id = :id");
+        $stmt->execute([":img"=>$recipe["recipe_img"], ":id"=>$recipe["recipe_id"]]);
+      } else {
+        $uploadOK = 0;
+      }
+    }
+    $recipe["recipe_img"] = substr($target_file, strpos($target_file, "uploads"));
+  } else {
+    $recipe["recipe_img"] = "";
+  }
+
+  $response = $controller->updateRecipe($recipe, $allIngredients, $categories);
+  if($uploadOK === 0) {
+    $response["file_upload"] = "Failed to Upload files";
+  } else {
+    $response["file_upload"] = "File uploaded successfully";
+  }
+
 } else {
   $response = array(
     'status' => 0,

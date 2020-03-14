@@ -1,5 +1,13 @@
 # TO DO LIST
 
+## featured images
+* recipe 497
+* recipe 309
+* recipe 245
+* recipe 494
+* recipe 224
+* recipe 59
+
 * Add uuid field to users table
 * remove user tokens table
 * use uuid to authenticate users when adding/editing/removing recipes

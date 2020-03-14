@@ -9,24 +9,24 @@ const IngredientsInput = ({ values, setValues }) => {
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		let newIngredients = values.all_ingredients;
+		let newIngredients = values.ingredients;
 		newIngredients.push(ingredients);
-		setValues({ ...values, all_ingredients: newIngredients });
+		setValues({ ...values, ingredients: newIngredients });
 		setIngredients("");
 		document.getElementById("ingr_name1").focus();
 	}
 
 	const handleRemove = (e, value) => {
 		e.preventDefault();
-		let newIngredients = values.all_ingredients.filter(row => row !== value);
-		setValues({ ...values, all_ingredients: newIngredients });
+		let newIngredients = values.ingredients.filter(row => row !== value);
+		setValues({ ...values, ingredients: newIngredients });
 	}
 
   return (
 		<div id="form-ingredients" className="full-width">
 			<div id="ingredient-inputs">
 				<label htmlFor="ingr_name1">Ingredients</label>
-				{values.all_ingredients.map((row, i) => (
+				{values.ingredients && values.ingredients.map((row, i) => (
 					<div className="row" key={i}>
 						<input className="ingredient-input" value={row} readOnly />
 						<button className="remove-row" onClick={(e) => handleRemove(e, row)}><img src={require("../../assets/icons/close.svg")} alt=""/></button>

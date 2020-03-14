@@ -8,6 +8,7 @@ import LoadingLines from './LoadingLines';
 const Recipe = (props) => {
   const { id } = useParams();
   const api = process.env.REACT_APP_API_PATH;
+  const root = process.env.REACT_APP_ROOT;
   const [recipe, setRecipe] = useState({});
   const session = JSON.parse(window.sessionStorage.getItem('user'));
 
@@ -27,11 +28,12 @@ const Recipe = (props) => {
     <main id="single-recipe">
       {session && session.user_id == recipe.user_id && 
         <>
-        <button>Edit</button>
+        <a href={`/edit-recipe/${recipe.id}`}>Edit</a>
         <button>Delete</button>
         </>
       }
       <h1>{recipe.title}</h1>
+      {recipe.img_path && <img src={root + recipe.img_path} alt={recipe.title} width="400" height="auto" />}
       <p>{recipe.description && recipe.description}</p>
       {recipe.nutrition ?
         <div className="nutrition">

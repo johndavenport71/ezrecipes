@@ -134,7 +134,7 @@ class Recipe {
   * Insert a new recipe into the database
   *
   * @param 	 Array 	$data
-  * @param 	 Array 	$ingredientAmts
+  * @param 	 Array 	$ingredients
   * @param 	 Array 	$categories
   * @return  int
   */
@@ -189,6 +189,69 @@ class Recipe {
     return $recipeID;
 
   }//end insertRecipe
+
+  /**
+  * Update a recipe
+  *
+  * @param 	 Array 	 $data
+  * @param 	 Array 	 $ingredients
+  * @param 	 Array 	 $categories
+  * @return 	 Array
+  */
+  function updateRecipe(Array $data, Array $ingredients, Array $categories) {
+    $sql = "UPDATE recipes SET recipe_title=:title, recipe_desc=:recipe_desc, fat=:fat, calories=:calories, protein=:protein, sodium=:sodium, directions=:directions,  recipe_image=:recipe_img WHERE recipe_id=:id";
+    $recipeSQL = $this->conn->prepare($sql);
+    $recipeSQL->bindParam(':id', $data['recipe_id']);
+    $recipeSQL->bindParam(':title', $data['recipe_title']);
+    $recipeSQL->bindParam(':recipe_desc', $data['recipe_desc']);
+    $recipeSQL->bindParam(':fat', $data['fat'], PDO::PARAM_INT);
+    $recipeSQL->bindParam(':calories', $data['calories'], PDO::PARAM_INT);
+    $recipeSQL->bindParam(':protein', $data['protein'], PDO::PARAM_INT);
+    $recipeSQL->bindParam(':sodium', $data['sodium'], PDO::PARAM_INT);
+    $recipeSQL->bindParam(':directions', $data['directions']);
+    $recipeSQL->bindParam(':recipe_img', $data['recipe_img']);
+
+    try {
+      $recipeSQL->execute();
+      $recipeID = intval($data["recipe_id"]);
+
+      $I = new Ingredient($this->conn);
+      $C = new Category($this->conn);
+
+      $I->updateIngredients($ingredients);
+      $C->updateCategories($categories);
+
+      $newIngredientIDs = $I->searchIngredients($ingredients);
+      $newCategoryIDs = $C->searchCategories($categories);
+
+      //add new rows to recipe_ingredients for each ingredient in the user ingredients array, with the recipe id
+      $stmt = $this->conn->prepare("REPLACE INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (:recipe, :ingredient)");
+      foreach($newIngredientIDs as $ing) {
+        $stmt->execute([':recipe' => $recipeID, ':ingredient' => $ing]);
+      }
+    
+      //add new rows to recipe_category for each category in the user categories array, with the recipe id
+      $stmt = $this->conn->prepare("REPLACE INTO recipe_categories (recipe_id, category_id) VALUES (:id, :catID)");
+      foreach($newCategoryIDs as $cat) {
+        $stmt->execute([':id'=>$recipeID, ':catID'=>$cat]);
+      }
+
+      $response = array(
+        'status' => 1,
+        'status_message' => 'successfully updated rows',
+        'recipe_id' => $recipeID
+      );
+
+    } catch (PDOException $e) {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'failed to update rows',
+        'errors' => $e->getMessage()
+      );
+    }
+    
+    return $response;
+  }// end updateRecipe
 
   /**
   * Delete a recipe from the database
