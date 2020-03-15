@@ -1,14 +1,18 @@
 import React from 'react';
 import CardSection from './CardSection';
-
+import FeaturedSection from './FeaturedSection';
+import featured from '../utils/featuredCategories';
 const Home = () => {
   
   return (
+    <>
+    <FeaturedSection />
     <main>
-      <CardSection title="Low Calorie Recipes" category="Low Cal" />
-      <CardSection title="Healthy Recipes" category="Healthy" />
-      <CardSection title="Vegan Recipes" category="vegan" />
+      {featured.map((row, i) => (
+        <CardSection title={row.title} category={row.category} key={i} />
+      ))}
     </main>
+    </>
   );
 }
 

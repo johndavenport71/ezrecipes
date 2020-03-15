@@ -9,7 +9,10 @@ const CardSection = ({ title, category }) => {
 
   useEffect(()=>{
     const fetchRecipes = (api) => {
-      const url = api + 'categories.php?categories=' + category;
+      let url = api + 'categories.php?';
+      let params = new URLSearchParams();
+      params.append('categories', encodeURI(category));
+      url += params.toString();
       fetch(url).then(res=>res.json()).then(res=>{
         setRecipes(res.data);
       }).catch(e=>console.log(e));

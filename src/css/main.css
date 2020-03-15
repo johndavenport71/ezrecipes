@@ -728,6 +728,7 @@ form.user input[type=submit] {
   color: #eef0f0;
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
   padding: 0.25rem 1rem;
 }
 .section-heading a {
@@ -864,6 +865,41 @@ form.user input[type=submit] {
 }
 .errors ul li {
   padding: 0.5rem 0;
+}
+
+/******************
+** Featured Section
+******************/
+.featured {
+  height: 50vh;
+}
+.featured .featured-slide {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.featured .featured-slide img {
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+.featured .featured-slide h2, .featured .featured-slide p {
+  color: #fff;
+  position: relative;
+}
+.featured .featured-slide a {
+  background: linear-gradient(0deg, #1c2222 0%, rgba(56, 67, 67, 0.61) 65%, rgba(56, 67, 67, 0) 100%);
+  display: block;
+  height: 25%;
+  padding: 1rem 5rem 2rem;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

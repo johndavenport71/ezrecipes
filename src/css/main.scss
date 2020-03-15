@@ -461,6 +461,7 @@ form.user {
   color: $white;
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
   padding: .25rem 1rem;
 
   a {
@@ -577,6 +578,7 @@ form.user {
     margin-bottom: 1.5rem;
   }
 }
+
 /******************
 ** Error Messages
 ******************/
@@ -593,5 +595,43 @@ form.user {
     li {
       padding: .5rem 0;
     }
+  }
+}
+
+/******************
+** Featured Section
+******************/
+.featured {
+  height: 50vh;
+
+  .featured-slide {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    img {
+      height: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+    h2, p {
+      color: #fff;
+      position: relative;
+    }
+
+    a {
+      background: linear-gradient(0deg, $grey800 0%, rgba(56, 67, 67, 0.61) 65%, rgba(56, 67, 67, 0) 100%);
+      display: block;
+      height: 25%;
+      padding: 1rem 5rem 2rem;
+      position: relative;
+      text-decoration: none;
+      width: 100%;
+    }
+
   }
 }

@@ -9,13 +9,27 @@ $request = $_SERVER["REQUEST_METHOD"];
 if($request == "GET") {
   //get recipes
   if(isset($_GET["id"])) {
-    $id = h($_GET["id"]);
-    $recipe = $controller->getSingleRecipe($id);
-    $response = array(
-      'status' => 1,
-      'status_message' => 'success',
-      'recipe' => $recipe->jsonSerialize()
-    );
+    $params = $_GET["id"];
+
+    if(is_array($params)) {
+      $recipes = [];
+      foreach($params as $id) {
+        $recipe = $controller->getSingleRecipe(h($id));
+        array_push($recipes, $recipe->jsonSerialize());
+      }
+      $response = array(
+        'status' => 1,
+        'status_message' => 'success',
+        'recipes' => $recipes
+      );
+    } else {
+      $recipe = $controller->getSingleRecipe(h($params));
+      $response = array(
+        'status' => 1,
+        'status_message' => 'success',
+        'recipe' => $recipe->jsonSerialize()
+      );
+    }
   } else if(isset($_GET["user"])) {
     $user = h($_GET["user"]);
     $response = $controller->getRecipesByUser($user);

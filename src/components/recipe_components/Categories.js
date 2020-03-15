@@ -4,7 +4,7 @@ import upperCaseFirst from '../../utils/upperCase';
 const Categories = ({ categories }) => {
   return (
     <section className="categories">
-      {categories && categories.map((cat, i) => <a href={`/recipes/${cat}`} className="category" key={i}>{upperCaseFirst(cat)}</a>)}
+      {categories && categories.map((cat, i) => <a href={`/recipes/${cat.replace(/&amp;/g, '&')}`} className="category" key={i}>{upperCaseFirst(cat.replace(/&amp;/g, '&'))}</a>)}
     </section>
   );
 }
