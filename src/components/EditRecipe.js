@@ -28,7 +28,7 @@ const EditRecipe = () => {
       .catch(err => console.log(err));
     }
     fetchRecipe(api, id, setRecipe);
-  },[]);
+  },[api, id]);
 
   const handleChangeDirectly = (key, value) => {
     setRecipe({...recipe, [key]: value});
@@ -51,7 +51,7 @@ const EditRecipe = () => {
       newIngredients.push(ingredient.value);
     }
 
-    const files = document.getElementById('recipe_image');
+    const files = document.getElementById('image');
     let file;
     if(files.files) {
       file = files.files[0];
@@ -72,7 +72,7 @@ const EditRecipe = () => {
     params.append("user_auth", session.uuid);
     params.append("all_ingredients", ingredients);
     params.append("categories", recipe.categories);
-    params.append("recipe_image", file);
+    params.append("image", file);
 
     axios.put(url, params)
     .then(res => {

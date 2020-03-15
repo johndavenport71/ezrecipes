@@ -163,6 +163,50 @@ class User {
   }
 
   /**
+  * Update user information
+  *
+  * @param 	 int 	 $id
+  * @param 	 Array 	 $user
+  * @return 	 Array
+  */
+  function updateUser(int $id, Array $user) {
+    $errors = $this->checkUser($user);
+
+    if(!sizeof($errors)) {
+      $stmt = $this->conn->prepare("UPDATE users SET first_name = :first, last_name = :last, email = :email, display_name = :display,  profile_pic = :profile_pic WHERE user_id = :id");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->bindParam(":first", $user["first_name"]);
+      $stmt->bindParam(":last", $user["last_name"]);
+      $stmt->bindParam(":email", $user["email"]);
+      $stmt->bindParam(":display", $user["display_name"]);
+      $stmt->bindParam(":profile_pic", $user["profile_pic"]);
+
+      try {
+        $stmt->execute();
+      } catch(PDOException $e) {
+        array_push($errors, $e->getMessage());
+      }
+    }
+
+    if(sizeof($errors)) {
+      $response = array(
+        'status'=>0,
+        'status_message'=>'failed to update user',
+        'errors'=>$errors
+      );
+    } else {
+      $user = $this->getUser($id);
+      $response = array(
+        'status'=>1,
+        'status_message'=>'updated user information',
+        'user'=>$user
+      );
+    }
+
+    return $response;
+  }//end updateUser
+
+  /**
   * Check user values and return an array of errors
   *
   * @param 	 Array 	 $data

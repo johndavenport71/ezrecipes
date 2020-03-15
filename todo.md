@@ -11,10 +11,10 @@
 ### To Do
 
 - [ ] Build out Search Endpoint  
-- [ ] Edit User Flow  
-- [ ] User Image Upload  
 - [ ] Save Recipe Flow  
 - [ ] User Profile Page  
+- [ ] Error handling for edit user page
+- [ ] Catch empty user in storage
 
 ### In Progress
 

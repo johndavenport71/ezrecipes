@@ -19,7 +19,7 @@ const AddRecipe = (props) => {
     sodium: 0,
     categories: "",
     ingredients: [],
-    recipe_image: ""
+    image: ""
   });
 
   const handleChangeDirectly = (key, value) => {
@@ -42,6 +42,12 @@ const AddRecipe = (props) => {
       newIngredients.push(ingredient.value);
     }
 
+    const files = document.getElementById('image');
+    let file;
+    if(files.files) {
+      file = files.files[0];
+    }
+
     const ingredients = arrayToString(newIngredients, '//');
     
     let params = new FormData();
@@ -56,7 +62,7 @@ const AddRecipe = (props) => {
     params.append("user_auth", session.uuid);
     params.append("all_ingredients", ingredients);
     params.append("categories", values.categories);
-    params.append("recipe_image", values.recipe_image);
+    params.append("image", file);
 
     axios.post(url, params)
     .then(res => {

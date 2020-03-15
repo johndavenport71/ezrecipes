@@ -37,7 +37,7 @@ const SingleUser = () => {
 
   return (
     <main>
-      {session && session.user_id == user.user_id && <p>TO DO: user settings</p>}
+      {session && session.user_id == user.user_id && <a href={`/user/edit/${user.user_id}`}>Edit Profile</a>}
       {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
       {user && user.profile_pic ? 
         <img 

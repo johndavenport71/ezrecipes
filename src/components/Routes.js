@@ -9,6 +9,7 @@ import SearchResults from './SearchResults';
 import SingleUser from './SingleUser';
 import Category from './Category';
 import EditRecipe from './EditRecipe';
+import EditUser from './EditUser';
 
 const Routes = () => {
 
@@ -38,8 +39,11 @@ const Routes = () => {
       <Route path="/search/:params">
         <SearchResults />
       </Route>
-      <Route path="/user/:id">
+      <Route exact path="/user/:id">
         <SingleUser />
+      </Route>
+      <Route exact path="/user/edit/:id">
+        <EditUser />
       </Route>
     </Switch>
   );

@@ -88,7 +88,7 @@ function parsePut() {
           // handle your fields here
           switch ($name) {
               // this is a file upload
-              case 'recipe_image':
+              case 'image':
                   $data["file"] = Array('file_name' => $filename, 'body' => $body);
                   break;
 
