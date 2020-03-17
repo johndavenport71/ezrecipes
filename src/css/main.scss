@@ -602,7 +602,24 @@ form.user {
   box-shadow: 0 2px 4px $grey200;
   color: $red900;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 1rem 3rem;
+  padding-right: 4rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10%;
+
+  button {
+    background-color: $clear;
+    border: none;
+    position: absolute;
+    right: 14px;
+    top: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   ul {
     margin-left: 2rem;

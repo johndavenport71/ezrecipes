@@ -872,7 +872,22 @@ form.user input[type=submit] {
   box-shadow: 0 2px 4px #ced2d2;
   color: #2a1009;
   margin: 1rem auto;
-  padding: 1rem;
+  padding: 1rem 3rem;
+  padding-right: 4rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10%;
+}
+.errors button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: absolute;
+  right: 14px;
+  top: 20px;
+}
+.errors button:hover {
+  cursor: pointer;
 }
 .errors ul {
   margin-left: 2rem;

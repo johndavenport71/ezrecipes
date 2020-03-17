@@ -15,6 +15,7 @@
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
 - [ ] Check for existing email before creating new user
+- [ ] Handle categories with "/" in them
 
 ### In Progress
 

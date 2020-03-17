@@ -9,6 +9,30 @@ class User {
   }
 
   /**
+  * Check if email exists in db
+  *
+  * @param 	 String 	 $email
+  * @return 	 Array
+  */
+  function checkEmail(String $email) {
+    $stmt = $this->conn->prepare("SELECT email from users WHERE email LIKE :email");
+    if($stmt->execute([':email' => $email])) {
+      $response = array(
+        'status' => 1,
+        'status_message' => 'success',
+        'email' => $stmt->fetch(PDO::FETCH_COLUMN)
+      );
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'something went wrong'
+      );
+    }
+
+    return $response;
+  }//end checkEmail
+
+  /**
   * Login a user from email and password
   *
   * @param 	 String 	 $email
