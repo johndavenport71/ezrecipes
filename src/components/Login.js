@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <main>
       <h1>Login</h1>
-      {errors.length > 0 && <Errors errors={errors} />}
+      {errors.length > 0 && <Errors errors={errors} setOpen={() => setErrors([])} />}
       <form id="login-form" className="user" onSubmit={handleSubmit}>
         <label htmlFor="email">Email Address</label>
         <input 
