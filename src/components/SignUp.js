@@ -40,7 +40,8 @@ const SignUp = () => {
       })
       .then(res => {
         if (res.status === 1) {
-          history.push(`/user/${res.new_user_id}`);
+          window.sessionStorage.setItem('user', JSON.stringify(res.user.data));
+          history.push(`/user/${res.user.data.user_id}`);
         }
       })
       .catch(err=>{

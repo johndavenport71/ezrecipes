@@ -25,7 +25,9 @@ const SearchField = () => {
         value={query} 
         onChange={handleChange}
       />
-
+      <button type="submit" className="search-button">
+        <img src={require('../assets/icons/search.svg')} alt="" width="25" height="25" />
+      </button>
       {submit && <Redirect to={{pathname: `/search/${query}`}} />}
     </form>
     

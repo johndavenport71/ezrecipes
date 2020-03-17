@@ -10,11 +10,11 @@
 
 ### To Do
 
-- [ ] Build out Search Endpoint  
 - [ ] Save Recipe Flow  
 - [ ] User Profile Page  
-- [ ] Error handling for edit user page
-- [ ] Catch empty user in storage
+- [ ] Error handling for edit user page  
+- [ ] Catch empty user in storage  
+- [ ] Check for existing email before creating new user
 
 ### In Progress
 
@@ -22,4 +22,5 @@
 ### Refactor
 
 - [ ] Home Page Featured Section  
+- [ ] Build out Search Endpoint  
 

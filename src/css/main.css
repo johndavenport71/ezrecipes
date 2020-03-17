@@ -505,6 +505,20 @@ header .user-image {
   margin-right: 10px;
   max-height: 50px;
 }
+header form {
+  position: relative;
+}
+
+.search-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+}
+.search-button:hover {
+  cursor: pointer;
+}
 
 /*************
 **  Main Content Styles
@@ -763,7 +777,7 @@ form.user input[type=submit] {
 }
 .recipe-card:hover {
   box-shadow: 0 6px 6px -1px #7c8788;
-  transform: scale(105%);
+  transform: scale(1.05);
 }
 .recipe-card div {
   align-self: flex-end;

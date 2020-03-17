@@ -39,11 +39,11 @@ const EditUser = () => {
       .catch(err => console.log(err));
     }
     fetchUser(api, id);
-  },[]);
+  },[api, id]);
 
   return (
     <main>
-      {session.user_id !== id ? 
+      {!session || session.user_id !== id ? 
       <Redirect to={`/user/${id}`} /> 
       : 
       <>

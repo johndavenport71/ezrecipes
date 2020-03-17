@@ -118,10 +118,12 @@ class User {
         'errors'=>$errors
       );
     } else {
+
+      $user = $this->getUser($id);
       $response = array(
         'status'=>1,
         'status_message'=>'Added new user',
-        'new_user_id'=>$id
+        'user'=>$user
       );
     }
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 
 const SingleUser = () => {
   const { id } = useParams();
+  const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
   const [user, setUser] = useState({});
   const [recipes, setRecipes] = useState([]);
@@ -17,6 +18,8 @@ const SingleUser = () => {
           console.log(res);
           if(res.status === 1) {
             setUser(res.data);
+          } else {
+            history.push('/');
           }
         });
     }
@@ -32,7 +35,7 @@ const SingleUser = () => {
       .catch(err => console.log(err))
     }
     fetchRecipes(api, id, setRecipes);
-
+    //eslint-disable-next-line
   },[api, id]);
 
   return (
@@ -54,13 +57,19 @@ const SingleUser = () => {
           height="100"
         />
       }
-      {recipes.length > 0 &&
+      {session && session.user_id === id ?
+      <h2>Your Saved Recipes</h2>
+      :
+      <>
+      {recipes && recipes.length > 0 &&
         <>
         <h2>Recipes by this user:</h2>
         <section className="recipes-grid">
           {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
         </section>
         </>
+      }
+      </>
       }
     </main>
   );

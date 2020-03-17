@@ -190,6 +190,21 @@ header {
     max-height: 50px;
   }
 
+  form {
+    position: relative;
+  }
+
+}
+
+.search-button {
+  background-color: $clear;
+  border: none;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /*************
@@ -497,7 +512,7 @@ form.user {
 
   &:hover {
     box-shadow: 0 6px 6px -1px $grey400;
-    transform: scale(105%);
+    transform: scale(1.05);
   }
 
   div {

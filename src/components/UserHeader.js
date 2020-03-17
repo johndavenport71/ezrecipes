@@ -16,7 +16,7 @@ const UserHeader = ({ user }) => {
   return (
     <div className="user-header" onClick={showMenu} onKeyPress={showMenu} aria-haspopup="menu" role="button" tabIndex="0">
     {user.profile_pic ? 
-    <img src={root + user.profile_pic} className="user-image" alt={`Picture of ${user.display_name ? user.display_name : user.first_name}`} />
+    <img src={root + user.profile_pic} className="user-image" alt={`${user.display_name ? user.display_name : user.first_name}`} />
     :
     <img src={require('../assets/icons/happy_face.svg')} className="user-image" alt="smiley face icon" />
     }
