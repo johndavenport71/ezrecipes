@@ -6,6 +6,7 @@ const SingleUser = () => {
   const { id } = useParams();
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
+  const root = process.env.REACT_APP_ROOT;
   const [user, setUser] = useState({});
   const [recipes, setRecipes] = useState([]);
   const session = JSON.parse(window.sessionStorage.getItem('user'));
@@ -44,7 +45,7 @@ const SingleUser = () => {
       {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
       {user && user.profile_pic ? 
         <img 
-          src={`http://localhost:8888/ezrecipes/${user.profile_pic}`} 
+          src={root + user.profile_pic} 
           alt={user.display_name ? (`Picture of ${user.display_name}`) : (`Picture of ${user.first_name} ${user.last_name}`)}
           width="100"
           height="100"

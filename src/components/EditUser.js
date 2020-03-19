@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FileDropzone from './form_components/FileDropzone';
+import Modal from './Modal';
 
 const EditUser = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
+  const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
   const root = process.env.REACT_APP_ROOT;
   const { id } = useParams();
+  const [open, setOpen] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(0);
   const [user, setUser] = useState({});
   const [values, setValues] = useState({
     first_name: user.first_name ? user.first_name : "",
@@ -20,6 +24,11 @@ const EditUser = () => {
   const handleChangeDirectly = (key, value) => {
     setValues({...values, [key]: value});
   }
+  
+  const handleClick = (e, openState) => {
+    e.preventDefault();
+    setOpen(openState);
+  }
 
   useEffect(()=>{
     const fetchUser = (api, id) => {
@@ -27,14 +36,18 @@ const EditUser = () => {
       axios.get(url)
       .then(res => {
         console.log(res)
-        setUser(res.data.data);
-        setValues({
-          first_name: res.data.data.first_name ?? "",
-          last_name: res.data.data.last_name ?? "",
-          display_name: res.data.data.display_name ?? "",
-          email: res.data.data.email ?? "",
-          image: res.data.data.profile_pic ?? ""
-        });
+        if(res.data.status == 1) {
+          setUser(res.data.data);
+          setValues({
+            first_name: res.data.data.first_name ?? "",
+            last_name: res.data.data.last_name ?? "",
+            display_name: res.data.data.display_name ?? "",
+            email: res.data.data.email ?? "",
+            image: res.data.data.profile_pic ?? ""
+          });
+        } else {
+          history.push('/');
+        }
       })
       .catch(err => console.log(err));
     }
@@ -80,10 +93,45 @@ const EditUser = () => {
         <FileDropzone values={values} setValues={setValues} />
         <input type="submit" value="Save Changes" />
       </form>
+      <h2>Want to delete your account?</h2>
+      <button aria-haspopup="dialog" className="secondary-button" onClick={(e) => handleClick(e, true)}>Delete Account</button>
       </>
+      }
+      {open && 
+        <Modal>
+          <div>
+            {deleteSuccess === 1 ?
+            <>
+            <h3>Your account was successfully deleted</h3>
+            <a href="/">Return to home page</a>
+            </> 
+            :
+            <>
+            <h3>Are you sure you want to delete your account?</h3>
+            <button className="secondary-button" onClick={handleDelete}>Yes, delete my account</button>
+            <button className="secondary-button" onClick={(e) => handleClick(e, false)}>No, thank you</button>
+            </>
+            }
+          </div>
+        </Modal>
       }
     </main>
   );
+
+  function handleDelete(evt) {
+    evt.preventDefault();
+    const url = api + 'users.php?id=' + id;
+    axios.delete(url)
+    .then(res => {
+      if(res.data.status == 1) {
+        setDeleteSuccess(1);
+        window.sessionStorage.removeItem('user');
+      } else {
+        //to do
+      }
+    })
+    .catch(err => console.log(err));
+  }
 
   function handleSubmit(evt) {
     evt.preventDefault();

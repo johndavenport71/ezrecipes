@@ -3,10 +3,10 @@ import React from 'react';
 const LoadingLines = () => {
   return (
     <>
-      <li className="loading-line"></li>
-      <li className="loading-line"></li>
-      <li className="loading-line"></li>
-      <li className="loading-line"></li>
+      <p className="loading-line"></p>
+      <p className="loading-line"></p>
+      <p className="loading-line"></p>
+      <p className="loading-line"></p>
     </>
   );
 }

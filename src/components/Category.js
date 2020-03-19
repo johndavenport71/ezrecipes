@@ -13,7 +13,7 @@ const Category = () => {
     const fetchRecipes = (api, cats) => {
       let url = api + 'categories.php?';
       let params = new URLSearchParams();
-      params.append('categories', encodeURI(cats));
+      params.append('categories', decodeURIComponent(cats));
       params.append('limit', 100);
       url += params.toString();
       axios.get(url)
@@ -32,7 +32,7 @@ const Category = () => {
 
   return (
     <main>
-      <h1>{categories} Recipes</h1>
+      <h1>{decodeURIComponent(categories)} Recipes</h1>
       {recipes.length === 0 ? 
         <LoadingCard /> 
         : 

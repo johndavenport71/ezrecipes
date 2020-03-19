@@ -4,6 +4,7 @@ import Ingredients from './recipe_components/Ingredients';
 import RecipeSteps from './recipe_components/RecipeSteps';
 import Categories from './recipe_components/Categories';
 import LoadingLines from './LoadingLines';
+import LoadingSummary from './recipe_components/LoadingSummary';
 
 const Recipe = (props) => {
   const { id } = useParams();
@@ -33,18 +34,26 @@ const Recipe = (props) => {
         </>
       }
       <h1>{recipe.title}</h1>
-      {recipe.img_path && <img src={root + recipe.img_path} alt={recipe.title} width="400" height="auto" />}
-      <p>{recipe.description && recipe.description}</p>
-      {recipe.nutrition ?
-        <div className="nutrition">
-          {recipe.nutrition.calories && <p>Calories: {recipe.nutrition.calories}</p>}
-          {recipe.nutrition.fat && <p>Fat: {recipe.nutrition.fat} grams</p>}
-          {recipe.nutrition.protein && <p>Protein: {recipe.nutrition.protein} grams</p>}
-          {recipe.nutrition.sodium && <p>Sodium: {recipe.nutrition.sodium} grams</p>}
+      <div className="summary">
+        {Object.keys(recipe).length > 0 ? 
+        <>
+        <div>
+          <p>{recipe.description && recipe.description}</p>
+          {recipe.nutrition && Object.keys(recipe.nutrition).length > 0 &&
+            <div className="nutrition">
+              {recipe.nutrition.calories && <p>Calories: <span>{recipe.nutrition.calories}</span></p>}
+              {recipe.nutrition.fat && <p>Fat: <span>{recipe.nutrition.fat} grams</span></p>}
+              {recipe.nutrition.protein && <p>Protein: <span>{recipe.nutrition.protein} grams</span></p>}
+              {recipe.nutrition.sodium && <p>Sodium: <span>{recipe.nutrition.sodium} grams</span></p>}
+            </div>
+          }
         </div>
+        {recipe.img_path && <img src={root + recipe.img_path} alt={recipe.title} width="400" height="auto" />}
+        </>
         :
-        <LoadingLines />
-      }
+        <LoadingSummary />
+        }
+      </div>
       <h2>Ingredients</h2>
       {recipe.ingredients ?
         <Ingredients ingredients={recipe.ingredients} />

@@ -75,6 +75,15 @@ a {
   }
 }
 
+.secondary-button {
+  background-color: $clear;
+  border: 1px solid $green700;
+  padding: .5rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 /*************
 * Header Styles
 *************/
@@ -211,8 +220,12 @@ header {
 **  Main Content Styles
 **************/
 main {
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   width: 90%;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
 }
 
 /*************
@@ -443,14 +456,63 @@ form.user {
 ******************/
 #single-recipe {
 
+  h2 {
+    margin: .75rem 0 .5rem;
+  }
+
   ul,
   ol,
   h3 {
     margin: .5rem 2rem;
   }
 
-  .categories {
+  .summary {
+    display: flex;
+    div {
+      flex: 0 0 50%;
+      padding-right: .5rem;
+      p {
+        line-height: 1.4;
+      }
+    }
 
+    img {
+      flex: 1 0 50%;
+    }
+  }
+
+  .nutrition {
+    margin-top: 1rem;
+    p {
+      font-weight: bold;
+      span {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .ingredients-list {
+    list-style-type: none;
+    margin-left: 0;
+    li {
+      margin-bottom: .5rem;
+      &::before {
+        content: "-";
+        margin-right: .5rem;
+      }
+    }
+  }
+
+  ol {
+    margin-left: 1rem;
+    li {
+      line-height: 1.4;
+      margin-bottom: .5rem;
+    }
+  }
+
+  .categories {
+    margin-top: 1rem;
     .category {
       background-color: $green100;
       color: $green900;
@@ -546,6 +608,20 @@ form.user {
   animation: glow linear 1.2s infinite;
 }
 
+.loading-summary {
+  height: 100%;
+  width: 100%;
+}
+
+.loading-image {
+  background-color: $grey200;
+  height: 144px;
+  margin-top: .5rem;
+  width: 100%;
+  -webkit-animation: glow linear 1.2s infinite; 
+  animation: glow linear 1.2s infinite;
+}
+
 @-webkit-keyframes glow { 
     0% { background-color:  $grey200; }
     50% { background-color: $grey300; }
@@ -627,6 +703,32 @@ form.user {
     li {
       padding: .5rem 0;
     }
+  }
+}
+
+/******************
+** Modal
+******************/
+.modal {
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 6px 6px -1px $grey400;
+  display: flex;
+  height: 50%;
+  left: 50%;
+  padding: 2rem;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin: 1rem;
   }
 }
 

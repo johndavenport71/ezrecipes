@@ -10,12 +10,12 @@
 
 ### To Do
 
-- [ ] Save Recipe Flow  
-- [ ] User Profile Page  
+- [ ] Save Recipe Flow 
+- [ ] User Profile Page
+- [ ] User delete error handling
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
-- [ ] Check for existing email before creating new user
-- [ ] Handle categories with "/" in them
+- [ ] Horizontal scroll on home page
 
 ### In Progress
 
