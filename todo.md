@@ -10,12 +10,12 @@
 
 ### To Do
 
-- [ ] Save Recipe Flow 
-- [ ] User Profile Page
-- [ ] User delete error handling
+- [ ] Site Favicon  
+- [ ] Save Recipe Flow  
+- [ ] User Profile Page  
+- [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
-- [ ] Horizontal scroll on home page
 
 ### In Progress
 

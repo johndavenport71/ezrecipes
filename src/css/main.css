@@ -812,6 +812,10 @@ form.user input[type=submit] {
   position: relative;
 }
 
+.slide-wrapper {
+  overflow: hidden;
+}
+
 .inner-container {
   display: flex;
   height: 100%;

@@ -20,8 +20,10 @@ const CardContainer = ({ recipes }) => {
       {recipes.length > 4 &&
         <SliderArrows handleClick={handleClick} setTransform={setTransform} transform={transform} />
       }
-      <div className="inner-container" style={{transform: `translateX(${transform}px)`}}>
-        {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+      <div className="slide-wrapper">
+        <div className="inner-container" style={{transform: `translateX(${transform}px)`}}>
+          {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+        </div>
       </div>
     </div>
   );

@@ -105,6 +105,7 @@ header {
       text-decoration: none;
       clear: both;
     }
+
   }
 
   div {
@@ -549,6 +550,10 @@ form.user {
 .card-container {
   margin-bottom: .5rem;
   position: relative;
+}
+
+.slide-wrapper {
+  overflow: hidden;
 }
 
 .inner-container {
