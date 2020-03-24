@@ -169,9 +169,10 @@ const SignUp = () => {
       const url = api + "users.php";
       axios.post(url, data)
       .then(res => {
+        console.log(res);
         if (res.data.status == 1) {
-          window.sessionStorage.setItem('user', JSON.stringify(res.user.data));
-          history.push(`/user/${res.user.data.user_id}`);
+          window.sessionStorage.setItem('user', JSON.stringify(res.data.user.data));
+          history.push(`/user/${res.data.user.data.user_id}`);
         }
       })
       .catch(err=>{
