@@ -1,5 +1,7 @@
 <?php
 
+require_once('FullRecipe.php');
+
 class User {
 
   private $conn;
@@ -250,7 +252,84 @@ class User {
 
     return $errors;
   }//end checkUser
-  
+
+  /**
+  * Save a recipe
+  *
+  * @param 	 int 	 $userID
+  * @param 	 int 	 $recipeID
+  * @return 	 Array
+  */
+  function saveRecipe(int $userID, int $recipeID) {
+    $stmt = $this->conn->prepare("INSERT INTO saved_recipes VALUES (:user_id, :recipe_id)");
+    $stmt->bindParam(':user_id', $userID, PDO::PARAM_INT);
+    $stmt->bindParam(':recipe_id', $recipeID, PDO::PARAM_INT);
+    if($stmt->execute()) {
+      $response = array(
+        'status' => 1,
+        'status_message' => 'Recipe Saved',
+        'recipe_id' => $recipeID
+      );
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'Failed to save recipe'
+      );
+    }
+    return $response;
+  }// end saveRecipe
+
+  /**
+  * Clear saved recipe
+  *
+  * @param 	 int 	 $userID
+  * @return 	 Array
+  */
+  function clearSavedRecipe(int $userID, int $recipeID) {
+    $stmt = $this->conn->prepare("DELETE FROM saved_recipes WHERE user_id = :user_id AND recipe_id = :recipe_id LIMIT 1");
+    if($stmt->execute([':user_id' => $userID, ':recipe_id' => $recipeID])) {
+      $response = array(
+        'status' => 1,
+        'status_message' => 'successfully removed saved recipe'
+      );
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'failed to remove saved recipe'
+      );
+    }
+    return $response;
+  }// end clearSavedRecipe
+
+  /**
+  * Get users saved recipes
+  *
+  * @param 	 int 	 $id
+  * @return 	 Array
+  */
+  function getSavedRecipes(int $id) {
+    $stmt = $this->conn->prepare("SELECT recipe_id from saved_recipes WHERE user_id = :user_id");
+    $stmt->bindParam(':user_id', $id, PDO::PARAM_INT);
+    if($stmt->execute()) {
+      $recipeIDs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+      $recipes = [];
+      foreach($recipeIDs as $rID) {
+        $row = new FullRecipe($this->conn, $rID, 0);
+        array_push($recipes, $row->jsonSerialize());
+      }
+      $response = array(
+        'status' => 1,
+        'status_message' => 'success',
+        'recipes' => $recipes
+      );
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'something went wrong'
+      );
+    }
+    return $response;
+  }//end getSavedRecipes
 
 }
 

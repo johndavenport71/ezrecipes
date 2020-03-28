@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import signupValidator from '../utils/signupValidator';
 import passwordCheck from '../utils/passwordCheck';
 import validateEmail from '../utils/validateEmail';
-import Errors from './Errors';
+import Alert from './Alert';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -86,7 +86,7 @@ const SignUp = () => {
     <main>
       <h1>Sign Up</h1>
       
-      {errors.length > 0 && <Errors errors={errors} setOpen={() => setErrors([])} />}
+      {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
 
       <form id="sign-up" className="user" onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name</label>

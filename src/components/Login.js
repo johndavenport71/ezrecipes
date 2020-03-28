@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import validateEmail from '../utils/validateEmail';
-import Errors from './Errors';
+import Alert from './Alert';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <main>
       <h1>Login</h1>
-      {errors.length > 0 && <Errors errors={errors} setOpen={() => setErrors([])} />}
+      {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
       <form id="login-form" className="user" onSubmit={handleSubmit}>
         <label htmlFor="email">Email Address</label>
         <input 

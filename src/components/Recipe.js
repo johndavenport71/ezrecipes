@@ -5,6 +5,7 @@ import RecipeSteps from './recipe_components/RecipeSteps';
 import Categories from './recipe_components/Categories';
 import LoadingLines from './LoadingLines';
 import LoadingSummary from './recipe_components/LoadingSummary';
+import RecipeOptions from './RecipeOptions';
 
 const Recipe = (props) => {
   const { id } = useParams();
@@ -27,11 +28,8 @@ const Recipe = (props) => {
 
   return (
     <main id="single-recipe">
-      {session && session.user_id == recipe.user_id && 
-        <>
-        <a href={`/edit-recipe/${recipe.id}`}>Edit</a>
-        <button>Delete</button>
-        </>
+      {session && recipe && 
+        <RecipeOptions recipe={recipe} session={session} />
       }
       <h1>{recipe.title}</h1>
       <div className="summary">

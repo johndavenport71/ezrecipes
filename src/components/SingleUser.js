@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
+import SavedRecipes from './SavedRecipes';
 
 const SingleUser = () => {
   const { id } = useParams();
@@ -59,7 +60,7 @@ const SingleUser = () => {
         />
       }
       {session && session.user_id === id ?
-      <h2>Your Saved Recipes</h2>
+        <SavedRecipes id={session.user_id} />
       :
       <>
       {recipes && recipes.length > 0 &&

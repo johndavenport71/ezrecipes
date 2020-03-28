@@ -528,6 +528,11 @@ form.user {
     }
   }
 
+  .recipe-options {
+    display: flex;
+    justify-content: flex-end;
+  }
+
 }
 
 /******************
@@ -676,12 +681,10 @@ form.user {
 }
 
 /******************
-** Error Messages
+** Messages
 ******************/
-.errors {
-  background-color: $red100;
+.alert {
   box-shadow: 0 2px 4px $grey200;
-  color: $red900;
   margin: 1rem auto;
   padding: 1rem 3rem;
   padding-right: 4rem;
@@ -696,11 +699,17 @@ form.user {
     position: absolute;
     right: 14px;
     top: 20px;
-
+  
     &:hover {
       cursor: pointer;
     }
   }
+
+}
+
+.errors {
+  background-color: $red100;
+  color: $red900;
 
   ul {
     margin-left: 2rem;
@@ -709,6 +718,11 @@ form.user {
       padding: .5rem 0;
     }
   }
+}
+
+.message { 
+  background-color: $green100;
+  color: $green900;
 }
 
 /******************

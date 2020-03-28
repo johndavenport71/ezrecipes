@@ -790,6 +790,10 @@ form.user input[type=submit] {
 #single-recipe .categories .category:hover, #single-recipe .categories .category:focus {
   text-decoration: underline;
 }
+#single-recipe .recipe-options {
+  display: flex;
+  justify-content: flex-end;
+}
 
 /******************
 **  Recipe Card Styles
@@ -941,12 +945,10 @@ form.user input[type=submit] {
 }
 
 /******************
-** Error Messages
+** Messages
 ******************/
-.errors {
-  background-color: #fae0d9;
+.alert {
   box-shadow: 0 2px 4px #ced2d2;
-  color: #2a1009;
   margin: 1rem auto;
   padding: 1rem 3rem;
   padding-right: 4rem;
@@ -955,21 +957,31 @@ form.user input[type=submit] {
   transform: translateX(-50%);
   top: 10%;
 }
-.errors button {
+.alert button {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   position: absolute;
   right: 14px;
   top: 20px;
 }
-.errors button:hover {
+.alert button:hover {
   cursor: pointer;
+}
+
+.errors {
+  background-color: #fae0d9;
+  color: #2a1009;
 }
 .errors ul {
   margin-left: 2rem;
 }
 .errors ul li {
   padding: 0.5rem 0;
+}
+
+.message {
+  background-color: #d4eec7;
+  color: #1b350e;
 }
 
 /******************

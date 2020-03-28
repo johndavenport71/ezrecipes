@@ -10,15 +10,15 @@
 
 ### To Do
 
-- [ ] Site Favicon  
-- [ ] Save Recipe Flow  
 - [ ] User Profile Page  
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
 - [ ] Move api url from env file
+- [ ] Recipe ratings flow
 
 ### In Progress
+- [ ] Save Recipe Flow  
 
 
 ### Refactor
