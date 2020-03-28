@@ -10,7 +10,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   
   $response = $user->saveRecipe($userID, $recipeID);
 } else if($_SERVER["REQUEST_METHOD"] == "DELETE") {
-  dd($_GET);
+  $userID = intval(h($_GET["user_id"]));
+  $recipeID = intval(h($_GET["recipe_id"]));
+
+  $response = $user->clearSavedRecipe($userID, $recipeID);
 } else if($_SERVER["REQUEST_METHOD"] == "GET") {
   $userID = intval(h($_GET["user_id"]));
   $response = $user->getSavedRecipes($userID);

@@ -47,7 +47,7 @@ const SingleUser = () => {
       {user && user.profile_pic ? 
         <img 
           src={root + user.profile_pic} 
-          alt={user.display_name ? (`Picture of ${user.display_name}`) : (`Picture of ${user.first_name} ${user.last_name}`)}
+          alt={user.display_name ? (`${user.display_name}`) : (`${user.first_name} ${user.last_name}`)}
           width="100"
           height="100"
         /> 
@@ -59,19 +59,17 @@ const SingleUser = () => {
           height="100"
         />
       }
-      {session && session.user_id === id ?
+      {session && session.user_id === id &&
         <SavedRecipes id={session.user_id} />
-      :
-      <>
+      }
       {recipes && recipes.length > 0 &&
         <>
-        <h2>Recipes by this user:</h2>
+        <h2>{session && session.user_id === id ? "Your submitted Recipes" : "Recipes by this user:"}</h2>
         <section className="recipes-grid">
           {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
         </section>
         </>
       }
-      </>
       }
     </main>
   );

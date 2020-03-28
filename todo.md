@@ -9,7 +9,6 @@
 * recipe 59
 
 ### To Do
-
 - [ ] User Profile Page  
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
@@ -18,7 +17,6 @@
 - [ ] Recipe ratings flow
 
 ### In Progress
-- [ ] Save Recipe Flow  
 
 
 ### Refactor

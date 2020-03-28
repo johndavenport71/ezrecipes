@@ -13,6 +13,7 @@ const SavedRecipes = ({ id }) => {
     .then(res => {
       console.log(res);
       setRecipes(res.data.recipes);
+      window.sessionStorage.setItem('saved_recipes', JSON.stringify(res.data.recipes));
     })
     .catch(err => console.log(err));
   }

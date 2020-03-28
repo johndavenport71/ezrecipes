@@ -265,10 +265,11 @@ class User {
     $stmt->bindParam(':user_id', $userID, PDO::PARAM_INT);
     $stmt->bindParam(':recipe_id', $recipeID, PDO::PARAM_INT);
     if($stmt->execute()) {
+      $saved = $this->getSavedRecipes($userID);
       $response = array(
         'status' => 1,
         'status_message' => 'Recipe Saved',
-        'recipe_id' => $recipeID
+        'saved_recipes' => $saved
       );
     } else {
       $response = array(
@@ -287,10 +288,14 @@ class User {
   */
   function clearSavedRecipe(int $userID, int $recipeID) {
     $stmt = $this->conn->prepare("DELETE FROM saved_recipes WHERE user_id = :user_id AND recipe_id = :recipe_id LIMIT 1");
-    if($stmt->execute([':user_id' => $userID, ':recipe_id' => $recipeID])) {
+    $stmt->bindParam(':user_id', $userID, PDO::PARAM_INT);
+    $stmt->bindParam(':recipe_id', $recipeID, PDO::PARAM_INT);
+    if($stmt->execute()) {
+      $saved = $this->getSavedRecipes($userID);
       $response = array(
         'status' => 1,
-        'status_message' => 'successfully removed saved recipe'
+        'status_message' => 'successfully removed saved recipe',
+        'saved_recipes' => $saved
       );
     } else {
       $response = array(
