@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import RecipeCard from './RecipeCard';
 import SliderArrows from './SliderArrows';
+import RecipeCardList from './RecipeCardList';
 
 const CardContainer = ({ recipes }) => {
   const [transform, setTransform] = useState(0);
@@ -22,7 +22,7 @@ const CardContainer = ({ recipes }) => {
       }
       <div className="slide-wrapper">
         <div className="inner-container" style={{transform: `translateX(${transform}px)`}}>
-          {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} />)}
+          <RecipeCardList recipes={recipes} />
         </div>
       </div>
     </div>

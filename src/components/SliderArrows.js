@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SliderArrows = ({ handleClick, transform, setTransform }) => {
+const SliderArrows = ({ handleClick }) => {
   return (
     <>
     <button
