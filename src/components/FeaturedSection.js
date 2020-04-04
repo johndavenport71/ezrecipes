@@ -47,7 +47,7 @@ class FeaturedSection extends React.Component {
         <div className="featured-slide">
           {this.state.recipes.length > 0 &&
           <>
-          <img src={this.state.root + this.state.recipes[this.state.current].img_path} alt={this.state.recipes[this.state.current].title} width="100%" height="auto" />
+          <img src={this.state.recipes[this.state.current].img_path} alt={this.state.recipes[this.state.current].title} width="100%" height="auto" />
           <a href={`/recipe/${this.state.recipes[this.state.current].id}`}>
             <h2>
               {this.state.recipes[this.state.current].title}

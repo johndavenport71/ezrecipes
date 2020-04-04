@@ -5,10 +5,11 @@ import getRandomColor from '../utils/randomColor';
 const RecipeCard = ({ recipe }) => {
   const root = process.env.REACT_APP_ROOT;
   const bgColor = getRandomColor();
+   
   return (
     <Link to={`/recipe/${recipe.id}`} className="recipe-card" style={{
         backgroundImage: recipe.img_path ? 
-        `url(${root + recipe.img_path})`
+        `url(https://${recipe.img_path})`
         :
         `url(${require('../assets/placeholder-transparent.png')})`,
         backgroundColor: bgColor

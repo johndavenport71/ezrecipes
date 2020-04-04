@@ -1,0 +1,5 @@
+{
+    "require": {
+        "pcrov/jsonreader": "^1.0"
+    }
+}

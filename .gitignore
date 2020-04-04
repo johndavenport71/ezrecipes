@@ -12,6 +12,7 @@ db-dumps/
 /node_modules
 /.pnp
 .pnp.js
+/vendor
 
 # testing
 /coverage
