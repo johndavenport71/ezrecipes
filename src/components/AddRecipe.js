@@ -8,6 +8,7 @@ const AddRecipe = (props) => {
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
   const session = JSON.parse(window.sessionStorage.getItem('user'));
+  const [showForm, setShowForm] = useState(Boolean(session));
 
   const [values, setValues] = useState({
     title: "",
@@ -29,7 +30,15 @@ const AddRecipe = (props) => {
   return (
     <main>
       <h1>Add a New Recipe</h1>
+      {!showForm ? 
+      <div className="center-content">
+        <p>Sign in or register for an account to add your recipe!</p>
+        <p>Or</p>
+        <button className="button-link" onClick={() => setShowForm(true)}>Add a recipe anonymously</button>
+      </div>
+      :
       <RecipeForm values={values} setValues={setValues} handleChangeDirectly={handleChangeDirectly} handleSubmit={handleSubmit} />
+      }
     </main>
   );
 

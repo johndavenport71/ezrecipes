@@ -37,7 +37,7 @@ const Category = () => {
         <LoadingCard /> 
         : 
         <section className="recipes-grid">
-          {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
+          {recipes.map((recipe, i) => <RecipeCard category={`/recipes/${categories}`} recipe={recipe} key={i} />)}
         </section>
       }
     </main>

@@ -215,6 +215,31 @@ header {
   &:hover {
     cursor: pointer;
   }
+
+}
+
+.breadcrumb {
+  display: block;
+  margin-top: 1rem;
+}
+
+/****************
+**  CTA Styles
+****************/
+.cta {
+  padding: 2rem;
+  text-align: center;
+  .button {
+    background-color: $green800;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 1rem auto;
+    min-width: 140px;
+    padding: 16px;
+    text-align: center;
+    text-decoration: none;
+  }
 }
 
 /*************
@@ -226,6 +251,28 @@ main {
 
   h2 {
     margin-bottom: 1rem;
+  }
+
+  .center-content {
+    background-color: #fff;
+    box-shadow: 0 2px 4px $grey200;
+    font-size: 1.2rem;
+    margin: 1rem auto;
+    padding: 2rem;
+    text-align: center;
+    width: 60%;
+    p {
+      margin-bottom: .5rem;
+    }
+  }
+  .button-link {
+    background-color: #fff;
+    border: none;
+    color: $green900;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 }
 

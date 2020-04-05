@@ -9,12 +9,14 @@
 * recipe 59
 
 ### To Do
-- [ ] User Profile Page  
+- [ ] Move api url from env file
+- [ ] User Profile Page (see Jeanette's feedback)
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
-- [ ] Move api url from env file
 - [ ] Recipe ratings flow
+- [ ] List of all categories
+- [ ] Build Out Footer
 
 ### In Progress
 

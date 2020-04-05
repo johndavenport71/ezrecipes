@@ -14,6 +14,7 @@ const UserMenu = ({ user, closeMenu }) => {
     <ul onMouseLeave={closeMenu}>
       <li><Link to={`/user/${user.user_id}`}>Profile</Link></li>
       <li><Link to={`/user/${user.user_id}`}>My Recipes</Link></li>
+      <li><Link to={`/add-recipe`}>Add a Recipe</Link></li>
       <li><button onClick={e => logout(e)}>Logout</button></li>
     </ul>
   );

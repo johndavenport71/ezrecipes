@@ -6,11 +6,11 @@ import Categories from './recipe_components/Categories';
 import LoadingLines from './LoadingLines';
 import LoadingSummary from './recipe_components/LoadingSummary';
 import RecipeOptions from './RecipeOptions';
+import Breadcrumb from './Breadcrumb';
 
 const Recipe = (props) => {
-  const { id } = useParams();
+  const { id, category } = useParams();
   const api = process.env.REACT_APP_API_PATH;
-  const root = process.env.REACT_APP_ROOT;
   const [recipe, setRecipe] = useState({});
   const session = JSON.parse(window.sessionStorage.getItem('user'));
 
@@ -28,6 +28,9 @@ const Recipe = (props) => {
 
   return (
     <main id="single-recipe">
+      {category && 
+        <Breadcrumb category={category} />
+      }
       {session && recipe && 
         <RecipeOptions recipe={recipe} session={session} />
       }
@@ -46,7 +49,7 @@ const Recipe = (props) => {
             </div>
           }
         </div>
-        {recipe.img_path && <img src={root + recipe.img_path} alt={recipe.title} width="400" height="auto" />}
+        {recipe.img_path && <img src={recipe.img_path.includes('http') ? recipe.img_path : `https://${recipe.img_path}`} alt={recipe.title} width="400" height="auto" />}
         </>
         :
         <LoadingSummary />

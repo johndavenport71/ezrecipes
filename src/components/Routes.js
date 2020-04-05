@@ -24,10 +24,10 @@ const Routes = () => {
       <Route path="/login">
         <Login />
       </Route>
-      <Route path="/recipe/:id">
+      <Route path={["/recipe/:id", "/recipes/:category/recipe/:id"]}>
         <Recipe />
       </Route>
-      <Route path="/recipes/:categories">
+      <Route path="/recipes/:categories" exact>
         <Category />
       </Route>
       <Route path="/add-recipe">

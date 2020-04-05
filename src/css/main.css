@@ -529,6 +529,30 @@ header form {
   cursor: pointer;
 }
 
+.breadcrumb {
+  display: block;
+  margin-top: 1rem;
+}
+
+/****************
+**  CTA Styles
+****************/
+.cta {
+  padding: 2rem;
+  text-align: center;
+}
+.cta .button {
+  background-color: #366a1c;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  min-width: 140px;
+  padding: 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
 /*************
 **  Main Content Styles
 **************/
@@ -538,6 +562,27 @@ main {
 }
 main h2 {
   margin-bottom: 1rem;
+}
+main .center-content {
+  background-color: #fff;
+  box-shadow: 0 2px 4px #ced2d2;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  padding: 2rem;
+  text-align: center;
+  width: 60%;
+}
+main .center-content p {
+  margin-bottom: 0.5rem;
+}
+main .button-link {
+  background-color: #fff;
+  border: none;
+  color: #1b350e;
+}
+main .button-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /*************
