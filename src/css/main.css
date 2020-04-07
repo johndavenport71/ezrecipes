@@ -854,6 +854,68 @@ form.user input[type=submit] {
   display: flex;
   justify-content: flex-end;
 }
+#single-recipe .comments {
+  margin: 1rem auto;
+  text-align: right;
+  width: 55%;
+}
+@media screen and (max-width: 960px) {
+  #single-recipe .comments {
+    width: 95%;
+  }
+}
+#single-recipe .comments h3 {
+  margin-left: 0;
+  text-align: left;
+}
+#single-recipe .comments .comment-form {
+  width: 100%;
+}
+#single-recipe .comments .comment-form[disabled] {
+  background-color: #eef0f0;
+}
+#single-recipe .comments button {
+  margin-top: 0.25rem;
+}
+#single-recipe .single-comment {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  text-align: left;
+}
+#single-recipe .single-comment:nth-of-type(even) {
+  background-color: #d4eec7;
+}
+#single-recipe .single-comment > div {
+  align-items: center;
+  display: flex;
+  flex-basis: 50%;
+}
+#single-recipe .single-comment .comment-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+#single-recipe .single-comment .comment-actions .secondary-button {
+  border: none;
+  margin-left: 0.5rem;
+}
+#single-recipe .single-comment h4 {
+  margin-left: 1rem;
+}
+#single-recipe .single-comment p, #single-recipe .single-comment span {
+  flex-basis: 100%;
+}
+#single-recipe .single-comment p {
+  border-top: 1px solid #b8e2a1;
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+}
+#single-recipe .single-comment span {
+  color: #4c5b5c;
+  text-align: right;
+}
 
 /******************
 **  Recipe Card Styles
@@ -1016,7 +1078,7 @@ form.user input[type=submit] {
   margin: 1rem auto;
   padding: 1rem 3rem;
   padding-right: 4rem;
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 10%;

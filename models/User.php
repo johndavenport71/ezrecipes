@@ -319,7 +319,7 @@ class User {
       $recipeIDs = $stmt->fetchAll(PDO::FETCH_COLUMN);
       $recipes = [];
       foreach($recipeIDs as $rID) {
-        $row = new FullRecipe($this->conn, $rID, 0);
+        $row = new FullRecipe($this->conn, $rID);
         array_push($recipes, $row->jsonSerialize());
       }
       $response = array(

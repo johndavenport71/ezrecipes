@@ -3,6 +3,7 @@
 require_once('Category.php');
 require_once('Ingredient.php');
 require_once('Recipe.php');
+require_once('Rating.php');
 
 class FullRecipe implements JsonSerializable {
   private $id;
@@ -22,17 +23,18 @@ class FullRecipe implements JsonSerializable {
   *
   * @param    PDO    $conn
   * @param    int    $id
-  * @param    int    $rating
   * @return   void
   */
-  function __construct(PDO $conn, int $id, int $rating) {
+  function __construct(PDO $conn, int $id) {
     $r = new Recipe($conn);
     $i = new Ingredient($conn);
     $c = new Category($conn);
+    $rat = new Rating($conn);
 
     $recipe = $r->getRecipeData($id);
     $categories = $c->getCategoriesByRecipe($id);
     $ingredients = $i->getIngredientsByRecipe($id);
+    $rating = $rat->getRating($id);
 
     $this->id = (int)$recipe["recipe_id"];
     $this->title = $recipe["recipe_title"];

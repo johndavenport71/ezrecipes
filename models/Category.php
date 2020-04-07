@@ -96,7 +96,7 @@ class Category {
 
     if(sizeof($ids)) {
       foreach($ids as $i=>$id) {
-        $recipe = new FullRecipe($this->conn, $id, 0);
+        $recipe = new FullRecipe($this->conn, $id);
         $data[$i] = $recipe->jsonSerialize();
       }
 

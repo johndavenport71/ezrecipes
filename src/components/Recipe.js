@@ -7,6 +7,9 @@ import LoadingLines from './LoadingLines';
 import LoadingSummary from './recipe_components/LoadingSummary';
 import RecipeOptions from './RecipeOptions';
 import Breadcrumb from './Breadcrumb';
+import CommentForm from './recipe_components/CommentForm';
+import Comments from './recipe_components/Comments';
+import axios from 'axios';
 
 const Recipe = (props) => {
   const { id, category } = useParams();
@@ -16,8 +19,11 @@ const Recipe = (props) => {
 
   const fetchRecipe = () => {
     const url = api + 'recipes.php?id=' + id;
-    fetch(url).then(res => {return res.json();}).then(res => {
-      setRecipe(res.recipe);
+    axios.get(url)
+    .then(res => {
+      if(res.data.status === 1) {
+        setRecipe(res.data.recipe);
+      }
     });
   }
 
@@ -68,6 +74,7 @@ const Recipe = (props) => {
         <LoadingLines />
       }
       {recipe.categories && <Categories categories={recipe.categories} />}
+      <Comments id={id} session={session} />
     </main>
   );
 }

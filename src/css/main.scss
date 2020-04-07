@@ -595,6 +595,68 @@ form.user {
     display: flex;
     justify-content: flex-end;
   }
+  
+  .comments {
+    margin: 1rem auto;
+    text-align: right;
+    width: 55%;
+    @media screen and (max-width: 960px) {
+      width: 95%;
+    }
+    h3 {
+      margin-left: 0;
+      text-align: left;
+    }
+    .comment-form {
+      width: 100%;
+    }
+    .comment-form[disabled] {
+      background-color: $white;
+    }
+    button {
+      margin-top: .25rem;
+    }
+  }
+
+  .single-comment {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: .75rem 0;
+    padding: .75rem;
+    text-align: left;
+    &:nth-of-type(even) {
+      background-color: $green100;
+    }
+    > div {
+      align-items: center;
+      display: flex;
+      flex-basis: 50%;
+    }
+    .comment-actions {
+      display: flex;
+      justify-content: flex-end;
+      .secondary-button {
+        border: none;
+        margin-left: .5rem;
+      }
+    }
+    h4 {
+      margin-left: 1rem;
+    }
+    p, span {
+      flex-basis: 100%;
+    }
+    p {
+      border-top: 1px solid $green200;
+      margin-top: .25rem;
+      padding-top: .5rem;
+    }
+    span {
+      color: $grey500;
+      text-align: right;
+    }
+  }
 
 }
 
@@ -756,7 +818,7 @@ form.user {
   margin: 1rem auto;
   padding: 1rem 3rem;
   padding-right: 4rem;
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 10%;

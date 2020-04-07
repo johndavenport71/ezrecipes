@@ -35,7 +35,7 @@ class Recipe {
   * @return 	 Array
   */
   function getSingleRecipe(int $id) {
-    return new FullRecipe($this->conn, $id, 0);
+    return new FullRecipe($this->conn, $id);
   }
 
   /**
@@ -50,7 +50,7 @@ class Recipe {
     if($stmt->execute()) {
       $ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
       foreach($ids as $i=>$id) {
-        $recipe = new FullRecipe($this->conn, $id, 0);
+        $recipe = new FullRecipe($this->conn, $id);
         $data[$i] = $recipe->jsonSerialize();
       }
     }
@@ -84,7 +84,7 @@ class Recipe {
       $recipeIDs = array_unique($recipeIDs);
 
       foreach($recipeIDs as $i=>$rID) {
-        $recipe = new FullRecipe($this->conn, $rID, 0);
+        $recipe = new FullRecipe($this->conn, $rID);
         $data[$i] = $recipe->jsonSerialize();
       }
 
@@ -315,6 +315,7 @@ class Recipe {
   }//end deleteRecipe
 
 }
+
 
 
 ?>

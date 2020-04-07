@@ -1,11 +1,12 @@
 <?php
-include('../../php/init.php');
-include('../../Models/Recipe.php');
-include('../../Models/User.php');
+include_once('../../php/init.php');
+include_once('../../Models/Recipe.php');
+include_once('../../Models/User.php');
 
 $controller = new Recipe($conn);
 $userCon = new User($conn);
 $request = $_SERVER["REQUEST_METHOD"];
+
 if($request == "GET") {
   //get recipes
   if(isset($_GET["id"])) {
@@ -20,6 +21,7 @@ if($request == "GET") {
       $response = array(
         'status' => 1,
         'status_message' => 'success',
+        'array' => true,
         'recipes' => $recipes
       );
     } else {
@@ -27,6 +29,7 @@ if($request == "GET") {
       $response = array(
         'status' => 1,
         'status_message' => 'success',
+        'array' => false,
         'recipe' => $recipe->jsonSerialize()
       );
     }

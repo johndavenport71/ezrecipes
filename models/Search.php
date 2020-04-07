@@ -39,7 +39,7 @@ class Search {
     $recipeIDs = array_unique($recipeIDs);
     $recipes = [];
     foreach($recipeIDs as $id) {
-      $row = new FullRecipe($this->conn, $id, 0);
+      $row = new FullRecipe($this->conn, $id);
       array_push($recipes, $row->jsonSerialize());
     }
 
