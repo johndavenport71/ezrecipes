@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Alert from './Alert';
@@ -46,11 +46,6 @@ const RecipeOptions = ({ recipe, session }) => {
     })
     .catch(err => console.log(err));
   }
-
-  useEffect(()=>{
-    console.log('saved: ', savedRecipes);
-    console.log('is saved: ', isSaved.length);
-  },[savedRecipes, isSaved]);
 
   return (
     <div className="recipe-options">

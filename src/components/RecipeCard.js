@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import getRandomColor from '../utils/randomColor';
 
 const RecipeCard = ({ recipe, category }) => {
-  const root = process.env.REACT_APP_ROOT;
   const bgColor = getRandomColor();
   const route = category ? category + `/recipe/${recipe.id}` : `/recipe/${recipe.id}`;
    
   return (
     <Link to={route} className="recipe-card" style={{
         backgroundImage: recipe.img_path ? 
-        `url(https://${recipe.img_path})`
+        `url(${recipe.img_path.includes('http') ? recipe.img_path : `https://${recipe.img_path}`})`
         :
         `url(${require('../assets/placeholder-transparent.png')})`,
         backgroundColor: bgColor

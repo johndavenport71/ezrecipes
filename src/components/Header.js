@@ -16,11 +16,11 @@ const Header = () => {
         </Link>
       </h1>
       <div>
+        <SearchField />
         {session && session.user_id ?
           <UserHeader user={session} />
         :
           <>
-          <SearchField />
           <Link to="/sign-up" className="button">Sign Up</Link>
           <Link to="/login">Login</Link>
           </>

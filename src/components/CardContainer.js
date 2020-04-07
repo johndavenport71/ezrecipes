@@ -10,7 +10,7 @@ const CardContainer = ({ recipes }) => {
     const totalWidth = document.querySelector(".inner-container").scrollWidth;
     if(dir === "left" && transform !== 0) {
       setTransform(transform + newTransform);
-    } else if (dir === "right" && transform - newTransform > -totalWidth) {
+    } else if (dir === "right" && transform - newTransform - 5 > -totalWidth) {
       setTransform(transform - newTransform);
     }
   }

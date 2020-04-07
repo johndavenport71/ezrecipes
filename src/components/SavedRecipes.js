@@ -20,7 +20,7 @@ const SavedRecipes = ({ id }) => {
 
   useEffect(()=>{
     fetchRecipes(id, api);
-  },[]);
+  },[id, api]);
 
   return (
     <div>

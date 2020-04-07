@@ -8,7 +8,6 @@ const EditUser = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
-  const root = process.env.REACT_APP_ROOT;
   const { id } = useParams();
   const [open, setOpen] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(0);
@@ -35,7 +34,6 @@ const EditUser = () => {
       const url = api + 'users.php?id=' + id;
       axios.get(url)
       .then(res => {
-        console.log(res)
         if(res.data.status == 1) {
           setUser(res.data.data);
           setValues({
@@ -52,7 +50,7 @@ const EditUser = () => {
       .catch(err => console.log(err));
     }
     fetchUser(api, id);
-  },[api, id]);
+  },[api, id, history]);
 
   return (
     <main>
@@ -94,7 +92,7 @@ const EditUser = () => {
         <input type="submit" value="Save Changes" />
       </form>
       <h2>Want to delete your account?</h2>
-      <button aria-haspopup="dialog" className="secondary-button" onClick={(e) => handleClick(e, true)}>Delete Account</button>
+      <button aria-haspopup="dialog" className="secondary-button warning" onClick={(e) => handleClick(e, true)}>Delete Account</button>
       </>
       }
       {open && 
@@ -108,7 +106,7 @@ const EditUser = () => {
             :
             <>
             <h3>Are you sure you want to delete your account?</h3>
-            <button className="secondary-button" onClick={handleDelete}>Yes, delete my account</button>
+            <button className="secondary-button warning" onClick={handleDelete}>Yes, delete my account</button>
             <button className="secondary-button" onClick={(e) => handleClick(e, false)}>No, thank you</button>
             </>
             }
