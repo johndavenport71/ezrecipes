@@ -34,7 +34,7 @@ const CommentForm = (props) => {
       <h3>Login to leave a comment</h3>
     }
     <textarea disabled={Boolean(!session)} className="comment-form" value={body} onChange={e => setBody(e.target.value)} name="comment_body" rows={10}/>
-    <button className="secondary-button" onClick={handleSubmit} disabled={Boolean(!session)}>Submit</button>
+    <button className="secondary-button" onClick={handleSubmit} disabled={Boolean(!session)}>Post Comment</button>
     </>
   )
 }

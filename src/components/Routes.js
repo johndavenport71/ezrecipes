@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
 import SignUp from './SignUp';
 import Login from './Login';
@@ -10,6 +10,7 @@ import SingleUser from './SingleUser';
 import Category from './Category';
 import EditRecipe from './EditRecipe';
 import EditUser from './EditUser';
+import Error404 from './Error404';
 
 const Routes = () => {
 
@@ -36,6 +37,9 @@ const Routes = () => {
       <Route path="/edit-recipe/:id">
         <EditRecipe />
       </Route>
+      <Route path="/search/" exact>
+        <Redirect to="/" />
+      </Route>
       <Route path="/search/:params">
         <SearchResults />
       </Route>
@@ -44,6 +48,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/user/edit/:id">
         <EditUser />
+      </Route>
+      <Route>
+        <Error404 />
       </Route>
     </Switch>
   );

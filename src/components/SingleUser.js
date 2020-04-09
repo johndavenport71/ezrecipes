@@ -70,7 +70,6 @@ const SingleUser = () => {
         </section>
         </>
       }
-      }
     </main>
   );
 }

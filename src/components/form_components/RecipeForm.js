@@ -82,7 +82,7 @@ const RecipeForm = ({ values, setValues, handleChangeDirectly, handleSubmit }) =
           onChange={evt => handleChangeDirectly("categories", evt.target.value)}
         ></textarea>
       </div>
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Add Recipe" />
     </form>
   );
 }

@@ -16,13 +16,15 @@
 - [ ] Catch empty user in storage  
 - [ ] Recipe ratings flow
 - [ ] List of all categories
-- [ ] Build Out Footer
+- [ ] Mask user and recipe id's in address bar (use a uuid)
+- [ ] Forgot password flow
 
 ### In Progress
 
 
 ### Refactor
 
+- [ ] Build Out Footer
 - [ ] Home Page Featured Section  
 - [ ] Build out Search Endpoint  
 

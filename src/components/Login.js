@@ -31,6 +31,7 @@ const Login = () => {
           value={values.email}
           onChange={event => handleChangeDirectly("email", event.target.value)}
         />
+        <label htmlFor="password">Password</label>
         <input 
           id="password"
           name="password"
@@ -40,6 +41,7 @@ const Login = () => {
           onChange={event => handleChangeDirectly("password", event.target.value)}
         />
         <input type="submit" value="login" />
+        <a href="#">Forgot your password?</a>
       </form>
     </main>
   );
