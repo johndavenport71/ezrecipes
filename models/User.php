@@ -113,6 +113,35 @@ class User {
   }//end getUser
 
   /**
+  * Get user info from database by uuid
+  *
+  * @param 	 String 	 $id
+  * @return 	 Array
+  */
+  public function getUserByUUID(String $id) {
+    $stmt = $this->conn->prepare("SELECT user_id, uuid, first_name, last_name, email, display_name, member_level, profile_pic FROM users WHERE uuid = :id");
+    $stmt->bindParam(':id', $id);
+    if($stmt->execute()) {
+      $data = $stmt->fetch(PDO::FETCH_ASSOC);
+      if($data) {
+        $response = array(
+          'status'=>1,
+          'status_message'=>'success',
+          'data'=>$data
+        );
+      } else {
+        $response = array(
+          'status'=>0,
+          'status_message'=>'Failed to retreive record'
+        );
+      }
+      
+    }
+    
+    return $response;
+  }//end getUserByUUID
+
+  /**
   * Add a new user to the database
   *
   * @param 	 Array 	 $user

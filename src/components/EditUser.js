@@ -54,7 +54,7 @@ const EditUser = () => {
 
   return (
     <main>
-      {!session || session.user_id !== id ? 
+      {!session || session.uuid !== id ? 
       <Redirect to={`/user/${id}`} /> 
       : 
       <>
@@ -118,7 +118,7 @@ const EditUser = () => {
 
   function handleDelete(evt) {
     evt.preventDefault();
-    const url = api + 'users.php?id=' + id;
+    const url = api + 'users.php?id=' + user.user_id;
     axios.delete(url)
     .then(res => {
       if(res.data.status == 1) {

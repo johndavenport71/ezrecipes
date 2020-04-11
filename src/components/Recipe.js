@@ -7,7 +7,7 @@ import LoadingLines from './LoadingLines';
 import LoadingSummary from './recipe_components/LoadingSummary';
 import RecipeOptions from './RecipeOptions';
 import Breadcrumb from './Breadcrumb';
-import CommentForm from './recipe_components/CommentForm';
+import RecipeRating from './RecipeRating';
 import Comments from './recipe_components/Comments';
 import axios from 'axios';
 
@@ -41,6 +41,9 @@ const Recipe = (props) => {
         <RecipeOptions recipe={recipe} session={session} />
       }
       <h1>{recipe.title}</h1>
+      {recipe &&
+        <RecipeRating recipe={recipe} />
+      }
       <div className="summary">
         {Object.keys(recipe).length > 0 ? 
         <>

@@ -5,6 +5,7 @@ import validateEmail from '../utils/validateEmail';
 import Alert from './Alert';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 const SignUp = () => {
   const history = useHistory();
@@ -14,10 +15,9 @@ const SignUp = () => {
     email: "",
     password: "",
     password_confirm: "",
-    newsletter: "",
-    user_verify: ""
   });
   const [errors, setErrors] = useState([]);
+  const [verfiy, setVerfiy] = useState(false);
   const api = process.env.REACT_APP_API_PATH;
 
   const handleChangeDirectly = (key, value) => {
@@ -81,6 +81,11 @@ const SignUp = () => {
     }
   }
 
+  const handleVerify = (token) => {
+    if(token) {
+      setVerfiy(true);
+    }
+  }
   
   return (
     <main>
@@ -97,7 +102,7 @@ const SignUp = () => {
           value={values.first_name} 
           onChange={event => handleChangeDirectly("first_name", event.target.value)} 
           required
-          />
+        />
         <label htmlFor="last_name">Last Name</label>
         <input 
           type="text" 
@@ -106,7 +111,7 @@ const SignUp = () => {
           value={values.last_name}
           onChange={event => handleChangeDirectly("last_name", event.target.value)}
           required 
-          />
+        />
         <label htmlFor="email">Email Address</label>
         <input 
           type="email" 
@@ -116,7 +121,7 @@ const SignUp = () => {
           onChange={event => handleChangeDirectly("email", event.target.value)}
           onBlur={checkEmail}
           required 
-          />
+        />
         <label htmlFor="password">Password</label>
         <input 
           type="password" 
@@ -125,7 +130,7 @@ const SignUp = () => {
           value={values.password}
           onChange={event => handleChangeDirectly("password", event.target.value)}
           required 
-          />
+        />
         <label htmlFor="password_confirm">Confirm Password</label>
         <input 
           type="password" 
@@ -135,27 +140,9 @@ const SignUp = () => {
           onChange={event => handleChangeDirectly("password_confirm", event.target.value)}
           onBlur={checkPasswords}
           required 
-          />
-        <input 
-          type="text" 
-          id="newsletter" 
-          name="newsletter" 
-          autoComplete="off" 
-          tabIndex="-1" 
-          aria-hidden="true"
-          value={values.newsletter}
-          onChange={event => handleChangeDirectly("newsletter", event.target.value)}
-          />
-        <label htmlFor="user_verify">A little test to prove that you're not a bot. What is this website about?</label>
-        <input 
-          type="text" 
-          id="user_verify" 
-          name="user_verify" 
-          required 
-          value={values.user_verify}
-          onChange={event => handleChangeDirectly("user_verify", event.target.value)}
-          />
-        <input type="submit" value="Sign Up" />
+        />
+        <HCaptcha sitekey={process.env.REACT_APP_CAPTCHA_KEY} onVerify={token => handleVerify(token)} />
+        <input type="submit" value="Sign Up" disabled={!verfiy} />
       </form>
     </main>
   );

@@ -20,11 +20,6 @@ export default function signupValidator(values) {
   } else if (values.password !== values.password_confirm) {
     errors.push("Passwords do not match.");
   }
-  if(values.newsletter.length > 0) {
-    errors.push("Could not verify as human user. If you are using an auto-complete feature, please try again without it.");
-  } else if(validAnswers.indexOf(values.user_verify.toLowerCase()) === -1) {
-    errors.push("Could not verify as human user. Please try again.");
-  }
 
   return errors;
 

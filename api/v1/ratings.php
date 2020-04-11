@@ -12,7 +12,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $response = $ratingCon->addRating($rating, $recipe, $user);
 
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-  
+  if(isset($_GET["recipe_id"])) {
+    $id = intval(h($_GET["recipe_id"]));
+    $response = $ratingCon->getRating($id);
+  } else {
+    $response = array(
+      'status' => 0,
+      'status_message' => 'missing parameter: [recipe_id]'
+    );
+  }
 } else {
   $response = array(
     'status' => 0,

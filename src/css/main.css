@@ -796,6 +796,12 @@ form.user input[type=submit] {
 #single-recipe h3 {
   margin: 0.5rem 2rem;
 }
+#single-recipe #rating-form fieldset {
+  border: none;
+}
+#single-recipe #rating-form label, #single-recipe #rating-form input {
+  display: inline-block;
+}
 #single-recipe .summary {
   display: flex;
 }

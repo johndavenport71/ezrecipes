@@ -10,7 +10,7 @@ if($request == "GET") {
   //get user info
   if(isset($_GET["id"])) {
     $id = h($_GET["id"]);
-    $response = $controller->getUser($id);
+    $response = $controller->getUserByUUID($id);
   } else {
     $response = array(
       'status' => 0,
@@ -18,6 +18,7 @@ if($request == "GET") {
     );
   }
 } else if ($request == "POST") {
+
   $password = h($_POST["password"]);
   $password_confirm = h($_POST["password_confirm"]); 
   

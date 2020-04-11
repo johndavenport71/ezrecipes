@@ -39,7 +39,7 @@ class Rating {
   * @return 	 Array
   */
   function addRating(int $rating, int $recipe_id, int $user_id) {
-    $stmt = $this->conn->prepare('INSERT INTO ratings VALUES (:rating, :recipe, :user)');
+    $stmt = $this->conn->prepare('REPLACE INTO ratings VALUES (:rating, :recipe, :user)');
     $stmt->bindParam(':rating', $rating, PDO::PARAM_INT);
     $stmt->bindParam(':recipe', $recipe_id, PDO::PARAM_INT);
     $stmt->bindParam(':user', $user_id, PDO::PARAM_INT);
@@ -56,33 +56,6 @@ class Rating {
     }
     return $response;
   }//end addRating
-
-  /**
-  * Update rating
-  *
-  * @param  int   $rating
-  * @param  int   $recipe_id
-  * @param  int   $user_id
-  * @return Array
-  */
-  function updateRating(int $rating, int $recipe_id, int $user_id) {
-    $stmt = $this->conn->prepare("UPDATE ratings SET rating = :rating WHERE recipe_id = :recipe AND user_id = :user LIMIT 1");
-    $stmt->bindParam(':rating', $rating, PDO::PARAM_INT);
-    $stmt->bindParam(':recipe', $recipe_id, PDO::PARAM_INT);
-    $stmt->bindParam(':user', $user_id, PDO::PARAM_INT);
-    if($stmt->execute()) {
-      $response = array(
-        'status' => 1,
-        'status_message' => 'rating updated'
-      );
-    } else {
-      $response = array(
-        'status' => 0,
-        'status_message' => 'rating not updated'
-      );
-    }
-    return $response;
-  }//end updateRating
 
 }
 

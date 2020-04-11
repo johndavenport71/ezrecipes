@@ -530,6 +530,15 @@ form.user {
     margin: .5rem 2rem;
   }
 
+  #rating-form {
+    fieldset {
+      border: none;
+    }
+    label, input {
+      display: inline-block;
+    }
+  }
+
   .summary {
     display: flex;
     div {

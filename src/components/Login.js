@@ -69,7 +69,7 @@ const Login = () => {
           const user = res.data.user.data;
           //use sessionStorage to store user session
           sessionStorage.setItem('user', JSON.stringify(user));
-          history.push(`/user/${user.user_id}`, { loggedIn: true });
+          history.push(`/user/${user.uuid}`, { loggedIn: true });
         }
         
       })

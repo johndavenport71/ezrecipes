@@ -16,8 +16,10 @@
 - [ ] Catch empty user in storage  
 - [ ] Recipe ratings flow
 - [ ] List of all categories
-- [ ] Mask user and recipe id's in address bar (use a uuid)
+- [ ] Replace all front-end usage of user id with uuid
 - [ ] Forgot password flow
+- [ ] hCaptcha integration
+- [ ] admin actions
 
 ### In Progress
 
