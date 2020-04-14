@@ -8,13 +8,9 @@ const Header = () => {
 
   return (
     <header>
-      <h1>
-        <Link to="/">
-          EZ 
-          <img src={require("../assets/chef.svg")} alt="Chef outline icon" className="chef-icon" width="50" height="50"></img>
-          Recipes
-        </Link>
-      </h1>
+      <Link to="/">
+        <img src={require("../assets/logo.png")} alt="Ez Recipes" className="logo" />
+      </Link>
       <div>
         <SearchField />
         {session && session.user_id ?

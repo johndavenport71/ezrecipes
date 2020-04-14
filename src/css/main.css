@@ -418,6 +418,8 @@ a {
 .secondary-button {
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #498d25;
+  color: #1b350e;
+  font-weight: normal;
   padding: 0.5rem;
 }
 .secondary-button:hover {
@@ -427,6 +429,22 @@ a {
 .secondary-button.warning {
   border: 1px solid #e4572e;
   color: #7d301a;
+}
+
+a.secondary-button {
+  text-decoration: none;
+}
+
+.button {
+  background: #366a1c;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+.button:hover {
+  cursor: pointer;
 }
 
 /*************
@@ -439,11 +457,11 @@ header {
   justify-content: space-between;
   padding: 0 2rem;
 }
-header h1 {
-  color: #366a1c;
-  margin: 0.5rem;
+header .logo {
+  margin-top: -1.25rem;
+  max-height: 88px;
 }
-header h1 a {
+header a {
   color: inherit;
   font-family: inherit;
   text-decoration: none;
@@ -678,6 +696,11 @@ form.user input[type=submit] {
   max-width: 500px;
 }
 
+#login-form a {
+  display: block;
+  text-align: center;
+}
+
 .search-bar {
   box-shadow: none;
   display: inline-block;
@@ -805,11 +828,19 @@ form.user input[type=submit] {
 #single-recipe h3 {
   margin: 0.5rem 2rem;
 }
+#single-recipe #rating-form label,
+#single-recipe #rating-form input,
+#single-recipe #rating-form legend {
+  display: inline-block;
+}
 #single-recipe #rating-form fieldset {
   border: none;
 }
-#single-recipe #rating-form label, #single-recipe #rating-form input {
-  display: inline-block;
+#single-recipe #rating-form p {
+  margin-bottom: 0.5rem;
+}
+#single-recipe #rating-form .button {
+  margin-left: 0.5rem;
 }
 #single-recipe .summary {
   display: flex;
@@ -824,13 +855,10 @@ form.user input[type=submit] {
 #single-recipe .summary img {
   flex: 1 0 50%;
 }
-#single-recipe .nutrition {
-  margin-top: 1rem;
-}
-#single-recipe .nutrition p {
+#single-recipe .nutrition-display p {
   font-weight: bold;
 }
-#single-recipe .nutrition p span {
+#single-recipe .nutrition-display p span {
   font-weight: normal;
 }
 #single-recipe .ingredients-list {
@@ -858,6 +886,7 @@ form.user input[type=submit] {
   background-color: #d4eec7;
   color: #1b350e;
   display: inline-block;
+  margin-bottom: 1rem;
   margin-right: 1rem;
   padding: 0.5rem;
   text-decoration: none;
@@ -868,6 +897,9 @@ form.user input[type=submit] {
 #single-recipe .recipe-options {
   display: flex;
   justify-content: flex-end;
+}
+#single-recipe .recipe-options button {
+  margin-left: 0.5rem;
 }
 #single-recipe .comments {
   margin: 1rem auto;
@@ -930,6 +962,16 @@ form.user input[type=submit] {
 #single-recipe .single-comment span {
   color: #4c5b5c;
   text-align: right;
+}
+
+/******************
+**  Single User Page
+*******************/
+.user-actions {
+  margin-top: 0.5rem;
+}
+.user-actions h2 {
+  margin-top: 1rem;
 }
 
 /******************

@@ -49,16 +49,16 @@ const RecipeOptions = ({ recipe, session }) => {
 
   return (
     <div className="recipe-options">
-      {session && session.user_id == recipe.user_id && 
+      {session && session.user_id === recipe.user_id || session.member_level === 'a' && 
         <>
-        <a href={`/edit-recipe/${recipe.id}`}>Edit</a>
-        <button>Delete</button>
+        <a href={`/edit-recipe/${recipe.id}`} className="secondary-button">Edit</a>
+        <button className="secondary-button">Delete</button>
         </>
       }
       {isSaved.length > 0 ? 
-      <button onClick={removeRecipe}>Remove From Saved</button>
+      <button onClick={removeRecipe} className="secondary-button">Remove From Saved</button>
       :
-      <button onClick={saveRecipe}>Save Recipe</button>
+      <button onClick={saveRecipe} className="secondary-button">Save Recipe</button>
       }
       {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
       {message && <Alert message={message} setOpen={() => setMessage(null)} />}

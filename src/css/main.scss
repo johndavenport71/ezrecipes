@@ -88,6 +88,8 @@ a {
 .secondary-button {
   background-color: $clear;
   border: 1px solid $green700;
+  color: $green900;
+  font-weight: normal;
   padding: .5rem;
   &:hover {
     cursor: pointer;
@@ -97,6 +99,23 @@ a {
 .secondary-button.warning {
   border: 1px solid $red500;
   color: $red700;
+}
+
+a.secondary-button {
+  text-decoration: none;
+}
+
+.button {
+  background: $green800;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 /*************
@@ -109,17 +128,16 @@ header {
   justify-content: space-between;
   padding: 0 2rem;
 
-  h1 {
-    color: $green800;
-    margin: .5rem;
+  .logo {
+    margin-top: -1.25rem;
+    max-height: 88px;
+  }
 
-    a {
-      color: inherit;
-      font-family: inherit;
-      text-decoration: none;
-      clear: both;
-    }
-
+  a {
+    color: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    clear: both;
   }
 
   > div {
@@ -386,6 +404,13 @@ form.user {
   }
 }
 
+#login-form {
+  a {
+    display: block;
+    text-align: center;
+  }
+}
+
 .search-bar {
   box-shadow: none;
   display: inline-block;
@@ -541,11 +566,19 @@ form.user {
   }
 
   #rating-form {
+    label, 
+    input, 
+    legend {
+      display: inline-block;
+    }
     fieldset {
       border: none;
     }
-    label, input {
-      display: inline-block;
+    p {
+      margin-bottom: .5rem;
+    }
+    .button {
+      margin-left: .5rem;
     }
   }
 
@@ -564,8 +597,7 @@ form.user {
     }
   }
 
-  .nutrition {
-    margin-top: 1rem;
+  .nutrition-display {
     p {
       font-weight: bold;
       span {
@@ -600,6 +632,7 @@ form.user {
       background-color: $green100;
       color: $green900;
       display: inline-block;
+      margin-bottom: 1rem;
       margin-right: 1rem;
       padding: .5rem;
       text-decoration: none;
@@ -613,6 +646,9 @@ form.user {
   .recipe-options {
     display: flex;
     justify-content: flex-end;
+    button {
+      margin-left: .5rem;
+    }
   }
   
   .comments {
@@ -677,6 +713,17 @@ form.user {
     }
   }
 
+}
+
+/******************
+**  Single User Page
+*******************/
+.user-actions {
+  margin-top: .5rem;
+
+  h2 {
+    margin-top: 1rem;
+  }
 }
 
 /******************

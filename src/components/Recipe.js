@@ -41,35 +41,39 @@ const Recipe = (props) => {
         <RecipeOptions recipe={recipe} session={session} />
       }
       <h1>{recipe.title}</h1>
-      {recipe &&
-        <RecipeRating recipe={recipe} />
-      }
-      <div className="summary">
-        {Object.keys(recipe).length > 0 ? 
+      <div className="summary two-column">
+        {Object.keys(recipe).length > 0 ?
         <>
-        <div>
           <p>{recipe.description && recipe.description}</p>
           {recipe.nutrition && Object.keys(recipe.nutrition).length > 0 &&
-            <div className="nutrition">
+            <div className="nutrition-display">
               {recipe.nutrition.calories && <p>Calories: <span>{recipe.nutrition.calories}</span></p>}
               {recipe.nutrition.fat && <p>Fat: <span>{recipe.nutrition.fat} grams</span></p>}
               {recipe.nutrition.protein && <p>Protein: <span>{recipe.nutrition.protein} grams</span></p>}
               {recipe.nutrition.sodium && <p>Sodium: <span>{recipe.nutrition.sodium} grams</span></p>}
             </div>
           }
-        </div>
-        {recipe.img_path && <img src={recipe.img_path.includes('http') ? recipe.img_path : `https://${recipe.img_path}`} alt={recipe.title} width="400" height="auto" />}
         </>
         :
         <LoadingSummary />
         }
       </div>
-      <h2>Ingredients</h2>
-      {recipe.ingredients ?
-        <Ingredients ingredients={recipe.ingredients} />
-        :
-        <LoadingLines />
+      {recipe &&
+        <RecipeRating recipe={recipe} />
       }
+      <div className="two-column">
+        <div>
+          <h2>Ingredients</h2>
+          {recipe.ingredients ?
+            <Ingredients ingredients={recipe.ingredients} />
+            :
+            <LoadingLines />
+          }
+        </div>
+        <div>
+          {recipe.img_path && <img src={recipe.img_path.includes('http') ? recipe.img_path : `https://${recipe.img_path}`} alt={recipe.title} width="400" height="auto" />}
+        </div>
+      </div>
       <h2>Directions</h2>
       {recipe.steps ?
         <RecipeSteps steps={recipe.steps} />

@@ -48,7 +48,7 @@ const SingleUser = () => {
     <main>
       <div className="two-column">
         <div>
-          {user && user.first_name && <h2>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h2>}
+          {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
           {user && user.profile_pic ? 
             <img 
               src={root + user.profile_pic} 
@@ -65,7 +65,7 @@ const SingleUser = () => {
             />
           }
         </div>
-        <div>
+        <div className="user-actions">
           <h2>Want to personalize your profile?</h2>
           <a href={`/user/edit/${id}`}>Edit Profile</a>
           <h2>Want to add a recipe?</h2>

@@ -58,7 +58,7 @@ const EditUser = () => {
       <Redirect to={`/user/${id}`} /> 
       : 
       <>
-      <h2>{user && user.display_name ? user.display_name : user.first_name + ' ' + user.last_name}</h2>
+      <h1>Edit User</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name</label>
         <input 

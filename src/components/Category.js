@@ -32,7 +32,7 @@ const Category = () => {
 
   return (
     <main>
-      <h2>{decodeURIComponent(categories)} Recipes</h2>
+      <h1>{decodeURIComponent(categories)} Recipes</h1>
       {recipes.length === 0 ? 
         <LoadingCard /> 
         : 

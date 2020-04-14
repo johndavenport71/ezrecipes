@@ -25,7 +25,7 @@ const SearchResults = () => {
 
   return (
     <main>
-      <h2>Results</h2>
+      <h1>Results</h1>
       
       <p>Your search for '{params}' returned {recipes.length} results</p>
       {recipes && recipes.length > 0 && 
