@@ -684,6 +684,15 @@ form.user input[type=submit] {
   margin: 0;
   padding: 0;
 }
+.search-bar label[for=search] {
+  position: absolute;
+  top: -99999px;
+}
+
+.captcha {
+  margin: 0 auto 1rem;
+  text-align: center;
+}
 
 /*********************
 ** Add recipe form styles
@@ -972,17 +981,17 @@ form.user input[type=submit] {
   transition: transform ease-out 0.1s;
   text-decoration: none;
 }
-.recipe-card:hover {
+.recipe-card:hover, .recipe-card:focus, .recipe-card:focus-within {
   box-shadow: 0 6px 6px -1px #7c8788;
   transform: scale(1.05);
 }
 .recipe-card div {
   align-self: flex-end;
-  background: linear-gradient(0deg, #1c2222 0%, rgba(56, 67, 67, 0.61) 65%, rgba(56, 67, 67, 0) 100%);
+  background: linear-gradient(0deg, #1c2222 25%, rgba(9, 10, 10, 0.65) 65%, rgba(25, 29, 29, 0.3) 85%, rgba(0, 0, 0, 0) 100%);
   color: #eef0f0;
   display: block;
   padding: 0.25rem;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   width: 100%;
 }
 .recipe-card div p {
@@ -1188,6 +1197,24 @@ form.user input[type=submit] {
   color: #fff;
   display: block;
   margin: 1rem 0;
+}
+
+/******************
+**  Category List
+******************/
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.category-list li {
+  flex: 1 1 25%;
+  list-style: none;
+  padding: 0.5rem;
+}
+@media screen and (max-width: 960px) {
+  .category-list li {
+    flex: 1 1 50%;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
