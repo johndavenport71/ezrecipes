@@ -13,6 +13,9 @@ const SingleUser = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
 
   useEffect(()=>{
+    if(!session || session.uuid !== id) {
+      history.push('/');
+    }
     const fetchRecipes = (api, id, setRecipes) => {
       const url = api + "recipes.php?user=" + id;
       fetch(url)
@@ -43,29 +46,38 @@ const SingleUser = () => {
 
   return (
     <main>
-      {session && session.uuid == user.uuid && <a href={`/user/edit/${user.uuid}`}>Edit Profile</a>}
-      {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
-      {user && user.profile_pic ? 
-        <img 
-          src={root + user.profile_pic} 
-          alt={user.display_name ? (`${user.display_name}`) : (`${user.first_name} ${user.last_name}`)}
-          width="100"
-          height="100"
-        /> 
-        : 
-        <img
-          src={require('../assets/icons/happy_face.svg')}
-          alt="smiley face icon"
-          width="100"
-          height="100"
-        />
-      }
+      <div className="two-column">
+        <div>
+          {user && user.first_name && <h2>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h2>}
+          {user && user.profile_pic ? 
+            <img 
+              src={root + user.profile_pic} 
+              alt={user.display_name ? (`${user.display_name}`) : (`${user.first_name} ${user.last_name}`)}
+              width="100"
+              height="100"
+            /> 
+            : 
+            <img
+              src={require('../assets/icons/happy_face.svg')}
+              alt="smiley face icon"
+              width="100"
+              height="100"
+            />
+          }
+        </div>
+        <div>
+          <h2>Want to personalize your profile?</h2>
+          <a href={`/user/edit/${id}`}>Edit Profile</a>
+          <h2>Want to add a recipe?</h2>
+          <a href="/add-recipe">Add a recipe</a>
+        </div>
+      </div>
       {session && session.uuid === id &&
         <SavedRecipes id={session.user_id} />
       }
       {recipes && recipes.length > 0 &&
         <>
-        <h2>{session && session.uuid === id ? "Your submitted Recipes" : "Recipes by this user:"}</h2>
+        <h2>Your submitted recipes</h2>
         <section className="recipes-grid">
           {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
         </section>

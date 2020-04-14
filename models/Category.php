@@ -55,14 +55,13 @@ class Category {
   * @return 	 Array
   */
   function getAllCategories() {
-    return $this->conn->query("SELECT category_desc FROM categories")->fetchAll(PDO::FETCH_COLUMN);
-    $existingCats = [];
-    
-    foreach($dbCats as $cat) {
-      $existingCats[intval($cat["category_id"])] = $cat["category_desc"];
-    }
-
-    return $existingCats;
+    $categories = $this->conn->query("SELECT category_id, category_desc FROM categories ORDER BY category_desc ASC")->fetchAll(PDO::FETCH_ASSOC);
+    $response = array(
+      'status' => 1,
+      'status_message' => 'success',
+      'categories' => $categories
+    );
+    return $response;
   }
 
   /**

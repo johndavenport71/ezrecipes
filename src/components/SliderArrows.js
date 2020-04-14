@@ -6,6 +6,7 @@ const SliderArrows = ({ handleClick }) => {
     <button
       className="arrow-button arrow-left"
       onClick={()=>{handleClick("left")}}
+      aria-label="previous recipe set"
     >
     <img 
       src={require('../assets/icons/chevron_left.svg')} 
@@ -17,6 +18,7 @@ const SliderArrows = ({ handleClick }) => {
     <button
       className="arrow-button arrow-right" 
       onClick={()=>{handleClick("right")}}
+      aria-label="next recipe set"
     >
       <img 
         src={require('../assets/icons/chevron_right.svg')} 

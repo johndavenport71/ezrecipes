@@ -12,7 +12,9 @@ const SearchField = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmit(true);
+    if(query !== "") {
+      setSubmit(true);
+    }
   }
 
   return (
@@ -26,7 +28,7 @@ const SearchField = () => {
         value={query} 
         onChange={handleChange}
       />
-      <button type="submit" className="search-button">
+      <button type="submit" className="search-button" aria-label="search">
         <img src={require('../assets/icons/search.svg')} alt="" width="25" height="25" />
       </button>
       {submit && <Redirect to={{pathname: `/search/${query}`}} />}

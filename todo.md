@@ -8,18 +8,18 @@
 * recipe 224
 * recipe 59
 
-### To Do
+### Backlog
+- [ ] admin actions
 - [ ] Move api url from env file
-- [ ] User Profile Page (see Jeanette's feedback)
+
+### To Do
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
 - [ ] Recipe ratings flow
-- [ ] List of all categories
 - [ ] Replace all front-end usage of user id with uuid
 - [ ] Forgot password flow
 - [ ] hCaptcha integration
-- [ ] admin actions
 
 ### In Progress
 

@@ -141,7 +141,9 @@ const SignUp = () => {
           onBlur={checkPasswords}
           required 
         />
-        <HCaptcha sitekey={process.env.REACT_APP_CAPTCHA_KEY} onVerify={token => handleVerify(token)} />
+        <div className="captcha">
+          <HCaptcha sitekey={process.env.REACT_APP_CAPTCHA_KEY} onVerify={token => handleVerify(token)} />
+        </div>
         <input type="submit" value="Sign Up" disabled={!verfiy} />
       </form>
     </main>

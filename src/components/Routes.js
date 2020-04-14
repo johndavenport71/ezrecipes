@@ -11,6 +11,7 @@ import Category from './Category';
 import EditRecipe from './EditRecipe';
 import EditUser from './EditUser';
 import Error404 from './Error404';
+import CategoryList from './CategoryList';
 
 const Routes = () => {
 
@@ -48,6 +49,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/user/edit/:id">
         <EditUser />
+      </Route>
+      <Route exact path="/categories">
+        <CategoryList />
       </Route>
       <Route>
         <Error404 />
