@@ -85,6 +85,66 @@ class User {
   }
 
   /**
+  * Change user password
+  *
+  * @param 	 Array 	 $data
+  * @return 	 Array
+  */
+  function changePassword(Array $data) {
+    if($this->checkPasswordChange($data)) {
+      $hash = password_hash($data["new_password"], PASSWORD_DEFAULT);
+      $stmt = $this->conn->prepare("UPDATE users SET user_auth = :pwd WHERE user_id = :id");
+      $stmt->bindParam(':pwd', $hash);
+      $stmt->bindParam(':id', $data["user_id"], PDO::PARAM_INT);
+      if($stmt->execute()) {
+        $response = array(
+          'status' => 1,
+          'status_message' => 'password changed'
+        );
+      } else {
+        $response = array(
+          'status' => 0,
+          'status_message' => 'failed to update password'
+        );
+      }
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'missing required fields'
+      );
+    }
+    return $response;
+  }//end changePassword
+
+  /**
+  * Send email to reset password
+  *
+  * @param 	 String 	 $email
+  * @return 	 Array
+  */
+  function resetPassword(String $email) {
+    $stmt = $this->conn->prepare("SELECT user_id, first_name, last_name FROM users WHERE email = :email LIMIT 1");
+    $stmt->bindParam(":email", $email);
+    if($stmt->execute()) {
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      if(isset($user["user_id"])) {
+        //send email
+      } else {
+        $response = array(
+          'status' => 0,
+          'status_message' => 'user not found'
+        );
+      }
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'something went wrong'
+      );
+    }
+    return $response;
+  }//end resetPassword
+
+  /**
   * Get user info from database
   *
   * @param 	 int 	 $id
@@ -281,6 +341,40 @@ class User {
 
     return $errors;
   }//end checkUser
+
+  /**
+  * Check password change information
+  *
+  * @param 	 Array 	 $data
+  * @return 	 Boolean
+  */
+  function checkPasswordChange(Array $data) {
+    if(!isset($data["user_id"])) {
+      return false;
+    }
+    if(!isset($data["og_password"])) {
+      return false;
+    }
+    if(!isset($data["new_password"])) {
+      return false;
+    }
+    if(!isset($data["new_password_confirm"])) {
+      return false;
+    }
+    if($data["new_password"] != $data["new_password_confirm"]) {
+      return false;
+    }
+    $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id = :id");
+    $stmt->bindParam(':id', $data["user_id"], PDO::PARAM_INT);
+    if($stmt->execute()) {
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+      if(!password_verify($data["og_password"], $user["user_auth"])) {
+        return false;
+      }
+    }
+
+    return true;
+  }//end checkPasswordChange
 
   /**
   * Save a recipe

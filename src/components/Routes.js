@@ -12,6 +12,7 @@ import EditRecipe from './EditRecipe';
 import EditUser from './EditUser';
 import Error404 from './Error404';
 import CategoryList from './CategoryList';
+import ForgotPassword from './ForgotPassword';
 
 const Routes = () => {
 
@@ -52,6 +53,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/categories">
         <CategoryList />
+      </Route>
+      <Route path="/forgot-password">
+        <ForgotPassword />
       </Route>
       <Route>
         <Error404 />

@@ -12,7 +12,7 @@ const Footer = () => {
       </div>
       <div>
         For concerns or support, email: <a href="mailto:jonathandavenport@students.abtech.edu">jonathandavenport@students.abtech.edu</a>
-        Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik" target="_blank" rel="noreferrer noopener">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noreferrer noopenr"> www.flaticon.com</a>
+        Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik" target="_blank" rel="noopener noreferrer">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon" target="_blank" rel="noreferrer noopener"> www.flaticon.com</a>
       </div>
     </div>
   )

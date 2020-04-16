@@ -1,5 +1,4 @@
 import validateEmail from './validateEmail';
-import validAnswers from './validAnswers';
 
 export default function signupValidator(values) {
   const errors = [];

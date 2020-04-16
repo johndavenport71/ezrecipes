@@ -328,6 +328,7 @@ form {
   input,
   textarea {
     display: block;
+    margin-bottom: .75rem;
   }
 
   input {
@@ -724,6 +725,11 @@ form.user {
   h2 {
     margin-top: 1rem;
   }
+}
+
+.admin-user-actions {
+  padding: 2.5rem;
+  text-align: right;
 }
 
 /******************

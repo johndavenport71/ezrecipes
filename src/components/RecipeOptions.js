@@ -52,7 +52,7 @@ const RecipeOptions = ({ recipe, session }) => {
       {session && session.user_id === recipe.user_id || session.member_level === 'a' && 
         <>
         <a href={`/edit-recipe/${recipe.id}`} className="secondary-button">Edit</a>
-        <button className="secondary-button">Delete</button>
+        <button className="secondary-button warning">Delete</button>
         </>
       }
       {isSaved.length > 0 ? 

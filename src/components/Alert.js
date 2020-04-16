@@ -5,7 +5,6 @@ const Alert = ({ errors, message, setOpen }) => {
     <div className={`alert ${errors ? 'errors' : 'message'}`}>
       {errors && 
         <>
-        <h3>Something went wrong</h3>
         <button onClick={() => setOpen()}>
           <img src={require('../assets/icons/close.svg')} width="25" height="25" alt="" />
         </button>

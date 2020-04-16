@@ -635,6 +635,7 @@ form label {
 form input,
 form textarea {
   display: block;
+  margin-bottom: 0.75rem;
 }
 form input {
   border: 2px solid #1b350e;
@@ -972,6 +973,11 @@ form.user input[type=submit] {
 }
 .user-actions h2 {
   margin-top: 1rem;
+}
+
+.admin-user-actions {
+  padding: 2.5rem;
+  text-align: right;
 }
 
 /******************

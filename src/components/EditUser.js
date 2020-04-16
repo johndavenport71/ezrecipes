@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import FileDropzone from './form_components/FileDropzone';
+import Alert from './Alert';
 import Modal from './Modal';
+import passwordCheck from '../utils/passwordCheck';
 
 const EditUser = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
@@ -10,6 +12,8 @@ const EditUser = () => {
   const api = process.env.REACT_APP_API_PATH;
   const { id } = useParams();
   const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState([]);
   const [deleteSuccess, setDeleteSuccess] = useState(0);
   const [user, setUser] = useState({});
   const [values, setValues] = useState({
@@ -17,7 +21,10 @@ const EditUser = () => {
     last_name: user.last_name ? user.last_name : "",
     display_name: user.display_name ? user.display_name : "",
     email: user.email ? user.email : "",
-    image: user.profile_pic ? user.profile_pic : ""
+    image: user.profile_pic ? user.profile_pic : "",
+    og_password: "",
+    new_password: "",
+    new_password_confirm: ""
   });
 
   const handleChangeDirectly = (key, value) => {
@@ -91,8 +98,42 @@ const EditUser = () => {
         <FileDropzone values={values} setValues={setValues} />
         <input type="submit" value="Save Changes" />
       </form>
-      <h2>Want to delete your account?</h2>
-      <button aria-haspopup="dialog" className="secondary-button warning" onClick={(e) => handleClick(e, true)}>Delete Account</button>
+      <div className="two-column">
+        <div>
+          <h2>Want to delete your account?</h2>
+          <button aria-haspopup="dialog" className="secondary-button warning" onClick={(e) => handleClick(e, true)}>Delete Account</button>
+        </div>
+        <div>
+          <h2>Change Password</h2>
+          <form id="change-password" onSubmit={handlePassword}>
+            <label htmlFor="og_password">Current Password</label>
+            <input 
+              type="password" 
+              name="og_password" 
+              value={values.og_password} 
+              onChange={e => handleChangeDirectly('og_password', e.target.value)} 
+              required
+            />
+            <label htmlFor="new_password">New Password</label>
+            <input 
+              type="password" 
+              name="og_password" 
+              value={values.new_password} 
+              onChange={e => handleChangeDirectly('new_password', e.target.value)} 
+              required
+            />
+            <label htmlFor="new_password_confirm">Confirm New Password</label>
+            <input 
+              type="password" 
+              name="og_password" 
+              value={values.new_password_confirm} 
+              onChange={e => handleChangeDirectly('new_password_confirm', e.target.value)} 
+              required
+            />
+            <input type="submit" value="Change Password" />
+          </form>
+        </div>
+      </div>
       </>
       }
       {open && 
@@ -113,6 +154,8 @@ const EditUser = () => {
           </div>
         </Modal>
       }
+      {message && <Alert message={message} setOpen={() => setMessage("")} />}
+      {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
     </main>
   );
 
@@ -158,6 +201,31 @@ const EditUser = () => {
       }
     })
     .catch(err => console.log(err));
+  }
+
+  function handlePassword(evt) {
+    evt.preventDefault();
+    if(passwordCheck(values.new_password)) {
+      let params = new FormData();
+      params.append('user_id', user.user_id);
+      params.append('og_password', values.og_password);
+      params.append('new_password', values.new_password);
+      params.append('new_password_confirm', values.new_password_confirm);
+      const url = api + 'change-password.php';
+      axios.post(url, params)
+      .then(res => {
+        console.log(res);
+        if(res.data.status === 1) {
+          setMessage(res.data.status_message);
+          setValues({...values, og_password: "", new_password: "", new_password_confirm: ""});
+        } else {
+          setErrors([res.data.status_message]);
+        }
+      })
+      .catch(err => console.log(err));
+    } else {
+      setErrors(["Your password must contain at least 8 characters, a number and a special character."]);
+    }
   }
 }
 

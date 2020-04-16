@@ -13,19 +13,19 @@
 - [ ] Pagination of search results
 - [ ] recipe slugs for url
 - [ ] Recipe submitted by
+- [ ] User data/session storage
 
 ### To Do
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage 
 - [ ] Replace all front-end usage of user id with uuid
-- [ ] Forgot password flow
-- [ ] hCaptcha integration
-- [ ] admin actions
 - [ ] More diverse featured categories
 - [ ] Count of saved/submitted recipes
+- [ ] Recipe image on edit form
 
 ### In Progress
+- [ ] Forgot password flow
 
 
 ### Refactor

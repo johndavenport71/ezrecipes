@@ -58,12 +58,18 @@ const SingleComment = ({ comment, session, updateComments, setMessage, setErrors
         </div>
         :
         <div className="comment-actions">
-          <button className="secondary-button warning">
-            {
-              //todo report feature
-            }
-            Report
-          </button>
+          {session && session.member_level === 'a' ? 
+            <button className="secondary-button warning" onClick={handleDelete}>
+              Delete
+            </button>
+            :
+            <button className="secondary-button warning">
+              {
+                //todo report feature
+              }
+              Report
+            </button>
+          }
         </div>
       }
       {edit ? 
