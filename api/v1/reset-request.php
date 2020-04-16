@@ -5,12 +5,9 @@ include('../../Models/User.php');
 $user = new User($conn);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $data["password"] = h($_POST["password"]) ?? "";
-  $data["password_confirm"] = h($_POST["password_confirm"]) ?? "";
-  $data["selector"] = h($_POST["selector"]) ?? "";
-  $data["token"] = h($_POST["token"]) ?? "";
+  $email = h($_POST["email"]);
 
-  $response = $user->resetPassword($data);
+  $response = $user->requestReset($email);
 
 } else {
   $response = array(

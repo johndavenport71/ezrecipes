@@ -122,13 +122,52 @@ class User {
   * @param 	 String 	 $email
   * @return 	 Array
   */
-  function resetPassword(String $email) {
+  function requestReset(String $email) {
+    $response = [];
     $stmt = $this->conn->prepare("SELECT user_id, first_name, last_name FROM users WHERE email = :email LIMIT 1");
     $stmt->bindParam(":email", $email);
     if($stmt->execute()) {
       $user = $stmt->fetch(PDO::FETCH_ASSOC);
       if(isset($user["user_id"])) {
-        //send email
+        $selector = bin2hex(random_bytes(8));
+        $token = random_bytes(32);
+        $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+        $url = "https://ezrecipes.fit/reset-password/" . $selector . "/" . bin2hex($token);
+        $expires = date("U") + 900;
+
+        $stmt = $this->conn->prepare("DELETE FROM pwd_reset WHERE email = :email");
+        $stmt->execute([":email" => $email]);
+
+        $stmt = $this->conn->prepare("INSERT INTO pwd_reset VALUES (DEFAULT, :email, :selector, :token, :expires)");
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":selector", $selector);
+        $stmt->bindParam(":token", $hashedToken);
+        $stmt->bindParam(":expires", $expires);
+        if($stmt->execute()) {
+          $to = $email;
+          $subject = 'EZRecipes Password Reset';
+
+          $message = '<p>We recieved your password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email.</p>';
+          $message .= '<p>Reset your password: <br>';
+          $message .= '<a href="' . $url . '">' . $url . '</a></p>';
+
+          $headers = "From: EZRecipes <jonathandavenport@students.abtech.edu>\r\n";
+          $headers .= "Reply-To: jonathandavenport@students.abtech.edu\r\n";
+          $headers .= "Content-type: text/html\r\n";
+
+          $emailSent = mail($to, $subject, $message, $headers);
+          if($emailSent == true) {
+            $response = array(
+              'status' => 1,
+              'status_message' => 'email sent'
+            );
+          } else {
+            $response = array(
+              'status' => 0,
+              'status_message' => 'email not sent'
+            );
+          }
+        }
       } else {
         $response = array(
           'status' => 0,
@@ -139,6 +178,66 @@ class User {
       $response = array(
         'status' => 0,
         'status_message' => 'something went wrong'
+      );
+    }
+    return $response;
+  }//end requestReset
+
+  /**
+  * Reset user password
+  *
+  * @param 	 Array 	 $data
+  * @return 	 Array
+  */
+  function resetPassword(Array $data) {
+    if($this->checkPasswordReset($data)) {
+      $currentDate = date("U");
+      $stmt = $this->conn->prepare("SELECT * FROM pwd_reset WHERE selector = :selector AND expires >= :date");
+      $stmt->bindParam(":selector", $data["selector"]);
+      $stmt->bindParam(":date", $currentDate);
+      if($stmt->execute()) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $tokenBin = hex2bin($data["token"]);
+        $tokenCheck = password_verify($tokenBin, $row["token"]);
+        if($tokenCheck === false) {
+          $response = array(
+            'status' => 0,
+            'status_message' => 'Could not validate request. Please try again.'
+          );
+        } elseif($tokenCheck === true) {
+          $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+          $stmt->execute([":email" => $row["email"]]);
+          $user = $stmt->fetch(PDO::FETCH_ASSOC);
+          $newPassword = password_hash($data["password"], PASSWORD_DEFAULT);
+          $stmt = $this->conn->prepare("UPDATE users SET user_auth = :newPwd WHERE email = :email");
+          $stmt->bindParam(":newPwd", $newPassword);
+          $stmt->bindParam(":email", $user["email"]);
+          if($stmt->execute()) {
+            $passwordReset = true;
+          } else {
+            $passwordReset = false;
+          }
+          if($passwordReset === true) {
+            $stmt = $this->conn->prepare("DELETE FROM pwd_reset WHERE email = :email");
+            $stmt->execute([":email" => $user["email"]]);
+          }
+        }
+      }
+      if(isset($passwordReset) && $passwordReset === true) {
+        $response = array(
+          'status' => 1,
+          'status_message' => 'password successfully reset'
+        );
+      } else {
+        $response = array(
+          'status' => 0,
+          'status_message' => 'failed to reset password'
+        );
+      }
+    } else {
+      $response = array(
+        'status' => 0,
+        'status_message' => 'missing require parameters'
       );
     }
     return $response;
@@ -375,6 +474,28 @@ class User {
 
     return true;
   }//end checkPasswordChange
+
+  /**
+  * Check required parameters for password reset
+  *
+  * @param 	 Array 	 $data
+  * @return 	 Boolean
+  */
+  function checkPasswordReset(Array $data) {
+    if(!isset($data["password"])) {
+      return false; 
+    }
+    if(!isset($data["password_confirm"])) {
+      return false; 
+    }
+    if(!isset($data["selector"])) {
+      return false; 
+    }
+    if(!isset($data["token"])) {
+      return false; 
+    }
+    return true;
+  }//end checkPasswordReset
 
   /**
   * Save a recipe

@@ -23,13 +23,14 @@
 - [ ] More diverse featured categories
 - [ ] Count of saved/submitted recipes
 - [ ] Recipe image on edit form
+- [ ] Responsive styling
+- [ ] Organize Components
 
 ### In Progress
-- [ ] Forgot password flow
-
 
 ### Refactor
 
+- [ ] Test forgot password flow
 - [ ] Build Out Footer
 - [ ] Home Page Featured Section  
 - [ ] Build out Search Endpoint  

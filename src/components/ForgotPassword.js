@@ -13,7 +13,7 @@ const ForgotPassword = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     setSubmitted(true);
-    const url = api + 'reset-password.php';
+    const url = api + 'reset-request.php';
     let params = new FormData();
     params.append('email', email);
     axios.post(url, params)

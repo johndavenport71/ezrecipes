@@ -13,6 +13,7 @@ import EditUser from './EditUser';
 import Error404 from './Error404';
 import CategoryList from './CategoryList';
 import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 const Routes = () => {
 
@@ -56,6 +57,9 @@ const Routes = () => {
       </Route>
       <Route path="/forgot-password">
         <ForgotPassword />
+      </Route>
+      <Route path="/reset-password/:selector/:token">
+        <ResetPassword />
       </Route>
       <Route>
         <Error404 />
