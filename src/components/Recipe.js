@@ -63,7 +63,7 @@ const Recipe = (props) => {
       {recipe &&
         <RecipeRating recipe={recipe} />
       }
-      <div className="two-column">
+      <div className="two-column details">
         <div>
           <h2>Ingredients</h2>
           {recipe.ingredients ?

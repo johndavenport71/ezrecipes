@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import UserMenu from './UserMenu';
+import useWindowDimensions from '../../utils/windowDimensions';
 
 const UserHeader = ({ user }) => {
   const [open, setOpen] = useState(false);
   const root = process.env.REACT_APP_ROOT;
+  const { width } = useWindowDimensions();
 
   const showMenu = (e) => {
     setOpen(true);
@@ -20,7 +22,9 @@ const UserHeader = ({ user }) => {
     :
     <img src={require('../../assets/icons/happy_face.svg')} className="user-image" alt="smiley face icon" />
     }
-    <p>Hi there, {user.display_name ? user.display_name : user.first_name}</p>
+    {width > 960 &&
+      <p>Hi there, {user.display_name ? user.display_name : user.first_name}</p>
+    }
     <img src={require('../../assets/icons/arrow_drop_down.svg')} alt="" />
     {open && <UserMenu user={user} closeMenu={closeMenu} />}
     </div>

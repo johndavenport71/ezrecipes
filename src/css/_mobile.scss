@@ -1,0 +1,146 @@
+/** Mobile Styling **/
+
+@media screen and (max-width: 960px) {
+  /*************
+  * General Styles
+  *************/
+  #app main {
+    width: 95%;
+  }
+
+  main .center-content {
+    width: 100%;
+  }
+
+  .two-column {
+    display: flex;
+    flex-wrap: wrap;
+  
+    & > * {
+      flex: 1 0 100%;
+    }
+  }
+
+  #add-recipe .half-width {
+    flex: 1 0 100%;
+  }
+
+  .button,
+  .secondary-button {
+    display: block;
+    margin: 1rem auto;
+  }
+
+  /*************
+  * Recipe Page Styles
+  *************/
+  .nutrition {
+    flex-wrap: wrap;
+    & > label {
+      flex: 1 0 100%;
+    }
+  }
+
+  #single-recipe .details {
+    flex-direction: column-reverse;
+    & > div {
+      max-width: 100%;
+      & > img {
+        width: 100%;
+      }
+    }
+  }
+
+  /*************
+  * Header Styles
+  *************/
+  header {
+    padding: 0 1rem;
+  
+    .logo {
+      margin-top: .25rem;
+      max-height: 88px;
+    }
+  
+    a {
+      width: 50px;
+    }
+  }
+
+  /******************
+  ** Featured Section
+  ******************/
+  .featured {
+    height: 50vh;
+
+    .featured-slide {
+      img {
+        height: auto;
+        left: -25%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200%;
+      }
+      h2, p {
+        color: #fff;
+        position: relative;
+      }
+
+      a {
+        background: linear-gradient(0deg, $grey800 0%, rgba(56, 67, 67, 0.61) 65%, rgba(56, 67, 67, 0) 100%);
+        display: block;
+        height: 60%;
+        padding: 1rem 1rem 2rem;
+        width: 100%;
+      }
+
+    }
+  }
+
+  /*************
+  * Form Styles
+  *************/
+  form input,
+  #sign-up input,
+  #sign-up label,
+  #login-form input,
+  #login-form label,
+  #image {
+    width: 100%;
+  }
+
+  /******************
+  **  Recipe Card Styles
+  *******************/
+  .inner-container {
+    transition: transform ease-out 0.25s;
+  }
+
+  .section-heading {
+    flex-wrap: wrap;
+  }
+
+  .recipe-card {
+    flex: 1 0 100%;
+  }
+
+  /******************
+  **  Footer Styles
+  *******************/
+  .footer {
+    display: block;
+    padding: 1rem;
+  }
+
+}
+
+@media screen and (max-width: 960px) and (min-width: 400px) {
+  /******************
+  **  Recipe Card Styles
+  *******************/
+
+  .recipe-card {
+    flex: 1 0 50%;
+  }
+}

@@ -25,10 +25,10 @@
 - [ ] Replace all front-end usage of user id with uuid  
 - [ ] More diverse featured categories  
 - [ ] Count of saved/submitted recipes  
+- [ ] User dropdown mobile interactions. No hover
 
 ### In Progress
 - [ ] Responsive styling  *
-
 
 ### Refactor
 - [ ] Organize Components  *
