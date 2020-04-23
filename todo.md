@@ -18,7 +18,6 @@
 - [ ] Image Sizes  
 
 ### To Do
-
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
 - [ ] Catch empty user in storage  
@@ -28,12 +27,11 @@
 - [ ] User dropdown mobile interactions. No hover
 
 ### In Progress
-- [ ] Responsive styling  *
 
 ### Refactor
+- [ ] Responsive styling  *
 - [ ] Organize Components  *
 - [ ] Accessibility checks  *
-
 - [ ] Test forgot password flow  
 - [ ] Build Out Footer  
 - [ ] Home Page Featured Section  

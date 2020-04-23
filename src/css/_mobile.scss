@@ -43,6 +43,9 @@
 
   #single-recipe .details {
     flex-direction: column-reverse;
+    .image-container {
+      overflow: hidden;
+    }
     & > div {
       max-width: 100%;
       & > img {
@@ -60,6 +63,10 @@
     .logo {
       margin-top: .25rem;
       max-height: 88px;
+    }
+
+    .search-bar {
+      margin-right: 2rem;
     }
   
     a {

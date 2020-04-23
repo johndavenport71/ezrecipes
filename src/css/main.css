@@ -1313,6 +1313,9 @@ form.user input[type=submit] {
   #single-recipe .details {
     flex-direction: column-reverse;
   }
+  #single-recipe .details .image-container {
+    overflow: hidden;
+  }
   #single-recipe .details > div {
     max-width: 100%;
   }
@@ -1329,6 +1332,9 @@ form.user input[type=submit] {
   header .logo {
     margin-top: 0.25rem;
     max-height: 88px;
+  }
+  header .search-bar {
+    margin-right: 2rem;
   }
   header a {
     width: 50px;

@@ -72,7 +72,7 @@ const Recipe = (props) => {
             <LoadingLines />
           }
         </div>
-        <div>
+        <div className="image-container">
           {recipe.img_path && <img src={recipe.img_path.includes('http') ? recipe.img_path : `https://${recipe.img_path}`} alt={recipe.title} width="400" height="auto" />}
         </div>
       </div>
