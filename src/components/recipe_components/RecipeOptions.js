@@ -91,8 +91,8 @@ const RecipeOptions = ({ recipe, session }) => {
             <a className="secondary-button" href="/">Return Home</a>
           </div>  
           :
-          <div>
-            <h3>Are you sure you want to delete this recipe</h3>
+          <div className="modal-body">
+            <h3>Are you sure you want to delete this recipe?</h3>
             <button className="secondary-button" onClick={()=>setOpen(false)}>Cancel</button>
             <button className="secondary-button warning" onClick={handleDelete}>Delete</button>
           </div>

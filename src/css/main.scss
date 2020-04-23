@@ -932,7 +932,7 @@ form.user {
 /******************
 ** Modal
 ******************/
-.modal {
+#modal {
   align-items: center;
   background-color: #fff;
   box-shadow: 0 6px 6px -1px $grey400;
@@ -946,19 +946,28 @@ form.user {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
+  z-index: 1000;
 
-  h3 {
-    margin-bottom: 1rem;
+  & > div.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    h3 {
+      flex: 1 0 100%;
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      flex: 1 0 40%;
+      margin: 1rem;
+    }
+  
+    a {
+      display: block;
+      margin-top: 1rem;
+    }
   }
 
-  button {
-    margin: 1rem;
-  }
-
-  a {
-    display: block;
-    margin-top: 1rem;
-  }
 }
 
 /******************

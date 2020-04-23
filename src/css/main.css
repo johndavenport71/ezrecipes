@@ -1176,7 +1176,7 @@ form.user input[type=submit] {
 /******************
 ** Modal
 ******************/
-.modal {
+#modal {
   align-items: center;
   background-color: #fff;
   box-shadow: 0 6px 6px -1px #7c8788;
@@ -1190,14 +1190,22 @@ form.user input[type=submit] {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
+  z-index: 1000;
 }
-.modal h3 {
+#modal > div.modal-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+#modal > div.modal-body h3 {
+  flex: 1 0 100%;
+  margin: 0;
   margin-bottom: 1rem;
 }
-.modal button {
+#modal > div.modal-body button {
+  flex: 1 0 40%;
   margin: 1rem;
 }
-.modal a {
+#modal > div.modal-body a {
   display: block;
   margin-top: 1rem;
 }
@@ -1276,6 +1284,11 @@ form.user input[type=submit] {
   *************/
   #app main {
     width: 95%;
+  }
+
+  #modal,
+.alert {
+    width: 90%;
   }
 
   main .center-content {
