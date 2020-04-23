@@ -38,7 +38,6 @@ class Ingredient {
     $existingFields = $this->getAllIngredients($this->conn);
 
     $newFields = array_diff($values, array_values($existingFields));
-
     if($newFields) {
       $stmt = $this->conn->prepare("INSERT INTO ingredients VALUES (NULL, :fieldName)");
       foreach($newFields as $new) {

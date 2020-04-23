@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchField from './SearchField';
-import UserHeader from './UserHeader';
+import UserHeader from '../User/UserHeader';
 
 const Header = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <Link to="/">
-        <img src={require("../assets/logo.png")} alt="Ez Recipes" className="logo" />
+        <img src={require("../../assets/logo.png")} alt="Ez Recipes" className="logo" />
       </Link>
       <div>
         <SearchField />

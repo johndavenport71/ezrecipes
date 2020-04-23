@@ -1,6 +1,6 @@
 import React from 'react';
-import CardSection from './CardSection';
-import FeaturedSection from './FeaturedSection';
+import CardSection from './Global/CardSection';
+import FeaturedSection from './Global/FeaturedSection';
 import featured from '../utils/featuredCategories';
 import AddCTA from './AddCTA';
 const Home = () => {

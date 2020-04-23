@@ -9,7 +9,7 @@ const SliderArrows = ({ handleClick }) => {
       aria-label="previous recipe set"
     >
     <img 
-      src={require('../assets/icons/chevron_left.svg')} 
+      src={require('../../assets/icons/chevron_left.svg')} 
       width="50" 
       height="50" 
       alt="" 
@@ -21,7 +21,7 @@ const SliderArrows = ({ handleClick }) => {
       aria-label="next recipe set"
     >
       <img 
-        src={require('../assets/icons/chevron_right.svg')} 
+        src={require('../../assets/icons/chevron_right.svg')} 
         width="50" 
         height="50"         
         alt=""        

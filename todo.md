@@ -9,29 +9,33 @@
 * recipe 59
 
 ### Backlog
-- [ ] Move api url from env file
-- [ ] Pagination of search results
-- [ ] recipe slugs for url
-- [ ] Recipe submitted by
-- [ ] User data/session storage
+
+- [ ] Move api url from env file  
+- [ ] Pagination of search results  
+- [ ] recipe slugs for url  
+- [ ] Recipe submitted by  
+- [ ] User data/session storage  
+- [ ] Image Sizes  
 
 ### To Do
+
 - [ ] User delete error handling  
 - [ ] Error handling for edit user page  
-- [ ] Catch empty user in storage 
-- [ ] Replace all front-end usage of user id with uuid
-- [ ] More diverse featured categories
-- [ ] Count of saved/submitted recipes
-- [ ] Recipe image on edit form
-- [ ] Responsive styling
-- [ ] Organize Components
+- [ ] Catch empty user in storage  
+- [ ] Replace all front-end usage of user id with uuid  
+- [ ] More diverse featured categories  
+- [ ] Count of saved/submitted recipes  
 
 ### In Progress
+- [ ] Responsive styling  *
+
 
 ### Refactor
+- [ ] Organize Components  *
+- [ ] Accessibility checks  *
 
-- [ ] Test forgot password flow
-- [ ] Build Out Footer
+- [ ] Test forgot password flow  
+- [ ] Build Out Footer  
 - [ ] Home Page Featured Section  
 - [ ] Build out Search Endpoint  
 

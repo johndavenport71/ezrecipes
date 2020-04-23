@@ -1,19 +1,19 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
-import SignUp from './SignUp';
-import Login from './Login';
+import SignUp from './User/SignUp';
+import Login from './User/Login';
 import Recipe from './Recipe';
 import AddRecipe from './AddRecipe';
-import SearchResults from './SearchResults';
-import SingleUser from './SingleUser';
+import SearchResults from './Global/SearchResults';
+import SingleUser from './User/SingleUser';
 import Category from './Category';
 import EditRecipe from './EditRecipe';
-import EditUser from './EditUser';
-import Error404 from './Error404';
-import CategoryList from './CategoryList';
-import ForgotPassword from './ForgotPassword';
-import ResetPassword from './ResetPassword';
+import EditUser from './User/EditUser';
+import Error404 from './Global/Error404';
+import CategoryList from './Global/CategoryList';
+import ForgotPassword from './User/ForgotPassword';
+import ResetPassword from './User/ResetPassword';
 
 const Routes = () => {
 

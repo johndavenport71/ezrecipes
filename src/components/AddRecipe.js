@@ -3,12 +3,14 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import arrayToString from '../utils/arrayToString';
 import RecipeForm from './form_components/RecipeForm';
+import Alert from './Global/Alert';
 
 const AddRecipe = (props) => {
   const history = useHistory();
   const api = process.env.REACT_APP_API_PATH;
   const session = JSON.parse(window.sessionStorage.getItem('user'));
   const [showForm, setShowForm] = useState(Boolean(session));
+  const [errors, setErrors] = useState([]);
 
   const [values, setValues] = useState({
     title: "",
@@ -39,6 +41,9 @@ const AddRecipe = (props) => {
       :
       <RecipeForm values={values} setValues={setValues} handleChangeDirectly={handleChangeDirectly} handleSubmit={handleSubmit} />
       }
+      {errors.length > 0 && 
+        <Alert errors={errors} setOpen={() => setErrors([])} />
+      }
     </main>
   );
 
@@ -57,6 +62,8 @@ const AddRecipe = (props) => {
       file = files.files[0];
     }
 
+    console.log(file);
+
     const ingredients = arrayToString(newIngredients, '//');
     
     let params = new FormData();
@@ -68,17 +75,17 @@ const AddRecipe = (props) => {
     params.append("protein", values.protein);
     params.append("directions", values.steps);
     params.append("user_id", session ? session.user_id : 0);
-    params.append("user_auth", session.uuid);
     params.append("all_ingredients", ingredients);
     params.append("categories", values.categories);
     params.append("image", file);
 
-    axios.post(url, params)
+    axios.post(url, params, {headers: {'Content-Type': 'multipart/form-data'}})
     .then(res => {
+      console.log(res);
       if(res.data.status === 1) {
         history.push(`/recipe/${res.data.recipe_id}`);
       } else {
-        console.log("TO DO: error handling",res);
+        setErrors(["Failed to add recipe. Please try again."]);
       }
     })
     .catch(err => console.log(err));

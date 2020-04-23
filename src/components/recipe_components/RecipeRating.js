@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Alert from './Alert';
+import Alert from '../Global/Alert';
 import StarRatings from 'react-star-ratings';
 
 const RecipeRating = ({ recipe }) => {

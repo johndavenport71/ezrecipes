@@ -16,22 +16,38 @@ if($request == "GET") {
       $recipes = [];
       foreach($params as $id) {
         $recipe = $controller->getSingleRecipe(h($id));
-        array_push($recipes, $recipe->jsonSerialize());
+        if($recipe->getID() != 0) {
+          array_push($recipes, $recipe->jsonSerialize());
+        }
       }
-      $response = array(
-        'status' => 1,
-        'status_message' => 'success',
-        'array' => true,
-        'recipes' => $recipes
-      );
+      if(sizeof($recipes)) {
+        $response = array(
+          'status' => 1,
+          'status_message' => 'success',
+          'array' => true,
+          'recipes' => $recipes
+        );
+      } else {
+        $response = array(
+          'status' => 0,
+          'status_message' => 'no recipes found'
+        );
+      }
     } else {
       $recipe = $controller->getSingleRecipe(h($params));
-      $response = array(
-        'status' => 1,
-        'status_message' => 'success',
-        'array' => false,
-        'recipe' => $recipe->jsonSerialize()
-      );
+      if($recipe->getID() == 0) {
+        $response = array(
+          'status' => 0,
+          'status_message' => 'recipe does not exist'
+        );
+      } else {
+        $response = array(
+          'status' => 1,
+          'status_message' => 'success',
+          'array' => false,
+          'recipe' => $recipe->jsonSerialize()
+        );
+      }
     }
   } else if(isset($_GET["user"])) {
     $user = h($_GET["user"]);
@@ -45,41 +61,46 @@ if($request == "GET") {
     $response = $controller->getAllRecipes($limit);
   }
 } else if($request == "POST") {
+  //add new recipe
+  $recipe["recipe_title"] = h($_POST["recipe_title"]);
+  $recipe["recipe_desc"] = h($_POST["recipe_desc"]);
+  $recipe["fat"] = h((int)$_POST["fat"]);
+  $recipe["calories"] = h((int)$_POST["calories"]);
+  $recipe["protein"] = h((int)$_POST["protein"]);
+  $recipe["sodium"] = h((int)$_POST["sodium"]);
+  $recipe["directions"] = h($_POST["directions"]);
+  $recipe["user_id"] = $_POST["user_id"] ? h((int)$_POST["user_id"]) : 0;
+  $recipe["recipe_img"] = "";
+  $recipe["directions"] = nl_dbl_slash(h($recipe["directions"]));
 
-  $userAuth = h($_POST["user_auth"]);
+  $allIngredients = h($_POST["all_ingredients"]);
+  $allIngredients = str_to_array_dbl_slash($allIngredients);
 
-  if($userCon->userAuth($userAuth)) {
-    //add new recipe
-    if(isset($_POST["recipe_image"])) {
-      $recipe["recipe_img"] = $_POST["recipe_image"];
-    } else {
-      $recipe["recipe_img"] = "";
+  $categories = nl_dbl_slash(h($_POST["categories"]));
+  $categories = str_to_array_dbl_slash($categories);
+
+  $response = $controller->addRecipe($recipe, $allIngredients, $categories);
+
+  if(isset($_FILES["image"])) {
+    $target_dir = SITE_ROOT . "/uploads/recipes/". $response["recipe_id"] ."/";
+    $recipe["recipe_img"] = "https://www.jdavenportoti.com/ezrecipes/uploads/recipes/". $response["recipe_id"] ."/" . $_FILES["image"]["name"];
+    if(!file_exists($target_dir)) {
+      mkdir($target_dir);
     }
-  
-    $recipe["recipe_title"] = h($_POST["recipe_title"]);
-    $recipe["recipe_desc"] = h($_POST["recipe_desc"]);
-    $recipe["fat"] = h((int)$_POST["fat"]);
-    $recipe["calories"] = h((int)$_POST["calories"]);
-    $recipe["protein"] = h((int)$_POST["protein"]);
-    $recipe["sodium"] = h((int)$_POST["sodium"]);
-    $recipe["directions"] = h($_POST["directions"]);
-    $recipe["user_id"] = $_POST["user_id"] ? h((int)$_POST["user_id"]) : 0;
-  
-    $recipe["directions"] = nl_dbl_slash(h($recipe["directions"]));
-  
-    $allIngredients = h($_POST["all_ingredients"]);
-    $allIngredients = str_to_array_dbl_slash($allIngredients);
-  
-    $categories = nl_dbl_slash(h($_POST["categories"]));
-    $categories = str_to_array_dbl_slash($categories);
-  
-    $response = $controller->addRecipe($recipe, $allIngredients, $categories);
-
-  } else {
-    $response = array(
-      'status' => 0,
-      'status_message' => 'Failed to authenticate user, try logging in again and resubmitting'
-    );
+    $target_file = $target_dir . $_FILES["image"]["name"];
+    $uploadOK = 1;
+    
+    if($uploadOK === 0) {
+      $response["image_message"] = 'Failed to upload image';
+    } else {
+      if(move_uploaded_file($_FILES["image"]['tmp_name'], $target_file)) {
+        $uploadOK = 1;
+        $stmt = $conn->prepare("UPDATE recipes SET recipe_image = :img WHERE recipe_id = :id");
+        $stmt->execute([":img"=>$recipe["recipe_img"], ":id"=>$response["recipe_id"]]);
+      } else {
+        $uploadOK = 0;
+      }
+    }
   }
 
 } else if($request == "DELETE") {
@@ -91,7 +112,7 @@ if($request == "GET") {
   } else {
     $response = array(
       'status' => 0,
-      'status_message' => 'recipe and user ids are required to delete a recipe'
+      'status_message' => 'recipe and user ids are required to delete a recipe: [recipeID] [userID]'
     );
   }
 } else if($request == "PUT") {
@@ -113,7 +134,6 @@ if($request == "GET") {
   
   $categories = nl_dbl_slash(h($data["categories"]));
   $categories = str_to_array_dbl_slash($categories);
-
   
   if(isset($data["file"])) {
     $target_dir = SITE_ROOT . "/uploads/recipes/". $recipe["recipe_id"] ."/";
@@ -136,6 +156,8 @@ if($request == "GET") {
       }
     }
     $recipe["recipe_img"] = substr($target_file, strpos($target_file, "uploads"));
+  } elseif(isset($data["recipe_img"])) {
+    $recipe["recipe_img"] = $data["recipe_img"];
   } else {
     $recipe["recipe_img"] = "";
   }

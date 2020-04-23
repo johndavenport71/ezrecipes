@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import FileDropzone from './form_components/FileDropzone';
-import Alert from './Alert';
-import Modal from './Modal';
-import passwordCheck from '../utils/passwordCheck';
+import FileDropzone from '../form_components/FileDropzone';
+import Alert from '../Global/Alert';
+import Modal from '../Global/Modal';
+import passwordCheck from '../../utils/passwordCheck';
 
 const EditUser = () => {
   const session = JSON.parse(window.sessionStorage.getItem('user'));
@@ -71,6 +71,7 @@ const EditUser = () => {
         <input 
           type="text" 
           name="first_name" 
+          id="first_name" 
           value={values.first_name} 
           onChange={e => handleChangeDirectly('first_name', e.target.value)} 
         />
@@ -78,6 +79,7 @@ const EditUser = () => {
         <input 
           type="text" 
           name="last_name" 
+          id="last_name" 
           value={values.last_name} 
           onChange={e => handleChangeDirectly('last_name', e.target.value)} 
         />
@@ -85,6 +87,7 @@ const EditUser = () => {
         <input 
           type="text" 
           name="display_name" 
+          id="display_name" 
           value={values.display_name} 
           onChange={e => handleChangeDirectly('display_name', e.target.value)} 
         />
@@ -92,6 +95,7 @@ const EditUser = () => {
         <input 
           type="text" 
           name="email" 
+          id="email" 
           value={values.email} 
           onChange={e => handleChangeDirectly('email', e.target.value)} 
         />
@@ -109,7 +113,8 @@ const EditUser = () => {
             <label htmlFor="og_password">Current Password</label>
             <input 
               type="password" 
-              name="og_password" 
+              name="og_password"
+              id="og_password"
               value={values.og_password} 
               onChange={e => handleChangeDirectly('og_password', e.target.value)} 
               required
@@ -117,7 +122,8 @@ const EditUser = () => {
             <label htmlFor="new_password">New Password</label>
             <input 
               type="password" 
-              name="og_password" 
+              name="new_password" 
+              id="new_password" 
               value={values.new_password} 
               onChange={e => handleChangeDirectly('new_password', e.target.value)} 
               required
@@ -125,7 +131,8 @@ const EditUser = () => {
             <label htmlFor="new_password_confirm">Confirm New Password</label>
             <input 
               type="password" 
-              name="og_password" 
+              name="new_password_confirm" 
+              id="new_password_confirm" 
               value={values.new_password_confirm} 
               onChange={e => handleChangeDirectly('new_password_confirm', e.target.value)} 
               required

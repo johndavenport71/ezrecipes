@@ -18,10 +18,10 @@ const UserHeader = ({ user }) => {
     {user.profile_pic ? 
     <img src={root + user.profile_pic} className="user-image" alt={`${user.display_name ? user.display_name : user.first_name}`} />
     :
-    <img src={require('../assets/icons/happy_face.svg')} className="user-image" alt="smiley face icon" />
+    <img src={require('../../assets/icons/happy_face.svg')} className="user-image" alt="smiley face icon" />
     }
     <p>Hi there, {user.display_name ? user.display_name : user.first_name}</p>
-    <img src={require('../assets/icons/arrow_drop_down.svg')} alt="" />
+    <img src={require('../../assets/icons/arrow_drop_down.svg')} alt="" />
     {open && <UserMenu user={user} closeMenu={closeMenu} />}
     </div>
   );

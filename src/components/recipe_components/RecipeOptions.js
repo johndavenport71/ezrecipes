@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Alert from './Alert';
+import Alert from '../Global/Alert';
 import { filter } from 'lodash';
+import Modal from '../Global/Modal';
 
 const RecipeOptions = ({ recipe, session }) => {
 
   const api = process.env.REACT_APP_API_PATH;
   const [errors, setErrors] = useState([]);
   const [message, setMessage] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
   const savedRecipes = JSON.parse(window.sessionStorage.getItem('saved_recipes'));
   const isSaved = filter(savedRecipes, {id: recipe.id});
 
@@ -47,12 +50,30 @@ const RecipeOptions = ({ recipe, session }) => {
     .catch(err => console.log(err));
   }
 
+  const handleDelete = () => {
+    let url = api + 'recipes.php?';
+    let params = new URLSearchParams();
+    params.append('userID', session.user_id);
+    params.append('recipeID', recipe.id);
+    url += params.toString();
+    axios.delete(url)
+    .then(res => {
+      console.log(res);
+      if(res.data.status === 1) {
+        setDeleteSuccess(true);
+      } else {
+        setErrors([res.data.status_message]);
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
   return (
     <div className="recipe-options">
       {session && session.user_id === recipe.user_id || session.member_level === 'a' && 
         <>
         <a href={`/edit-recipe/${recipe.id}`} className="secondary-button">Edit</a>
-        <button className="secondary-button warning">Delete</button>
+        <button className="secondary-button warning" onClick={() => setOpen(true)}>Delete</button>
         </>
       }
       {isSaved.length > 0 ? 
@@ -62,6 +83,22 @@ const RecipeOptions = ({ recipe, session }) => {
       }
       {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
       {message && <Alert message={message} setOpen={() => setMessage(null)} />}
+      {open && 
+        <Modal>
+          {deleteSuccess ?
+          <div>
+            <h3>Recipe Deleted</h3>
+            <a className="secondary-button" href="/">Return Home</a>
+          </div>  
+          :
+          <div>
+            <h3>Are you sure you want to delete this recipe</h3>
+            <button className="secondary-button" onClick={()=>setOpen(false)}>Cancel</button>
+            <button className="secondary-button warning" onClick={handleDelete}>Delete</button>
+          </div>
+        }
+        </Modal>
+      }
     </div>
   );
 }

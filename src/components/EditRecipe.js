@@ -73,9 +73,14 @@ const EditRecipe = () => {
     params.append("user_auth", session.uuid);
     params.append("all_ingredients", ingredients);
     params.append("categories", recipe.categories);
-    params.append("image", file);
+    if(file) {
+      params.append("image", file);
+    } else {
+      params.append("recipe_img", recipe.img_path);
+    }
+    
 
-    axios.put(url, params)
+    axios.put(url, params, {headers: {"Content-Type": "multipart/form-data"}})
     .then(res => {
       if(res.data.status === 1) {
         history.push(`/recipe/${res.data.recipe_id}`);

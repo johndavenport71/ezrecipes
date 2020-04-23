@@ -42,7 +42,7 @@ const SingleComment = ({ comment, session, updateComments, setMessage, setErrors
   return (
     <div className="single-comment">
       <div>
-        <img src={comment.profile_pic ? root + comment.profile_pic : require('../../assets/icons/happy_face.svg')} width="50" height="50" />
+        <img src={comment.profile_pic ? root + comment.profile_pic : require('../../assets/icons/happy_face.svg')} alt={comment.display_name ? comment.display_name : comment.first_name + ' ' + comment.last_name} width="50" height="50" />
         <h4>
           {comment.display_name ? comment.display_name : comment.first_name + ' ' + comment.last_name}
         </h4>

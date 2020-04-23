@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import RecipeCard from './RecipeCard';
-import SavedRecipes from './SavedRecipes';
-import Modal from './Modal';
+import RecipeCard from '../Global/RecipeCard';
+import SavedRecipes from '../SavedRecipes';
+import Modal from '../Global/Modal';
 import axios from 'axios';
 
 const SingleUser = () => {
@@ -18,7 +18,7 @@ const SingleUser = () => {
 
   useEffect(()=>{
     if(!session || session.uuid !== id && session.member_level != 'a') {
-      history.push('/');
+      history.push('/login');
     }
     const fetchRecipes = (api, id, setRecipes) => {
       const url = api + "recipes.php?user=" + id;
@@ -39,7 +39,7 @@ const SingleUser = () => {
             setUser(res.data);
             fetchRecipes(api, res.data.user_id, setRecipes);
           } else {
-            history.push('/');
+            history.push('/login');
           }
         });
     }
@@ -77,7 +77,7 @@ const SingleUser = () => {
             /> 
             : 
             <img
-              src={require('../assets/icons/happy_face.svg')}
+              src={require('../../assets/icons/happy_face.svg')}
               alt="smiley face icon"
               width="100"
               height="100"

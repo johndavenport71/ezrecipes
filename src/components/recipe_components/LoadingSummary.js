@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingLines from '../LoadingLines';
+import LoadingLines from '../Global/LoadingLines';
 
 const LoadingSummary = () => {
   return (

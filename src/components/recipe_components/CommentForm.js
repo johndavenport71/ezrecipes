@@ -29,11 +29,11 @@ const CommentForm = (props) => {
   return (
     <>
     {session ?
-      <h3>Tell people what you think of this recipe</h3>
+      <h3><label htmlFor="comment-form">Tell people what you think of this recipe</label></h3>
       :
-      <h3>Login to leave a comment</h3>
+      <h3><label htmlFor="comment-form">Login to leave a comment</label></h3>
     }
-    <textarea disabled={Boolean(!session)} className="comment-form" value={body} onChange={e => setBody(e.target.value)} name="comment_body" rows={10}/>
+    <textarea id="comment-form" disabled={Boolean(!session)} className="comment-form" value={body} onChange={e => setBody(e.target.value)} name="comment_body" rows={10}/>
     <button className="secondary-button" onClick={handleSubmit} disabled={Boolean(!session)}>Post Comment</button>
     </>
   )

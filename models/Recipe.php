@@ -3,6 +3,7 @@
 require_once('FullRecipe.php');
 require_once('Ingredient.php');
 require_once('Category.php');
+require_once('User.php');
 
 class Recipe {
   private $conn;
@@ -182,7 +183,7 @@ class Recipe {
       $stmt->execute([':recipe' => $recipeID, ':user' => $data["user_id"]]);
         
     } catch (PDOException $e) {
-      print('Something went wrong: ' . $e->getMessage());
+      print('Something went wrong(insert recipe): ' . $e->getMessage());
       die();
     }
     
@@ -261,9 +262,16 @@ class Recipe {
   * @return 	 Array
   */
   function deleteRecipe(int $recipeID, int $userID) {
-    $stmt = $this->conn->prepare("SELECT recipe_id FROM recipes WHERE user_id = :u_id AND recipe_id = :r_id");
-    $stmt->execute([":u_id"=>$userID, ":r_id"=>$recipeID]);
-    $isOwner = $stmt->fetchColumn();
+    $uCon = new User($this->conn);
+    $uRes = $uCon->getUser($userID);
+    $user = $uRes["data"];
+    if($user["member_level"] != 'a') {
+      $stmt = $this->conn->prepare("SELECT recipe_id FROM recipes WHERE user_id = :u_id AND recipe_id = :r_id");
+      $stmt->execute([":u_id"=>$userID, ":r_id"=>$recipeID]);
+      $isOwner = $stmt->fetchColumn();
+    } else {
+      $isOwner = true;
+    }
 
     if($isOwner != false) {
 
@@ -313,6 +321,7 @@ class Recipe {
 
     return $response;
   }//end deleteRecipe
+
 
 }
 

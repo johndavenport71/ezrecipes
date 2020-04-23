@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SliderArrows from './SliderArrows';
-import RecipeCardList from './RecipeCardList';
+import RecipeCardList from '../RecipeCardList';
 
 const CardContainer = ({ recipes }) => {
   const [transform, setTransform] = useState(0);

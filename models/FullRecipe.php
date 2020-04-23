@@ -64,6 +64,16 @@ class FullRecipe implements JsonSerializable {
     return get_object_vars($this);
   }
 
+  /**
+  * Return recipe id
+  *
+  * @param 	 void 	 
+  * @return 	 int
+  */
+  function getID() {
+    return $this->id;
+  }
+
 }
 
 ?>

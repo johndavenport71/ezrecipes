@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import LoadingCard from './LoadingCard';
-import RecipeCard from './RecipeCard';
+import LoadingCard from './Global/LoadingCard';
+import RecipeCard from './Global/RecipeCard';
 
 const Category = () => {
   const { categories } = useParams();

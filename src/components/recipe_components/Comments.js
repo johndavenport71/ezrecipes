@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CommentForm from './CommentForm';
 import SingleComment from './SingleComment';
-import Alert from '../Alert';
+import Alert from '../Global/Alert';
 import axios from 'axios';
 
 const Comments = (props) => {

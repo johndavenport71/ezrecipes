@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import Ingredients from './recipe_components/Ingredients';
 import RecipeSteps from './recipe_components/RecipeSteps';
 import Categories from './recipe_components/Categories';
-import LoadingLines from './LoadingLines';
+import LoadingLines from './Global/LoadingLines';
 import LoadingSummary from './recipe_components/LoadingSummary';
-import RecipeOptions from './RecipeOptions';
-import Breadcrumb from './Breadcrumb';
-import RecipeRating from './RecipeRating';
+import RecipeOptions from './recipe_components/RecipeOptions';
+import Breadcrumb from './Global/Breadcrumb';
+import RecipeRating from './recipe_components/RecipeRating';
 import Comments from './recipe_components/Comments';
 import axios from 'axios';
 
@@ -23,6 +23,8 @@ const Recipe = (props) => {
     .then(res => {
       if(res.data.status === 1) {
         setRecipe(res.data.recipe);
+      } else {
+        window.location = "/";
       }
     });
   }

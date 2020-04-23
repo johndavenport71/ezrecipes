@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
-import passwordCheck from '../utils/passwordCheck';
+import passwordCheck from '../../utils/passwordCheck';
 import axios from 'axios';
-import Modal from './Modal';
+import Modal from '../Global/Modal';
 
 const ResetPassword = () => {
   const { selector, token } = useParams();

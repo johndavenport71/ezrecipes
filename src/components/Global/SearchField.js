@@ -29,7 +29,7 @@ const SearchField = () => {
         onChange={handleChange}
       />
       <button type="submit" className="search-button" aria-label="search">
-        <img src={require('../assets/icons/search.svg')} alt="" width="25" height="25" />
+        <img src={require('../../assets/icons/search.svg')} alt="" width="25" height="25" />
       </button>
       {submit && <Redirect to={{pathname: `/search/${query}`}} />}
     </form>

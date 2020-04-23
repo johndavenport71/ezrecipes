@@ -1197,6 +1197,10 @@ form.user input[type=submit] {
 .modal button {
   margin: 1rem;
 }
+.modal a {
+  display: block;
+  margin-top: 1rem;
+}
 
 /******************
 ** Featured Section

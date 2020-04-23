@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import validateEmail from '../utils/validateEmail';
-import Alert from './Alert';
+import validateEmail from '../../utils/validateEmail';
+import Alert from '../Global/Alert';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 

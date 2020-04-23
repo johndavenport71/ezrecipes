@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import signupValidator from '../utils/signupValidator';
-import passwordCheck from '../utils/passwordCheck';
-import validateEmail from '../utils/validateEmail';
-import Alert from './Alert';
+import signupValidator from '../../utils/signupValidator';
+import passwordCheck from '../../utils/passwordCheck';
+import validateEmail from '../../utils/validateEmail';
+import Alert from '../Global/Alert';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
