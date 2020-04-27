@@ -74,9 +74,16 @@ class Category {
   * @return 	 Array
   */
   function searchCategories(Array $categories) {
-    $sql = "SELECT category_id FROM categories WHERE category_desc REGEXP ('";
-    $sql .= rtrim(regexpImplode($categories), '|') . "')";
-    return $this->conn->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+    $stmt = $this->conn->prepare("SELECT category_id FROM categories WHERE category_desc LIKE :desc LIMIT 1");
+    $ids = [];
+    foreach($categories as $category) {
+      $desc = '%' . $category . '%';
+      if($stmt->execute([':desc' => $desc])) {
+        $id = $stmt->fetch(PDO::FETCH_COLUMN);
+        array_push($ids, $id);
+      }
+    }
+    return $ids;
   }
 
   /**

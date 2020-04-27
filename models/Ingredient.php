@@ -69,8 +69,15 @@ class Ingredient {
   * @return 	 Array
   */
   function searchIngredients(Array $ingredients) {
-    $sql = "SELECT ingredient_id FROM ingredients WHERE ingredient_desc REGEXP ('";
-    $sql .= rtrim(regexpImplode($ingredients), '|') . "')";
-    return $this->conn->query($sql)->fetchAll(PDO::FETCH_COLUMN);
+    $stmt = $this->conn->prepare("SELECT ingredient_id FROM ingredients WHERE ingredient_desc LIKE :desc LIMIT 1");
+    $ids = [];
+    foreach($ingredients as $ingredient) {
+      $desc = '%' . $ingredient . '%';
+      if($stmt->execute([':desc' => $desc])) {
+        $id = $stmt->fetch(PDO::FETCH_COLUMN);
+        array_push($ids, $id);
+      }
+    }
+    return $ids;
   }
 }

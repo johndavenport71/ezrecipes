@@ -75,7 +75,7 @@ if($request == "GET") {
 
   $allIngredients = h($_POST["all_ingredients"]);
   $allIngredients = str_to_array_dbl_slash($allIngredients);
-
+  array_pop($allIngredients); //remove the empty newline from array
   $categories = nl_dbl_slash(h($_POST["categories"]));
   $categories = str_to_array_dbl_slash($categories);
 
@@ -131,7 +131,6 @@ if($request == "GET") {
   
   $allIngredients = h($data["all_ingredients"]);
   $allIngredients = str_to_array_dbl_slash($allIngredients);
-  
   $categories = nl_dbl_slash(h($data["categories"]));
   $categories = str_to_array_dbl_slash($categories);
   

@@ -11,7 +11,11 @@ const CardSection = ({ title, category }) => {
     const fetchRecipes = (api) => {
       let url = api + 'categories.php?';
       let params = new URLSearchParams();
-      params.append('categories', encodeURI(category));
+      if(category.includes('&')) {
+        params.append('categories', encodeURIComponent(category));
+      } else {
+        params.append('categories', decodeURIComponent(category));
+      }
       url += params.toString();
       fetch(url).then(res=>res.json()).then(res=>{
         setRecipes(res.data);

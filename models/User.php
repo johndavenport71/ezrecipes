@@ -388,6 +388,14 @@ class User {
   function updateUser(int $id, Array $user) {
     $errors = $this->checkUser($user);
 
+    if($user["profile_pic"] == "") {
+      $stmt = $this->conn->prepare("SELECT profile_pic FROM users WHERE user_id = :id LIMIT 1");
+      if($stmt->execute([":id" => $id])) {
+        $pic = $stmt->fetch(PDO::FETCH_COLUMN);
+        $user["profile_pic"] = $pic;
+      }
+    }
+
     if(!sizeof($errors)) {
       $stmt = $this->conn->prepare("UPDATE users SET first_name = :first, last_name = :last, email = :email, display_name = :display,  profile_pic = :profile_pic WHERE user_id = :id");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);

@@ -27,6 +27,7 @@
 - [ ] User dropdown mobile interactions. No hover
 
 ### In Progress
+- [ ] Confirmation message on user edit submission
 
 ### Refactor
 - [ ] Responsive styling  *

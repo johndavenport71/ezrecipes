@@ -13,7 +13,11 @@ const Category = () => {
     const fetchRecipes = (api, cats) => {
       let url = api + 'categories.php?';
       let params = new URLSearchParams();
-      params.append('categories', decodeURIComponent(cats));
+      if(cats.includes('&')) {
+        params.append('categories', encodeURIComponent(cats));
+      } else {
+        params.append('categories', decodeURIComponent(cats));
+      }
       params.append('limit', 100);
       url += params.toString();
       axios.get(url)

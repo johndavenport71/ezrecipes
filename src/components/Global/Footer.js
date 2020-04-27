@@ -1,13 +1,13 @@
 import React from 'react';
 
 const Footer = () => {
-  const session = window.sessionStorage.getItem('user');
+  const session = JSON.parse(window.sessionStorage.getItem('user'));
 
   return (
     <div className="footer">
       <div>
         <a href="/categories">View all categories</a>
-        <a href={session ? `/user/${session.user_id}` : '/login'}>Account Management</a>
+        <a href={session ? `/user/${session.uuid}` : '/login'}>Account Management</a>
         <a href="add-recipe">Add a recipe</a>
       </div>
       <div>

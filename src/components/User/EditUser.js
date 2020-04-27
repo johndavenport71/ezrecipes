@@ -203,6 +203,7 @@ const EditUser = () => {
       if(res.data.status === 1) {
         const data = JSON.stringify(res.data.user.data);
         window.sessionStorage.setItem('user', data);
+        setMessage("Information updated!");
       } else {
         console.log(res);
       }
