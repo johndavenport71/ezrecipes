@@ -457,6 +457,9 @@ header {
   justify-content: space-between;
   padding: 0 2rem;
 }
+header h1 {
+  margin: 0;
+}
 header .logo {
   margin-top: -1.25rem;
   max-height: 88px;
