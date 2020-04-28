@@ -11,13 +11,17 @@ const Header = () => {
   return (
     <header>
       {width > 960 ?
-      <Link to="/">
-        <img src={require("../../assets/logo.png")} alt="Ez Recipes" className="logo" />
-      </Link>
+      <h1>
+        <Link to="/">
+          <img src={require("../../assets/logo.png")} alt="Ez Recipes" className="logo" />
+        </Link>
+      </h1>
       :
-      <Link to="/">
-        <img src={require("../../assets/chef.svg")} alt="Ez Recipes" className="logo" />
-      </Link>
+      <h1>
+        <Link to="/">
+          <img src={require("../../assets/chef.svg")} alt="Ez Recipes" className="logo" />
+        </Link>
+      </h1>
       }
       <div>
         {width > 600 &&

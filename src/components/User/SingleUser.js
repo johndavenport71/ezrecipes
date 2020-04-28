@@ -67,7 +67,7 @@ const SingleUser = () => {
     <main>
       <div className="two-column">
         <div>
-          {user && user.first_name && <h1>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h1>}
+          {user && user.first_name && <h2>{user.display_name ? user.display_name : user.first_name + " " + user.last_name}</h2>}
           {user && user.profile_pic ? 
             <img 
               src={root + user.profile_pic} 
@@ -90,9 +90,9 @@ const SingleUser = () => {
         </div>
         :
         <div className="user-actions">
-          <h2>Want to personalize your profile?</h2>
+          <h3>Want to personalize your profile?</h3>
           <a href={`/user/edit/${id}`}>Edit Profile</a>
-          <h2>Want to add a recipe?</h2>
+          <h3>Want to add a recipe?</h3>
           <a href="/add-recipe">Add a recipe</a>
         </div>
         }
@@ -102,7 +102,7 @@ const SingleUser = () => {
       }
       {recipes && recipes.length > 0 &&
         <>
-        <h2>{session.uuid !== id ? 'User' : 'Your'} submitted recipes</h2>
+        <h3>{session.uuid !== id ? 'User' : 'Your'} submitted recipes</h3>
         <section className="recipes-grid">
           {recipes.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
         </section>

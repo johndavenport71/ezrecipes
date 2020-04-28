@@ -36,7 +36,7 @@ const EditRecipe = () => {
   
   return (
     <main>
-      <h1>Edit {recipe && recipe.recipe_title}</h1>
+      <h2>Edit {recipe && recipe.recipe_title}</h2>
       {recipe && 
         <RecipeForm values={recipe} setValues={setRecipe} handleChangeDirectly={handleChangeDirectly} handleSubmit={handleSubmit} />
       }

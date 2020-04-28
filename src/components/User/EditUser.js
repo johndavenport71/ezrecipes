@@ -65,7 +65,7 @@ const EditUser = () => {
       <Redirect to={`/user/${id}`} /> 
       : 
       <>
-      <h1>Edit User</h1>
+      <h2>Edit User</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name</label>
         <input 
@@ -104,11 +104,11 @@ const EditUser = () => {
       </form>
       <div className="two-column">
         <div>
-          <h2>Want to delete your account?</h2>
+          <h3>Want to delete your account?</h3>
           <button aria-haspopup="dialog" className="secondary-button warning" onClick={(e) => handleClick(e, true)}>Delete Account</button>
         </div>
         <div>
-          <h2>Change Password</h2>
+          <h3>Change Password</h3>
           <form id="change-password" onSubmit={handlePassword}>
             <label htmlFor="og_password">Current Password</label>
             <input 

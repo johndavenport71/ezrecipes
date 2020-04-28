@@ -57,7 +57,7 @@ const ResetPassword = () => {
         <Redirect to="/" />  
         :
         <div>
-          <h1>Reset Password</h1>
+          <h2>Reset Password</h2>
           <form id="reset-password-form" onSubmit={handleSubmit}>
             <label htmlFor="password">New Password</label>
             <input type="password" name="password" value={values.password} onChange={e => handleChangeDirectly('password', e.target.value)} required />

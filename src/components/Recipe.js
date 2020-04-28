@@ -42,7 +42,7 @@ const Recipe = (props) => {
       {session && recipe && 
         <RecipeOptions recipe={recipe} session={session} />
       }
-      <h1>{recipe.title}</h1>
+      <h2>{recipe.title}</h2>
       <div className="summary two-column">
         {Object.keys(recipe).length > 0 ?
         <>

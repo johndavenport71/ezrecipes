@@ -16,7 +16,7 @@ const CategoryList = () => {
 
   return (
     <main>
-      <h1>All categories</h1>
+      <h2>All categories</h2>
       {categories.length > 0 &&
         <ul className="category-list">
           {categories.map(category => (

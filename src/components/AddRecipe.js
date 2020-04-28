@@ -31,7 +31,7 @@ const AddRecipe = (props) => {
 
   return (
     <main>
-      <h1>Add a New Recipe</h1>
+      <h2>Add a New Recipe</h2>
       {!showForm ? 
       <div className="center-content">
         <p>Sign in or register for an account to add your recipe!</p>

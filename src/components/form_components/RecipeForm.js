@@ -36,16 +36,16 @@ const RecipeForm = ({ values, setValues, handleChangeDirectly, handleSubmit }) =
       <fieldset className="full-width nutrition">
         <legend>Nutrition Information (optional)</legend>
         <label htmlFor="calories">Calories
-          <input type="text" value={values.calories} onChange={e => handleChangeDirectly("calories", e.target.value)} />
+          <input type="text" id="calories" value={values.calories} onChange={e => handleChangeDirectly("calories", e.target.value)} />
         </label>
         <label htmlFor="fat">Fat
-          <input type="text" value={values.fat} onChange={e => handleChangeDirectly("fat", e.target.value)} />
+          <input type="text" id="fat" value={values.fat} onChange={e => handleChangeDirectly("fat", e.target.value)} />
         </label>
         <label htmlFor="protein">Protein
-          <input type="text" value={values.protein} onChange={e => handleChangeDirectly("protein", e.target.value)} />
+          <input type="text" id="protein" value={values.protein} onChange={e => handleChangeDirectly("protein", e.target.value)} />
         </label>
         <label htmlFor="sodium">Sodium
-          <input type="text" value={values.sodium} onChange={e => handleChangeDirectly("sodium", e.target.value)} />
+          <input type="text" id="sodium" value={values.sodium} onChange={e => handleChangeDirectly("sodium", e.target.value)} />
         </label>
       </fieldset>
 

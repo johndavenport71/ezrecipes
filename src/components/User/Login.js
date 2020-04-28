@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <main>
-      <h1>Login</h1>
+      <h2>Login</h2>
       {errors.length > 0 && <Alert errors={errors} setOpen={() => setErrors([])} />}
       <form id="login-form" className="user" onSubmit={handleSubmit}>
         <label htmlFor="email">Email Address</label>

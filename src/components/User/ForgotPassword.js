@@ -23,7 +23,7 @@ const ForgotPassword = () => {
 
   return (
     <main>
-      <h1>Forgot Password</h1>
+      <h2>Forgot Password</h2>
       {!submitted ?
       <form id="forgot-password-form" onSubmit={handleSubmit}>
         <p>Enter your email address to get a code to reset your password</p>
