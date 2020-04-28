@@ -154,6 +154,9 @@ class User {
           $headers = "From: EZRecipes <jonathandavenport@students.abtech.edu>\r\n";
           $headers .= "Reply-To: jonathandavenport@students.abtech.edu\r\n";
           $headers .= "Content-type: text/html\r\n";
+          $headers .= "X-Priority: 1 (Highest)\n"; 
+          $headers .= "X-MSMail-Priority: High\n"; 
+          $headers .= "Importance: High\n"; 
 
           $emailSent = mail($to, $subject, $message, $headers);
           if($emailSent == true) {

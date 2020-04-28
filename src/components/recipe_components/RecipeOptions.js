@@ -14,6 +14,7 @@ const RecipeOptions = ({ recipe, session }) => {
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const savedRecipes = JSON.parse(window.sessionStorage.getItem('saved_recipes'));
   const isSaved = filter(savedRecipes, {id: recipe.id});
+  const showOptions = session.user_id == recipe.user_id || session.member_level == 'a';
 
   const saveRecipe = () => {
     const url = api + 'save.php';
@@ -70,7 +71,7 @@ const RecipeOptions = ({ recipe, session }) => {
 
   return (
     <div className="recipe-options">
-      {session && session.user_id === recipe.user_id || session.member_level === 'a' && 
+      {showOptions && 
         <>
         <a href={`/edit-recipe/${recipe.id}`} className="secondary-button">Edit</a>
         <button className="secondary-button warning" onClick={() => setOpen(true)}>Delete</button>

@@ -83,9 +83,9 @@ const AddRecipe = (props) => {
     .then(res => {
       console.log(res);
       if(res.data.status === 1) {
-        // history.push(`/recipe/${res.data.recipe_id}`);
+        history.push(`/recipe/${res.data.recipe_id}`);
       } else {
-        setErrors(["Failed to add recipe. Please try again."]);
+        setErrors(["Failed to add recipe. Please check the information you entered and try again."]);
       }
     })
     .catch(err => console.log(err));

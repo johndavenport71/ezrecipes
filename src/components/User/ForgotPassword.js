@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       </form>
       :
       <div>
-        <p>Your request has been sent.</p>
+        <p>Your password reset request has been sent to: {email}</p>
         <p>If there is an account with the email address you provided you will be sent a link to reset your password.</p>
       </div>
     }

@@ -1192,6 +1192,10 @@ form.user input[type=submit] {
   width: 50%;
   z-index: 1000;
 }
+#modal h3 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
 #modal > div.modal-body {
   display: flex;
   flex-wrap: wrap;
@@ -1199,7 +1203,6 @@ form.user input[type=submit] {
 #modal > div.modal-body h3 {
   flex: 1 0 100%;
   margin: 0;
-  margin-bottom: 1rem;
 }
 #modal > div.modal-body button {
   flex: 1 0 40%;
